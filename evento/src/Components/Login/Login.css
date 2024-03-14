@@ -1,0 +1,145 @@
+.ev-login {
+  height: 720px;
+  width: 1440px;
+  background-color: red;
+  position: relative;
+  margin: auto;
+  display: flex;
+  background-image: url(src/assets/group.png);
+  background-size: 787px;
+  background-repeat: no-repeat;
+}
+.ev-back {
+  width: 40px;
+}
+
+.ev-back img {
+  width: 40px;
+  height: 40px;
+  top: 40px;
+  left: 64px;
+  position: relative;
+  padding: 10px;
+  border-radius: 50px;
+}
+.ev-form {
+  width: 787px;
+  height: 720px;
+  position: relative;
+  float: left;
+}
+.ev-form2 {
+  width: 787px;
+  height: 720px;
+  position: relative;
+  float: left;
+}
+.ev-logo {
+  width: 147px;
+  height: 75px;
+  top: 40px;
+  /* left: 889px; */
+  background-image: url("../../assets/logo.png");
+  background-size: cover;
+  position: relative;
+}
+
+.ev-para {
+  width: 351px;
+  top: 108px;
+  height: 24px;
+  position: relative;
+  /* left: 889px; */
+}
+.ev-para p {
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.34px;
+  color: rgba(255, 255, 255, 1);
+}
+.ev-para p span {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 1);
+}
+.ev-head {
+  width: 437px;
+  height: 65px;
+  position: relative;
+  top: 80px;
+}
+.ev-head p {
+  font-family: "Open Sans";
+  font-size: 48px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  line-height: 65px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.ev-login-right-container {
+  display: block;
+  width: 551px;
+  /* border: 2px solid black; */
+}
+.signin p:hover {
+  color: red;
+  cursor: default;
+}
+.signin p {
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+  padding-right: 9px;
+}
+.form-container {
+  height: 60px;
+  margin-top: 179px;
+}
+.form-container1 {
+  height: 60px;
+  margin-top: 45px;
+}
+.form-container .custom-input1 label {
+  position: relative;
+  top: 24px;
+  left: -5px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  transition: all 0.3s ease;
+}
+.form-container .custom-input1 input {
+  /* width: 100%; */
+  padding: 20px 10px 10px 20px;
+  border: 1px solid #ccc;
+  /* margin-top: 60px; */
+  border-radius: 5px;
+  font-size: 15px;
+  top: 260px !important;
+}
+
+.form-container1 .custom-input1 label {
+  position: relative;
+  /* top: 87px; */
+  left: -5px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  transition: all 0.3s ease;
+}
+.form-container1 .custom-input1 input {
+  /* width: 100%; */
+  padding: 20px 10px 10px 20px;
+  border: 1px solid #ccc;
+  /* margin-top: 60px; */
+  border-radius: 5px;
+  font-size: 15px;
+  top: 260px !important;
+}

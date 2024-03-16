@@ -1,10 +1,28 @@
-import React from "react";
-import { TextField, Button } from "@mui/material";
-import group2 from "../../assets/Group2.png";
-import "../Account/Create.css";
-import icon from "../../assets/Googleicon.png";
+// RightContainer.jsx
+import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import { group2, icon } from "../../../public/assets";
+import TextBox from "../Form/TextBox"; // Import the custom Textbox component
 
-const RightContainer = ({ email, handleEmailChange, handleSubmit }) => {
+import "../Account/Create.css";
+
+const RightContainer = ({ handleEmailChange, handleSubmit }) => {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  useEffect(() => {
+    console.log(email);
+  });
+
+  const handleChange = (e) => {
+    console.log(e, e.target, e.target.value);
+  };
+
   return (
     <div className="qt-account-right-container">
       <div className="qt-logo">
@@ -19,110 +37,27 @@ const RightContainer = ({ email, handleEmailChange, handleSubmit }) => {
         </div>
 
         <div className="form-container">
-          <div className="custom-input1">
-            <label
-              htmlFor="field1"
-              style={{
-                color: "rgba(0, 0, 0, 1)",
-                fontSize: "12px",
-                fontWeight: "400",
-                fontFamily: "Open Sans",
-                marginLeft: "25px",
-              }}
-            >
-              Email address
-            </label>
-            <input
-              type="text"
-              id="field1"
-              value={email} // Add value prop to bind the input field to the email state
-              onChange={handleEmailChange}
-              style={{
-                // width: "444px",
-                height: "56px",
-                top: "25px",
-                backgroundColor: "rgba(255, 255, 255, 1)",
-                border: "1px ",
-                borderRadius: "8px",
-                paddingLeft: "26px",
-              }}
-            />
-            <div className="input-bottom"></div>
-          </div>
-        </div>
-        <Button
-          onClick={handleSubmit}
-          style={{
-            width: "449px",
-            height: "56px",
-            top: "25px",
-            backgroundColor: "rgba(30, 10, 60, 1)",
-            borderRadius: "8px",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "Open Sans",
-              fontSize: "20px",
-              fontWeight: "600",
-              lineHeight: "27px",
-              letterSpacing: "0em",
-              textAlign: "center",
-              textTransform: "capitalize",
-              color: "rgba(255, 255, 255, 1)",
-            }}
-          >
-            Continue
-          </p>
-        </Button>
-        <img
-          src={group2}
-          alt="Group 2"
-          style={{
-            width: "449px",
-            height: "32px",
-            top: "45px",
-            borderRadius: "50px",
-            position: "relative",
-          }}
-        />
-        <p
-          style={{
-            top: "-2px",
-            position: "relative",
-            left: "220px",
-            fontSize: "16px",
-            fontFamily: "Open Sans",
-            fontWeight: "600",
-            color: "rgba(255, 255, 255, 1)",
-          }}
-        >
-          Or
-        </p>
-        <Button
-          style={{
-            width: "449px",
-            height: "56px",
-            top: "20px",
-            position: "relative",
-            backgroundColor: "rgba(255, 255, 255, 1)",
-            border: "1px solid rgba(171, 171, 171, 1)",
-            borderRadius: "8px",
-          }}
-        >
-          <img
-            src={icon}
-            alt="Google Icon"
-            style={{
-              width: "24px",
-              height: "24px",
-              top: "17px",
-              margin: "10px",
-              paddingRight: "10px",
-            }}
+          <TextBox
+            label="Email address"
+            value={email}
+            onChange={handleEmailChange}
+            className="custom-input1"
+            style={{ width: "419px" }} // Pass additional styles
+            ErrorMsg={emailError}
+            setErrorMsg={setEmailError}
+            validateEmail={validateEmail}
           />
+        </div>
+
+        <Button onClick={handleSubmit} className="xyz">
+          <p className="xyz-2">Continue</p>
+        </Button>
+        <img src={group2} alt="Group 2" className="group2" />
+        <p className="or1">Or</p>
+        <Button className="googlebtn" style={{ backgroundColor: "white" }}>
+          <img src={icon} alt="Google Icon" className="google-img" />
           <div className="singin">
-            <p>Sign in with Google </p>
+            <p>Sign in with Google</p>
           </div>
         </Button>
       </div>

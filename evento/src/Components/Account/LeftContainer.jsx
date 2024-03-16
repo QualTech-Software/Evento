@@ -1,6 +1,6 @@
 // LeftContainer.js
 import React from "react";
-import backbtn from "../../assets/Backbtn.png";
+import backbtn from "../../../public/assets/Backbtn.png";
 import "../Account/Create.css";
 
 const LeftContainer = () => {

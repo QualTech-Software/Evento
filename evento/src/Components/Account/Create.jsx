@@ -6,19 +6,25 @@ import RightContainer from "./RightContainer";
 
 const Create = () => {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
   const handleSubmit = () => {
-    if (!email.includes("@")) {
-      alert("Invalid email address");
-      return;
-    } else {
+    console.log(email);
+    if (validateEmail(email)) {
       navigate("/account");
+    } else {
+      setEmailError("Invalid email");
     }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   return (
@@ -29,6 +35,7 @@ const Create = () => {
           email={email}
           handleEmailChange={handleEmailChange}
           handleSubmit={handleSubmit}
+          emailError={emailError}
         />
       </div>
     </>

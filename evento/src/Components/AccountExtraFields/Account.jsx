@@ -1,52 +1,17 @@
 import React, { useState } from "react";
 import LeftContainer from "../Account/LeftContainer";
-import "../AccountExtraFields/Account.css";
+import AccountForm from "./AccountForm";
 
 const Account = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [cpassword, setCpasssword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorPhoneMsg, setErrorPhoneMsg] = useState(""); // New state for phone number error
 
-  const handlePhoneNumberChange = (event) => {
-    const value = event.target.value;
-    setPhoneNumber(value);
-  };
-  const handleName = (event) => {
-    const value = event.target.value;
-    setName(value);
-  };
-  const handlePassword = (event) => {
-    const value = event.target.value;
-    setPassword(value);
-  };
-  const handleCpassword = (event) => {
-    const value = event.target.value;
-    setCpasssword(value);
-  };
-
-  const handleCreateAccount = () => {
-    const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
-    if (!name || !password || !cpassword) {
-      alert("All fields are required!");
-    }
-    if (!password.match(passwordRegex)) {
-      alert(
-        "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special symbol"
-      );
-      return;
-    }
-    if (password !== cpassword) {
-      alert("password and confirm password must be match");
-    }
-    if (password.length < 8) {
-      alert("password must be greater than 8 characters");
-    }
-    if (phoneNumber.length !== 10) {
-      alert("Phone number must be 10 digits");
-    }
-  };
   return (
     <>
       <div className="qt-acc">
@@ -62,66 +27,41 @@ const Account = () => {
             <div className="qt-head">
               <p>Create an account</p>
             </div>
-            <div className="form-container">
-              <div className="custom-inputa">
-                <label htmlFor="field1">Email address</label>
-                <input type="text" id="field1" />
-                <div className="input-bottom"></div>
-              </div>
-              <div className="custom-inputb">
-                <label htmlFor="field2">Full Name</label>
-                <input
-                  type="text"
-                  id="field2"
-                  value={name}
-                  onChange={handleName}
-                />
-                <div className="input-bottom"></div>
-              </div>
-              <div className="custom-inputc">
-                <label htmlFor="field3">Password</label>
-                <input
-                  type="password"
-                  id="field3"
-                  value={password}
-                  onChange={handlePassword}
-                />
-                <div className="input-bottom"></div>
-              </div>
-              <div className="custom-inputd">
-                <label htmlFor="field4">Confirm Password</label>
-                <input
-                  type="password"
-                  id="field4"
-                  value={cpassword}
-                  onChange={handleCpassword}
-                />
-                <div className="input-bottom"></div>
-              </div>
-              <div className="custom-inpute">
-                <label htmlFor="field5">Phone Number</label>
-                <input
-                  type="text"
-                  id="field5"
-                  value={phoneNumber}
-                  onChange={handlePhoneNumberChange}
-                />
-
-                <div className="input-bottom"></div>
-              </div>
-              <div className="accept">
-                <input type="checkbox" />
-                <p>
-                  <span> I accept the </span> Evento Terms Of Service, Community
-                  Guidelines <span>and have read the </span>Privacy Policy.
-                </p>
-              </div>
-              <div className="create-acc">
-                <button onClick={handleCreateAccount}>
-                  <p>Create Account</p>
-                </button>
-              </div>
-            </div>
+            <AccountForm
+              email={email}
+              handleEmail={(e) => {
+                setEmail(e.target.value);
+                setIsEmpty(false);
+              }}
+              name={name}
+              handleName={(e) => {
+                setName(e.target.value);
+                setIsEmpty(false);
+              }}
+              password={password}
+              handlePassword={(e) => {
+                setPassword(e.target.value);
+                setIsEmpty(false);
+              }}
+              cpassword={cpassword}
+              handleCpassword={(e) => {
+                setCpassword(e.target.value);
+                setIsEmpty(false);
+              }}
+              phoneNumber={phoneNumber}
+              handlePhoneNumberChange={(e) => {
+                setPhoneNumber(e.target.value);
+                setIsEmpty(false);
+              }}
+              isEmpty={isEmpty}
+              ErrorMsg={errorMsg}
+              setErrorMsg={setErrorMsg}
+              errorPhoneMsg={errorPhoneMsg} // Pass the new state variable
+              setErrorPhoneMsg={setErrorPhoneMsg} // Pass the setter function
+              handleCreateAccount={() => {
+                // handle create account logic here
+              }}
+            />
           </div>
         </div>
       </div>

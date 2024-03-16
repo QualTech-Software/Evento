@@ -4,18 +4,20 @@
   margin: auto;
 }
 .qt-navbar {
-  width: 1376px;
+  width: 1440px;
   height: 100px;
-  background-image: url("../../assets/LOGO3.png");
-  background-repeat: no-repeat;
-  background-size: 191px;
+  position: relative;
+}
+.qt-navbar img {
+  width: 191px;
+  height: 98px;
+  top: 1px;
   margin-left: 64px;
 }
-
 .sidebar {
   width: 821px;
   height: 64px;
-  top: 18px;
+  margin-top: -76px;
   left: 549px;
   display: flex;
   position: relative;
@@ -30,14 +32,14 @@
   width: 24px;
   height: 24px;
   top: 20px;
-  left: 16px;
+  margin-left: 16px;
   position: relative;
 }
 .category p {
   width: 93px;
   height: 25px;
   /* top: 20px; */
-  left: 20px;
+  left: 8px;
   position: relative;
   font-family: "Open Sans";
   font-size: 18px;
@@ -57,6 +59,7 @@
   width: 18px;
   height: 18px;
   top: 20px;
+  margin-left: 16px;
   position: relative;
 }
 .event p {
@@ -80,7 +83,7 @@
   width: 24px;
   height: 24px;
   top: 21px;
-
+  margin-left: 16px;
   position: relative;
 }
 .interest p {
@@ -105,7 +108,7 @@
 .login p {
   width: 52px;
   height: 25px;
-
+  margin-left: 16px;
   position: relative;
   font-family: "Open Sans";
   font-size: 18px;
@@ -118,7 +121,7 @@
   width: 24px;
   height: 24px;
   top: 21px;
-
+  margin-left: 8px;
   position: relative;
 }
 .signup {
@@ -132,11 +135,16 @@
   width: 128px;
   height: 64px;
   border-radius: 8px;
+  background-image: url("../../assets/signup.png");
+  background-repeat: no-repeat;
+  background-size: 24px 20px;
+  background-position: 96px center;
+  /* margin-left: 24px; */
 }
 .signup button p {
   width: 64px;
   height: 25px;
-
+  margin-left: 16px;
   position: relative;
   color: rgba(255, 255, 255, 1);
   font-family: "Open Sans";
@@ -149,25 +157,24 @@
 .signup button img {
   width: 24px;
   height: 20px;
-  top: -38px;
-  left: 35px;
+
   position: relative;
 }
 .qt-homebar {
+  background-position: center;
   height: 630px;
-  width: 1440px;
-  background-image: url("../../assets//Home2.png");
-  background-size: cover;
+  object-fit: cover;
+  background-image: url("../../assets/Home2.png");
+  margin-top: -48px;
   background-repeat: no-repeat;
 }
-.content {
+
+h3 {
   width: 1005px;
   height: 130px;
   top: 140px;
   left: 217px;
   position: relative;
-}
-.content p {
   font-family: "Open Sans";
   color: rgba(255, 255, 255, 1);
   font-size: 48px;
@@ -176,6 +183,93 @@
   letter-spacing: 0em;
   text-align: center;
 }
-.content p span {
+h3 span {
   color: rgba(255, 212, 0, 1);
+}
+.search-bar {
+  margin-top: 188px;
+  position: relative;
+  margin-left: 152px;
+}
+.search-bar input {
+  width: 735px;
+  height: 80px;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 10px 0px 0px 10px;
+  background-image: url("../../assets/search.png");
+  background-repeat: no-repeat;
+  background-position: 25px;
+  background-size: 29.84px 30px;
+  padding-left: 79px;
+}
+.search-input::placeholder {
+  /* Add styles for the placeholder text */
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.input-container {
+  display: flex;
+}
+.search-input,
+.extra-input {
+  border: 1px solid gray;
+  outline: none;
+}
+.input-container .extra-input {
+  background-image: url("../../assets/Location.png");
+
+  background-size: 22px 30px;
+  width: 302px;
+  height: 80px;
+  border-radius: 0px 10px 10px 0px;
+}
+.input-container .extra-input::placeholder {
+  font-family: "Montserrat";
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+/* Dropdown icon */
+.dropdown-icon {
+  position: absolute;
+  top: 38%;
+  right: 113px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+/* Dropdown list */
+.dropdown-list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
+}
+
+.dropdown-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-list ul li {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.dropdown-list ul li:hover {
+  background-color: #f0f0f0;
 }

@@ -1,0 +1,16 @@
+export { default as fun } from "./fun.png";
+export { default as education } from "./education.png";
+export { default as bussiness } from "./business.png";
+export { default as travel } from "./travel.png";
+export { default as traditional } from "./traditional.png";
+export { default as sports } from "./sports.png";
+export { default as icon } from "./calendar.png";
+export { default as ticket } from "./ticket.png";
+export { default as banner } from "./Event.png";
+export { default as star } from "./star.png";
+export { default as ellipse } from "./ellipse.png";
+export { default as banner1 } from "./Event1.png";
+export { default as banner2 } from "./Event2.png";
+export { default as banner3 } from "./Event3.png";
+export { default as banner4 } from "./Event4.png";
+export { default as banner5 } from "./Event5.png";

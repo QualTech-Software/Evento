@@ -1,21 +1,29 @@
 import React from "react";
 import { TextField, Button } from "@mui/material";
-import group2 from "../../assets/Group2.png";
-import "../Account/Create.css";
-import icon from "../../assets/Googleicon.png";
+import group2 from "../../../assets/Group2.png";
+import "../components/Login.css";
+import icon from "../../../assets/Googleicon.png";
 
-const RightContainer = ({ email, handleEmailChange, handleSubmit }) => {
+const RightContainer = ({
+  email,
+  handleEmailChange,
+  handleSubmit,
+  handlePassword,
+  password,
+}) => {
   return (
     <div className="qt-account-right-container">
       <div className="qt-logo">
         <div className="qt-para">
           <p>
-            If you already have an account register You can{" "}
-            <span>Login here !</span>
+            If you don’t have an account register You can{" "}
+            <span>
+              <a href="./Account">Register here!</a>
+            </span>
           </p>
         </div>
         <div className="qt-head">
-          <p>Create an account</p>
+          <p>Log In</p>
         </div>
 
         <div className="form-container">
@@ -33,14 +41,44 @@ const RightContainer = ({ email, handleEmailChange, handleSubmit }) => {
               Email address
             </label>
             <input
-              type="text"
+              type="email"
               id="field1"
               value={email} // Add value prop to bind the input field to the email state
               onChange={handleEmailChange}
               style={{
                 // width: "444px",
-                height: "56px",
-                top: "25px",
+                height: "40px",
+                backgroundColor: "rgba(255, 255, 255, 1)",
+                border: "1px ",
+                borderRadius: "8px",
+                paddingLeft: "26px",
+              }}
+            />
+            {/* <div className="input-bottom"></div> */}
+          </div>
+        </div>
+        <div className="form-container1">
+          <div className="custom-input1">
+            <label
+              htmlFor="field1"
+              style={{
+                color: "rgba(0, 0, 0, 1)",
+                fontSize: "12px",
+                fontWeight: "400",
+                fontFamily: "Open Sans",
+                marginLeft: "25px",
+              }}
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="field1"
+              value={password}
+              onChange={handlePassword}
+              style={{
+                // width: "444px",
+                height: "40px",
                 backgroundColor: "rgba(255, 255, 255, 1)",
                 border: "1px ",
                 borderRadius: "8px",

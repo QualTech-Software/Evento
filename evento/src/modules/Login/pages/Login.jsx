@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import "../Account/Create.css";
+import "../components/Login.css";
 import { useNavigate } from "react-router-dom";
-import LeftContainer from "./LeftContainer";
+import LeftContainer from "../../common/LeftContainer";
 import RightContainer from "./RightContainer";
 
-const Create = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handlePassword = (event) => {
+    const value = event.target.value;
+    setPassword(value);
   };
 
   const handleSubmit = () => {
@@ -17,7 +23,7 @@ const Create = () => {
       alert("Invalid email address");
       return;
     } else {
-      navigate("/account");
+      navigate("/home");
     }
   };
 
@@ -27,12 +33,14 @@ const Create = () => {
         <LeftContainer />
         <RightContainer
           email={email}
+          //   password={password}
           handleEmailChange={handleEmailChange}
           handleSubmit={handleSubmit}
+          handlePassword={handlePassword}
         />
       </div>
     </>
   );
 };
 
-export default Create;
+export default Login;

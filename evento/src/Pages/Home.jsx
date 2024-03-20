@@ -1,10 +1,14 @@
 import React from "react";
-import "../Home/Home.css";
-import dashboard from "../../assets/dashboard.png";
-import event from "../../assets/createevent.png";
-import interest from "../../assets/favorite.png";
-import login from "../../assets/login.png";
-import signup from "../../assets/signup.png";
+import "../modules/Home/components/Home.css";
+import dashboard from "../assets/dashboard.png";
+import event from "../assets/createevent.png";
+import interest from "../assets/favorite.png";
+import login from "../assets/login.png";
+import signup from "../assets/signup.png";
+import Organizer from "../modules/Home/pages/Organizer";
+import Categories from "../modules/Home/pages/Categories";
+import Onlineevents from "../modules/Home/pages/Events";
+import BestEvent from "../modules/Home/pages/DiscoverEvent";
 const Home = () => {
   return (
     <>
@@ -43,6 +47,10 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <Categories />
+        <Onlineevents />
+        <BestEvent />
+        <Organizer />
       </div>
     </>
   );

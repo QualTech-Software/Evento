@@ -136,11 +136,11 @@
   margin-left: 100px;
   /* border: 2px solid black; */
 }
-.singin p:hover {
+/* .singin p:hover {
   color: red;
   cursor: default;
-}
-.singin p {
+} */
+/* .singin p {
   font-family: "Open Sans";
   font-size: 20px;
   font-weight: 600;
@@ -150,16 +150,22 @@
   color: rgba(0, 0, 0, 1);
   text-transform: none;
   margin-left: -6px;
-}
+} */
 .custom-input1 label {
   position: relative;
   border-radius: 8px;
-  top: 80px;
-  /* top: 78px;
-  left: -5px; */
-  font-size: 14px;
+  margin-top: 8px;
+  top: 54px;
+  margin-left: 2px;
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
+
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 input.style {
   width: 419px;
@@ -182,6 +188,9 @@ input.style {
   letter-spacing: 0em;
   text-align: left;
 }
+.form-container-main {
+  margin-top: 15px;
+}
 
 .xyz {
   width: 449px !important;
@@ -191,7 +200,7 @@ input.style {
   border-radius: 8px !important;
 }
 
-.xyz-2 {
+/* .xyz-2 {
   font-family: "Open Sans";
   font-size: 20px;
   font-weight: 600;
@@ -200,7 +209,7 @@ input.style {
   text-align: center;
   text-transform: capitalize;
   color: white;
-}
+} */
 .group2 {
   width: 449px;
   height: 32px;
@@ -208,14 +217,14 @@ input.style {
   border-radius: 50px;
   position: relative;
 }
-.or1 {
+/* .or1 {
   top: -2px;
   position: relative;
   left: 220px;
   font-size: 16px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 1);
-}
+  color: rgba(255, 255, 255, 1); 
+} */
 
 .googlebtn {
   width: 449px;
@@ -232,13 +241,13 @@ input.style {
   margin: 10px;
   padding-right: 10px;
 }
-.inputlabel {
+/* .inputlabel {
   color: rgba(0, 0, 0, 1);
   font-size: 12px;
   font-weight: 400;
   font-family: "Open Sans";
   margin-left: 25px;
-}
+} */
 .text {
   width: 419px;
   height: 56px;

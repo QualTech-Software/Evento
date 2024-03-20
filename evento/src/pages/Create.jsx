@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../Account/Create.css";
+import "../Components/Account/Create.css";
 import { useNavigate } from "react-router-dom";
-import LeftContainer from "./LeftContainer";
-import RightContainer from "./RightContainer";
+import LeftContainer from "../modules/common/LeftContainer";
+import RightContainer from "../modules/register/RightContainer";
 
 const Create = () => {
   const [email, setEmail] = useState("");

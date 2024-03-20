@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { group2, icon } from "../../../public/assets";
-import TextBox from "../Form/TextBox"; // Import the custom Textbox component
-
-import "../Account/Create.css";
+import TextBox from "../../Components/Form/TextBox"; // Import the custom Textbox component
+import { Signin, ContPara, OrPara } from "../create/components/atoms";
+import "../../Components/Account/Create.css";
 
 const RightContainer = ({ handleEmailChange, handleSubmit }) => {
   const [email, setEmail] = useState("");
@@ -36,9 +36,8 @@ const RightContainer = ({ handleEmailChange, handleSubmit }) => {
           <p>Create an account</p>
         </div>
 
-        <div className="form-container">
+        <div className="form-container-main">
           <TextBox
-            label="Email address"
             value={email}
             onChange={handleEmailChange}
             className="custom-input1"
@@ -50,15 +49,15 @@ const RightContainer = ({ handleEmailChange, handleSubmit }) => {
         </div>
 
         <Button onClick={handleSubmit} className="xyz">
-          <p className="xyz-2">Continue</p>
+          <ContPara className="xyz-2">Continue</ContPara>
         </Button>
         <img src={group2} alt="Group 2" className="group2" />
-        <p className="or1">Or</p>
+        <OrPara className="or1">Or</OrPara>
         <Button className="googlebtn" style={{ backgroundColor: "white" }}>
           <img src={icon} alt="Google Icon" className="google-img" />
-          <div className="singin">
+          <Signin className="singin">
             <p>Sign in with Google</p>
-          </div>
+          </Signin>
         </Button>
       </div>
     </div>

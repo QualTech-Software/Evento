@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Account/Create.css";
+import { LabelInput } from "../../modules/create/components/atoms";
 
 const TextBox = ({
   label,
@@ -10,42 +11,37 @@ const TextBox = ({
   email,
   validateEmail,
 }) => {
-  const [ErrorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleBlur = (e) => {
-    if (validateEmail && typeof validateEmail == "function") {
-      console.log("inside this");
-      const isValid = validateEmail(e.target.value);
-      setErrorMsg("");
-      if (!isValid) {
-        console.log("inside this sgtep 1 ");
-        setErrorMsg("Invalid email format");
-      }
+  const handleBlur = () => {
+    if (validateEmail && typeof validateEmail === "function") {
+      const isValid = validateEmail(value); // Validate the current value
+      setErrorMsg(isValid ? "" : "Invalid email format");
     }
-    if (onBlur && typeof onBlur == "function") {
-      onBlur();
+    if (onBlur && typeof onBlur === "function") {
+      onBlur(); // Invoke the onBlur function passed from the parent component
     }
   };
 
   return (
     <div className={className}>
-      <label htmlFor={label} className="inputlabel">
-        {ErrorMsg != "" ? (
-          <span className="error" style={{ color: "red" }}>
-            {ErrorMsg}{" "}
-          </span>
-        ) : (
-          <span>{label}</span>
-        )}
-      </label>
+      <LabelInput htmlFor={label} className="inputlabel">
+        Email
+      </LabelInput>
       <input
+        placeholder="Ketan@gmail.com"
         type="text"
-        id={label}
-        value={email}
+        value={errorMsg ? errorMsg : email}
         onChange={onChange}
-        onBlur={handleBlur} // Use handleBlur instead of onBlur directly
-        className="text"
+        onFocus={(e) => (e.target.placeholder = "")} // Clear placeholder onFocus
+        onBlur={(e) => {
+          e.target.placeholder = value ? "" : "Ketan@gmail.com"; // Reset placeholder onBlur if no input
+          handleBlur(); // Validate email onBlur
+        }}
+        className={errorMsg ? "text error" : "text"} // Apply 'error' class if errorMsg exists
       />
+
+      {/* Conditional rendering of error message */}
       <div className="input-bottom"></div>
     </div>
   );

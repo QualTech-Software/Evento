@@ -31,6 +31,100 @@ import {
   banner4,
   banner5,
 } from "../../../assets/index.js";
+
+const EventCard = ({
+  event = {
+    categoryTitle: "Educational & Business",
+    img: banner1,
+    price: "INR 1,400",
+    date: "NOV 25 - 26",
+    name: "Lakeside Camping at Pawna",
+    description: "Adventure Geek - Explore the Unexplored, Mu.",
+    time: "8:30 AM - 7:30 PM",
+    favCount: "14",
+  },
+}) => (
+  <Card
+    variant="outlined"
+    className="qt-card"
+    sx={{
+      marginRight: "40px",
+      border: 0,
+      backgroundColor: "transparent",
+    }}
+  >
+    <CardOverflow
+      sx={{
+        width: 410,
+        height: 205,
+        borderRadius: 8,
+      }}
+    >
+      <AspectRatio ratio="2">
+        <img
+          src={event.img}
+          loading="lazy"
+          alt=""
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 1,
+          }}
+        />
+      </AspectRatio>
+      <IconButton
+        size="md"
+        variant="solid"
+        backgroundcolor="#fff"
+        sx={{
+          position: "absolute",
+          zIndex: 2,
+          borderRadius: "50%",
+          right: "16px",
+          top: "16px",
+        }}
+      >
+        <Favorite />
+      </IconButton>
+      <Text
+        sx={{
+          position: "relative",
+        }}
+      >
+        {event.categoryTitle}
+      </Text>
+    </CardOverflow>
+    <CardContent className="qt-content">
+      <Typography className="calender" level="title-md">
+        <Link href="#multiple-actions" overlay underline="none">
+          <img src={icon} />
+          {event.date}
+        </Link>
+      </Typography>
+      <Typography level="body-sm">
+        <Eventname>{event.name}</Eventname>
+        <Eventadd>{event.description}</Eventadd>
+        <Eventtime>{event.time}</Eventtime>
+      </Typography>
+
+      <Tickets className="tickets" orientation="horizontal">
+        <div className="price">
+          <img src={ticket} />
+          {event.price}
+        </div>
+        <div className="ellipse">
+          <img src={ellipse} />
+        </div>
+
+        <div className="interested">
+          <img src={star} />
+          {event.favCount} interested
+        </div>
+      </Tickets>
+    </CardContent>
+  </Card>
+);
 export default function BestEvent() {
   return (
     <>
@@ -132,91 +226,18 @@ export default function BestEvent() {
             </Tickets>
           </CardContent>
         </Card>
-        <Card
-          variant="outlined"
-          className="qt-card"
-          sx={{
-            marginRight: "40px",
-            border: 0,
-            backgroundColor: "transparent",
+        <EventCard
+          event={{
+            categoryTitle: "Educational & Business",
+            img: banner1,
+            price: "INR 1,400",
+            date: "NOV 25 - 26",
+            name: "Lakeside Camping at Pawna",
+            description: "Adventure Geek - Explore the Unexplored, Mu.",
+            time: "8:30 AM - 7:30 PM",
+            favCount: "14",
           }}
-        >
-          <CardOverflow
-            sx={{
-              width: 410,
-              height: 205,
-              borderRadius: 8,
-            }}
-          >
-            {" "}
-            <AspectRatio ratio="2">
-              <img
-                src={banner1}
-                loading="lazy"
-                alt=""
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  zIndex: 1,
-                }}
-              />
-            </AspectRatio>
-            <IconButton
-              size="md"
-              variant="solid"
-              backgroundcolor="#fff"
-              sx={{
-                position: "absolute",
-                zIndex: 2,
-                borderRadius: "50%",
-                right: "16px",
-                top: "16px",
-              }}
-            >
-              <Favorite />
-            </IconButton>
-            <Text
-              sx={{
-                position: "relative",
-              }}
-            >
-              Educational & Business
-            </Text>
-          </CardOverflow>
-          <CardContent className="qt-content">
-            <Typography className="calender" level="title-md">
-              <Link href="#multiple-actions" overlay underline="none">
-                <img src={icon} />
-                NOV 25 - 26
-              </Link>
-            </Typography>
-            <Typography level="body-sm">
-              <Eventname> Lakeside Camping at Pawna</Eventname>
-              <Eventadd>
-                {" "}
-                Adventure Geek - Explore the Unexplored, Mu..
-              </Eventadd>
-
-              <Eventtime>8:30 AM - 7:30 PM</Eventtime>
-            </Typography>
-
-            <Tickets className="tickets" orientation="horizontal">
-              <div className="price">
-                <img src={ticket} />
-                INR 1,400
-              </div>
-              <div className="ellipse">
-                <img src={ellipse} />
-              </div>
-
-              <div className="interested">
-                <img src={star} />
-                14 interested
-              </div>
-            </Tickets>
-          </CardContent>
-        </Card>
+        />
         <Card
           variant="outlined"
           className="qt-card"

@@ -18,6 +18,7 @@ const TextBox = ({
       const isValid = validateEmail(value); // Validate the current value
       setErrorMsg(isValid ? "" : "Invalid email format");
     }
+
     if (onBlur && typeof onBlur === "function") {
       onBlur(); // Invoke the onBlur function passed from the parent component
     }
@@ -28,11 +29,12 @@ const TextBox = ({
       <LabelInput htmlFor={label} className="inputlabel">
         Email
       </LabelInput>
+      <span>{errorMsg}</span>
       <input
         placeholder="Ketan@gmail.com"
         type="text"
         value={errorMsg ? errorMsg : email}
-        onChange={onChange}
+        // onChange={onChange}
         onFocus={(e) => (e.target.placeholder = "")} // Clear placeholder onFocus
         onBlur={(e) => {
           e.target.placeholder = value ? "" : "Ketan@gmail.com"; // Reset placeholder onBlur if no input

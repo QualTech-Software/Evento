@@ -3,6 +3,7 @@ import "../Components/Account/Create.css";
 import { useNavigate } from "react-router-dom";
 import LeftContainer from "../modules/common/LeftContainer";
 import RightContainer from "../modules/register/RightContainer";
+import axios from "axios";
 
 const Create = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,16 @@ const Create = () => {
     return regex.test(email);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/api/register", {
+        email,
+      });
+
+      console.log(response.data); // Handle success response
+    } catch (error) {
+      console.error("Registration error:", error.response.data.msg); // Handle error response
+    }
     console.log(email);
     if (validateEmail(email)) {
       navigate("/account");

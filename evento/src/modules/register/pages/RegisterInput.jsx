@@ -58,7 +58,7 @@ export const CustomInputB = ({
           placeholder={firstNameError ? firstNameError : "Ketan"}
           onBlur={handleBlurFirstName}
         />
-        {isEmpty && !firstName && (
+        {/* {isEmpty && !firstName && (
           <div className="icon-wrapper" style={{ marginTop: "-7px" }}>
             <img
               src={icon}
@@ -67,7 +67,7 @@ export const CustomInputB = ({
               style={{ marginLeft: "93px" }}
             />
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="input-wrapper2">
@@ -83,7 +83,7 @@ export const CustomInputB = ({
           placeholder={lastNameError ? lastNameError : "Jagtap"}
           onBlur={handleBlurLastName}
         />
-        {isEmpty && !lastName && (
+        {/* {isEmpty && !lastName && (
           <div className="icon-wrapper" style={{ marginTop: "-7px" }}>
             <img
               src={icon}
@@ -92,7 +92,7 @@ export const CustomInputB = ({
               style={{ marginLeft: "93px" }}
             />
           </div>
-        )}
+        )} */}
       </div>
     </CustInputB>
   );
@@ -124,12 +124,12 @@ export const CustomInputC = ({
           validatePass(password, setPasswordError);
         }}
       />
-      {isEmpty && !password && (
+      {/* {isEmpty && !password && (
         <div className="icon-wrapper">
           <img src={icon} alt="icon" className="error-icon" />
         </div>
-      )}
-      {passwordError && (
+      )} */}
+      {!password && passwordError && (
         <div className="error-message">
           <img src={icon} alt="icon" className="error-icon" />
         </div>
@@ -209,12 +209,12 @@ export const CustomInputE = ({
           validateCon(phoneNumber, setErrorPhoneMsg);
         }}
       />
-      {isEmpty && !phoneNumber && (
+      {/* {isEmpty && !phoneNumber && (
         <div className="icon-wrapper">
           <img src={icon} alt="icon" className="error-icon" />
         </div>
-      )}
-      {errorPhoneMsg && (
+      )} */}
+      {!phoneNumber && errorPhoneMsg && (
         <div className="error-message">
           <img src={icon} alt="icon" className="error-icon" />
         </div>

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Grid, IconButton, Typography, Card, CardMedia } from "@mui/material";
 import { Close, Photo } from "@mui/icons-material"; // Import Close and Photo icons
 import {
@@ -13,12 +14,15 @@ import {
   StyledUploadedImagesContainer,
   StyledBrowseButton,
   StyledBrowseButtonText,
+  StyledEventButton,
+  StyledEventButtonP,
 } from "../components/atoms.js";
 import { uploadimage } from "../../../icons";
 
-export default function Banner() {
+export default function Banner({ setCurrentStep }) {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const navigate = useNavigate();
 
   const handleFileInputChange = (event) => {
     const files = Array.from(event.target.files);
@@ -51,12 +55,10 @@ export default function Banner() {
       prevSelectedFiles.filter((file, i) => i !== index)
     );
   };
-
-  const handleImageClick = (file) => {
-    // Show the image
-    window.open(URL.createObjectURL(file));
+  const handleSaveAndContinue = () => {
+    setCurrentStep(2);
+    navigate("/ticketing");
   };
-
   return (
     <>
       <EventBanner className="qt-event-banner">
@@ -92,24 +94,26 @@ export default function Banner() {
         <StyledUploadedImagesContainer>
           {selectedFiles.map((file, index) => (
             <Grid item key={index}>
-              <Typography
-                variant="body1"
-                style={{ cursor: "pointer" }}
-                onClick={() => handleImageClick(file)}
-              >
-                <Photo />
-                &nbsp;{file.name}
-              </Typography>
-              <IconButton
-                onClick={() => handleDeleteImage(index)}
-                style={{ position: "relative" }}
-              >
-                <Close style={{ position: "absolute", top: 0, right: 0 }} />
-              </IconButton>
+              <Card>
+                <CardMedia
+                  component="img"
+                  image={URL.createObjectURL(file)}
+                  alt={file.name}
+                />
+                <IconButton
+                  onClick={() => handleDeleteImage(index)}
+                  style={{ position: "absolute", top: 0, right: 0 }}
+                >
+                  <Close />
+                </IconButton>
+              </Card>
             </Grid>
           ))}
         </StyledUploadedImagesContainer>
       )}
+      <StyledEventButton variant="contained" onClick={handleSaveAndContinue}>
+        <StyledEventButtonP>Save & Continue</StyledEventButtonP>
+      </StyledEventButton>
     </>
   );
 }

@@ -26,22 +26,7 @@ export const EventEdit = styled.div`
   display: flex;
   gap: 138px;
 `;
-export const Styledeventedit = styled.div`
-  width: 224px;
-  height: 67px;
-`;
-export const Styledeventbanner = styled.div`
-  width: 224px;
-  height: 67px;
-`;
-export const Styledeventticketing = styled.div`
-  width: 224px;
-  height: 67px;
-`;
-export const Styledeventreview = styled.div`
-  width: 224px;
-  height: 67px;
-`;
+
 export const StyledNewEventh1 = styled.h1`
   width: 391px;
   height: 54px;
@@ -55,61 +40,29 @@ export const StyledNewEventh1 = styled.h1`
   letter-spacing: 0em;
   text-align: left;
 `;
-export const StyledEditp = styled.p`
-  height: 33px;
-  position: relative;
-  top: -20px;
-  font-family: "Inter", sans-serif;
+export const EditLabel = styled.p`
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
+  line-height: 32.68px;
   text-align: center;
-`;
-export const Styledbannerp = styled.p`
-  height: 33px;
-  position: relative;
-  top: -20px;
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: rgba(171, 171, 171, 1);
-`;
-export const StyledTicketp = styled.p`
-  height: 33px;
-  position: relative;
-  top: -20px;
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: rgba(171, 171, 171, 1);
-`;
-export const StyledReviewp = styled.p`
-  height: 33px;
-  position: relative;
-  top: -20px;
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 33px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: rgba(171, 171, 171, 1);
+  color: rgba(30, 10, 60, 1); // Color for the "Edit" label
 `;
 
+export const CommonLabel = styled.p`
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32.68px;
+  text-align: center;
+  color: rgba(171, 171, 171, 1);
+`;
 //Edit.js
 export const StyledCreateEvent = styled.div`
   width: 1440px;
-  height: 1537px;
+  height: 1160px;
   margin: auto;
   position: relative;
-  margin-top: 113px;
 `;
 export const Styledeventh5 = styled.h5`
   height: 25px;
@@ -208,10 +161,10 @@ export const StyledEventStartTime = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
-export const StyledLocationh5 = styled.h5`
+export const StyledLocationh5 = styled.b`
   height: 25px;
   position: relative;
-  left: 64px;
+  margin-left: 64px;
   margin-top: 16px;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
@@ -219,7 +172,21 @@ export const StyledLocationh5 = styled.h5`
   line-height: 25px;
   letter-spacing: 0em;
   text-align: left;
+  display: block;
 `;
+
+export const StyledLocationB = styled.b`
+  height: 25px;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: block;
+`;
+
 export const StyledEventLocationTitle = styled.div`
   width: 900px;
   height: 77px;
@@ -237,34 +204,24 @@ export const StyledLocationLabel = styled.label`
 `;
 export const StyledDiscriptionTitle = styled.div`
   width: 1003px;
-  height: 129px;
+
   gap: 10px;
   position: relative;
   left: 64px;
   margin-top: 16px;
 `;
-export const StyledDiscriptionh5 = styled.h5`
-  height: 19px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0em;
-  color: rgba(45, 44, 60, 1);
-  position: relative;
-  top: -20px;
-`;
+
 export const StyledEventButton = styled.button`
   width: 191px;
   height: 56px;
-  top: 1501px;
+  margin-top: 48px;
   left: 1149px;
   padding: 20px 67px 20px 67px;
   gap: 10px;
   border-radius: 10px;
   background-color: #2b293d;
-  top: 472px;
   position: relative;
+  // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
 `;
 export const StyledEventButtonP = styled.p`
   width: 143px;
@@ -281,18 +238,18 @@ export const StyledEventButtonP = styled.p`
   left: -40px;
 `;
 export const StyledTextArea = styled.textarea`
-  width: 841px;
-  height: 129px;
   padding: 14px 24px 14px 24px;
-  position: relative;
-  left: 162px;
+  margin-top: 16px;
   gap: 10px;
-  top: -59px;
+
   border-radius: 6px;
   border: 1px solid rgba(130, 130, 130, 0.7);
+
+  &::placeholder {
+    color: #ccc;
+  }
 `;
 export const StyledEventLabel = styled.label`
-  height: 19px;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -450,7 +407,6 @@ export const EventBanner = styled.div`
   border-radius: 8px 0px 0px 0px;
   opacity: 0px;
   position: relative;
-  top: 107px;
   margin: auto;
 `;
 export const BannerHeading = styled.div`
@@ -521,11 +477,17 @@ export const StyledBrowseP = styled.p`
   text-align: center;
 `;
 export const StyledUploadedImagesContainer = styled.p`
+  width: 680px;
+  height: 320px;
+  position: relative;
+  display: flex;
+
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 19.07px;
   text-align: center;
+  margin: auto;
 `;
 export const StyledBrowseButton = styled.button`
   width: 105px;

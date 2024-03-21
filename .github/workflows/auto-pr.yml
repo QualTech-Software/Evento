@@ -3,6 +3,7 @@ name: Auto Generate PR
 on:
   push:
     branches:
+      - 'dev'
       - 'main'
       - 'dev'
       - 'stage'

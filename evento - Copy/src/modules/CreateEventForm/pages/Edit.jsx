@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 // import { arrowdropdown, venue, online } from "./icons";
 import { DemoItem, DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -19,10 +20,10 @@ import {
   StyledEventDates,
   StyledEventStartTime,
   StyledLocationh5,
+  StyledLocationB,
   StyledEventLocationTitle,
   StyledLocationLabel,
   StyledDiscriptionTitle,
-  StyledDiscriptionh5,
   StyledEventButton,
   StyledEventButtonP,
   StyledTextArea,
@@ -48,7 +49,21 @@ const options = [
 ];
 const placeOptions = ["Venue", "Online"];
 
-export default function Edit() {
+const textAreas = [
+  {
+    title: "Additional Information",
+    name: "postContent",
+    placeholder:
+      "Describe what's special about your event & other important details.",
+  },
+  {
+    title: "Rules and Regulations",
+    name: "rulesContent",
+    placeholder: "Rules and regulations.",
+  },
+];
+
+export default function Edit({ setCurrentStep }) {
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -56,8 +71,8 @@ export default function Edit() {
   const [cleared, setCleared] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
 
   const toggleCategoryDropdown = () => {
     setIsCategoryDropdownOpen(!isCategoryDropdownOpen);
@@ -82,8 +97,8 @@ export default function Edit() {
     setIsPlaceDropdownOpen(false);
   };
   const handleSaveAndContinue = () => {
-    setStep(2);
-    navigate("/banner"); // Replace "/next-page" with the path of your next page
+    setCurrentStep(1);
+    navigate("/banner");
   };
 
   return (
@@ -259,24 +274,23 @@ export default function Edit() {
             ))}
           </StyledEventDropdownPlace>
         </StyledEventLocationTitle>
-        <StyledLocationh5 className="qt-event-location-h5">
-          Additional Information
-        </StyledLocationh5>
-        <StyledDiscriptionTitle className="qt-event-discription-title">
-          <StyledDiscriptionh5>Event Description</StyledDiscriptionh5>
-          <StyledTextArea
-            className="event-textarea"
-            name="postContent"
-            placeholder="Describe what's special about your event & other important details."
-            rows={10}
-            cols={40}
-          />
-        </StyledDiscriptionTitle>
-        <StyledLocationh5 className="qt-event-location-h5">
-          Rules and Regulations
-        </StyledLocationh5>
+
+        {textAreas.map((textArea, index) => (
+          <StyledDiscriptionTitle
+            key={index}
+            className="qt-event-discription-title"
+          >
+            <StyledLocationB>{textArea.title}</StyledLocationB>
+            <StyledTextArea
+              className="event-textarea"
+              name={textArea.name}
+              placeholder={textArea.placeholder}
+              rows="10"
+              cols="118"
+            />
+          </StyledDiscriptionTitle>
+        ))}
         <StyledEventButton
-          step={step}
           className="event-button"
           onClick={handleSaveAndContinue}
         >

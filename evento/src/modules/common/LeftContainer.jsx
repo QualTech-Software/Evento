@@ -1,16 +1,17 @@
 // LeftContainer.js
 import React from "react";
-import backbtn from "../../assets/Backbtn.png";
-// import "../Account/Create.css";
-
+import backbtn from "../../../public/assets/Backbtn.png";
+import "../../Components/Account/Create.css";
+import { useNavigate } from "react-router-dom";
 const LeftContainer = () => {
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <div className="qt-form qt-account-left-container">
       <div className="qt-back">
-        <a href="./Home">
-          {" "}
-          <img src={backbtn} alt="Back" />
-        </a>
+        <img src={backbtn} alt="Back" onClick={handleHome} />
       </div>
     </div>
   );

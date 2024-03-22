@@ -1,125 +1,77 @@
-import React, { useState } from "react";
-import "../components/Organizer.css";
+import * as React from "react";
+import Typography from "@mui/joy/Typography";
+import Button from "@mui/joy/Button";
+
+import {
+  Head,
+  Tickets,
+  CardGroup,
+  Eventname,
+  StyledCard,
+  StyledCardOverflow,
+  StyledAspectRatio,
+  StyledCardContent,
+  StyledCardTypography,
+  CardOutline,
+} from "../components/atom.js";
 import icon from "../../../assets/Organizer.png";
 
-export default function Organizer() {
+const EventCard = ({
+  event = {
+    categoryTitle: "Samarth Event",
+    img: icon,
+    favCount: "78",
+    EventCount: "102",
+  },
+}) => (
+  <CardOutline>
+    <StyledCard variant="outlined">
+      <StyledAspectRatio ratio="2">
+        <img src={event.img} loading="lazy" alt="" />
+      </StyledAspectRatio>
+      <StyledCardContent>
+        <Eventname>{event.categoryTitle}</Eventname>
+        <Tickets className="tickets" orientation="horizontal">
+          <div className="price">{event.favCount}Followers</div>
+          <div className="interested">{event.EventCount} Events</div>
+        </Tickets>
+        <Button>
+          <a href="#">Follow</a>
+        </Button>
+      </StyledCardContent>
+    </StyledCard>
+  </CardOutline>
+);
+export default function BestEvent() {
   return (
     <>
-      <div className="og-card-main">
-        <p className="head">Organizers to follow</p>
-        <div className="card-category-2">
-          <ul>
-            <li>
-              <div className="img-card iCard-style1">
-                <div className="card-content">
-                  <div className="card-image">
-                    <img src={icon} />
-                  </div>
-                  <div className="card-text">
-                    <span className="card-title">Samarth Event</span>
-                    <div className="card-des">
-                      <p>
-                        978
-                        <br />
-                        <span>Followers</span>
-                      </p>
-                      <p>
-                        102
-                        <br />
-                        <span>Events</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button type="btn" className="card-button">
-                  <a href="#">Follow</a>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div className="img-card iCard-style1">
-                <div className="card-content">
-                  <div className="card-image">
-                    <img src={icon} />
-                  </div>
-                  <div className="card-text">
-                    <span className="card-title">Samarth Event</span>
-                    <div className="card-des">
-                      <p>
-                        978
-                        <br />
-                        <span>Followers</span>
-                      </p>
-                      <p>
-                        102
-                        <br />
-                        <span>Events</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button type="btn" className="card-button">
-                  <a href="#">Follow</a>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div className="img-card iCard-style1">
-                <div className="card-content">
-                  <div className="card-image">
-                    <img src={icon} />
-                  </div>
-                  <div className="card-text">
-                    <span className="card-title">Samarth Event</span>
-                    <div className="card-des">
-                      <p>
-                        978
-                        <br />
-                        <span>Followers</span>
-                      </p>
-                      <p>
-                        102
-                        <br />
-                        <span>Events</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button type="btn" className="card-button">
-                  <a href="#">Follow</a>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div className="img-card iCard-style1">
-                <div className="card-content">
-                  <div className="card-image">
-                    <img src={icon} />
-                  </div>
-                  <div className="card-text">
-                    <span className="card-title">Samarth Event</span>
-                    <div className="card-des">
-                      <p>
-                        978
-                        <br />
-                        <span>Followers</span>
-                      </p>
-                      <p>
-                        102
-                        <br />
-                        <span>Events</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button type="btn" className="card-button">
-                  <a href="#">Follow</a>
-                </button>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <Head>Organizers to follow</Head>
+      <CardGroup>
+        <EventCard
+          event={{
+            categoryTitle: "Samarth Event",
+            img: icon,
+            favCount: "78",
+            EventCount: "102",
+          }}
+        />
+        <EventCard
+          event={{
+            categoryTitle: "Samarth Event",
+            img: icon,
+            favCount: "78",
+            EventCount: "102",
+          }}
+        />
+        <EventCard
+          event={{
+            categoryTitle: "Samarth Event",
+            img: icon,
+            favCount: "78",
+            EventCount: "102",
+          }}
+        />
+      </CardGroup>
     </>
   );
 }

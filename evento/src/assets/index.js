@@ -14,3 +14,4 @@ export { default as banner2 } from "./Event2.png";
 export { default as banner3 } from "./Event3.png";
 export { default as banner4 } from "./Event4.png";
 export { default as banner5 } from "./Event5.png";
+export { default as vector } from "./Vector.png";

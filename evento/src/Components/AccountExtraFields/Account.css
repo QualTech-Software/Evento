@@ -18,33 +18,26 @@
   position: relative;
   margin-bottom: 20px;
 }
-
-.custom-inputa label {
-  position: relative;
-  top: 70px;
-  left: 22px;
-  font-family: "Open Sans";
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: left;
-
-  color: rgba(0, 0, 0, 1);
-  transition: all 0.3s ease;
+/* .form-container {
+  margin-top: 90px;
+} */
+.textfield {
+  border-radius: 5px;
+  font-size: 15px;
+  margin-top: -6px;
+  width: 405px;
+  padding-left: 22px;
+  height: 48px;
+  background-color: white;
+  border: none;
+}
+.textfieldlname.error {
+  color: red;
 }
 
-.custom-inputa input {
-  width: 100%;
-  /* padding: 10px; */
-  border: 1px solid white;
-  border-radius: 5px;
-  padding-left: 22px;
-
-  font-size: 15px;
-  margin-top: 45px;
-  width: 385px;
-  height: 56px;
+.errorp {
+  color: red;
+  font-size: 10px;
 }
 
 .custom-input input:focus + .input-bottom {
@@ -64,10 +57,34 @@
   font-size: 12px;
   color: #007bff;
 }
-.custom-inputb label {
+/* .custom-inputb {
+  margin: 21px;
+} */
+.textfieldfname {
+  width: 183px;
+  height: 48px;
+  left: -54px;
+}
+.textfieldlname {
+  width: 185px;
+  background-color: white;
+  border-radius: 8px;
+  left: -54px;
+  color: black;
+}
+.custom-inputb .input-wrapper1 {
+  height: 48px;
+  width: 214px;
+}
+.custom-inputb .input-wrapper2 {
+  height: 48px;
+  width: 214px;
+  margin-top: -49px;
+}
+/* .custom-inputb label {
   position: relative;
-  top: 20px;
-  left: 22px;
+  top: -27px;
+  left: -20px;
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
@@ -77,23 +94,34 @@
 
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
-}
-
-.custom-inputb input {
-  /* width: 100%; */
-  /* padding: 10px; */
+} */
+/* .custom-inputb .input-wrapper2 label {
+  top: -2px;
+  left: -48px;
+} */
+/* .custom-inputb input {
+ 
   border: 1px solid white;
   border-radius: 5px;
   font-size: 15px;
   margin-top: -6px;
   width: 385px;
   padding-left: 22px;
-  height: 56px;
-}
-.custom-inputc label {
+  height: 48px;
+} */
+/* .custom-inputc {
+  margin-top: 38px;
+} */
+/* .custom-inputd {
+  margin-top: 16px;
+} */
+/* .custom-inpute {
+  margin-top: 16px;
+} */
+/* .custom-inputc label {
   position: relative;
-  top: 20px;
-  left: 22px;
+  top: -6px;
+  left: 2px;
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
@@ -103,23 +131,22 @@
 
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
-}
+} */
 
-.custom-inputc input {
-  /* width: 100%; */
-  /* padding: 10px; */
+/* .custom-inputc input {
+
   border: 1px solid white;
   border-radius: 5px;
   font-size: 15px;
   margin-top: -5px;
   width: 385px;
   padding-left: 22px;
-  height: 56px;
-}
-.custom-inputd label {
+  height: 48px;
+} */
+/* .custom-inputd label {
   position: relative;
-  top: 20px;
-  left: 22px;
+  top: -6px;
+  left: 2px;
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
@@ -129,23 +156,22 @@
 
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
-}
+} */
 
-.custom-inputd input {
-  /* width: 100%; */
-  /* padding: 10px; */
+/* .custom-inputd input {
+
   border: 1px solid white;
   border-radius: 5px;
   font-size: 15px;
   margin-top: -5px;
   width: 385px;
   padding-left: 22px;
-  height: 56px;
-}
-.custom-inpute label {
+  height: 48px;
+} */
+/* .custom-inpute label {
   position: relative;
-  top: 20px;
-  left: 22px;
+  top: -6px;
+  left: 2px;
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
@@ -155,30 +181,61 @@
 
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
+} */
+.custom-inputb .input-wrapper1 {
+  height: 48px;
+  width: 214px;
+  margin-top: -23px;
+  margin-left: 31px;
+}
+.custom-inputb .input-wrapper2 {
+  height: 48px;
+  width: 214px;
+  margin-left: 245px;
+  margin-top: -49px;
+}
+.textfieldphone {
+  border-radius: 5px;
+  font-size: 15px;
+  margin-top: -6px;
+  width: 405px;
+  padding-left: 32px;
+  height: 48px;
+  background-color: white;
+  border: none;
+  background-image: url("../../../public/assets/flag.png");
+  background-size: 34px 24px;
+  background-position: 12px;
+  background-repeat: no-repeat;
 }
 
-.custom-inpute input {
-  /* width: 100%; */
-  /* padding: 10px; */
+/* .custom-inpute input {
+
   border: 1px solid white;
+  background-image: url("../../../public/assets/flag.png");
+  background-repeat: no-repeat;
   border-radius: 5px;
   font-size: 15px;
   margin-top: -5px;
-  width: 385px;
-  padding-left: 22px;
-  height: 56px;
+  width: 332px;
+  padding-left: 75px;
+  height: 48px;
+} */
+.input-field::placeholder {
+  color: #999;
+  left: 20px;
 }
-.accept {
+/* .accept {
   width: 424px;
   height: 32px;
-}
-.accept input {
+} */
+/* .accept input {
   width: 24px;
   height: 24px;
-  margin-top: 15px;
+  margin-top: 13px;
   background-color: red;
-}
-.accept p {
+} */
+/* .accept p {
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
@@ -191,23 +248,23 @@
   line-height: 16px;
   letter-spacing: 0em;
   text-align: center;
-  margin-top: -25px;
-  margin-left: 30px;
-}
-.accept p span {
+  margin-top: 15px;
+  margin-left: -8px;
+} */
+/* .accept p span {
   color: rgba(0, 0, 0, 1);
-}
-.create-acc button {
+} */
+/* .create-acc button {
   width: 405px;
   height: 56px;
   border-radius: 8px;
   margin-top: 30px;
   background-color: rgba(30, 10, 60, 1);
-}
-.create-acc button:hover {
+} */
+/* .create-acc button:hover {
   cursor: pointer;
-}
-.create-acc button p {
+} */
+/* .create-acc button p {
   font-family: "Open Sans";
   font-size: 20px;
   font-weight: 600;
@@ -216,7 +273,7 @@
   left: 151px;
   margin-top: 15px;
   color: rgba(255, 255, 255, 1);
-}
+} */
 
 input[type="checkbox"] {
   appearance: none;
@@ -247,4 +304,23 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   visibility: visible;
+}
+.error-icon {
+  position: relative;
+  margin-left: 362px;
+  height: 20px;
+  width: 20px;
+  top: -32px;
+}
+.input-wrapper {
+  height: 56px;
+}
+span .error {
+  color: red;
+}
+.error {
+  color: red;
+  padding-left: -5px;
+  font-size: 9px;
+  display: block;
 }

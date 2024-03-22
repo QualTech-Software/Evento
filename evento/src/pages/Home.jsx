@@ -1,110 +1,57 @@
-import React, { useState } from "react";
-import "../Components/Home/Home.css";
-import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../../public/assets";
-import chevron from "../../public/assets/Chevron.png";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import {
-  QtHome,
-  Navbar,
-  Sidebar,
-  Category,
-  Event,
-  Interest,
-  QtLogin,
-  Signup,
-  Homebar,
-  SearchBar,
-  InputCont,
-  DropDown,
-} from "../modules/home/components/atoms";
-
+import React from "react";
+import "../modules/Home/components/Home.css";
+import dashboard from "../assets/dashboard.png";
+import event from "../assets/createevent.png";
+import interest from "../assets/favorite.png";
+import login from "../assets/login.png";
+import signup from "../assets/signup.png";
+import Organizer from "../modules/Home/pages/Organizer";
+import Categories from "../modules/Home/pages/Categories";
+import Onlineevents from "../modules/Home/pages/Events";
+import BestEvent from "../modules/Home/pages/DiscoverEvent";
 const Home = () => {
-  const navigate = useNavigate();
-  const [location, setLocation] = useState(""); // State to manage selected location
-  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
-
-  const handleClick = () => {
-    navigate("/create");
-  };
-
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
-
   return (
     <>
-      <QtHome className="qt-home">
-        <Navbar className="qt-navbar">
-          <img src={logo} alt="Logo" />
-          <Sidebar className="sidebar">
-            <Category className="category">
-              <img src={dashboard} alt="Dashboard" />
+      <div className="qt-home">
+        <div className="qt-navbar">
+          <div className="sidebar">
+            <div className="category">
+              <img src={dashboard} />
               <p>Categories</p>
-            </Category>
-            <Event className="event">
-              <img src={event} alt="Event" />
+            </div>
+            <div className="event">
+              <img src={event} />
               <p>Create Event</p>
-            </Event>
-            <Interest className="interest">
-              <img src={interest} alt="Interest" />
+            </div>
+            <div className="interest">
+              <img src={interest} />
               <p>Interested</p>
-            </Interest>
-            <QtLogin className="login">
+            </div>
+            <div className="login">
               <p>Log in</p>
-              <img src={login} alt="Login" />
-            </QtLogin>
-            <Signup className="signup">
-              <button onClick={handleClick}>
+              <img src={login} />
+            </div>
+            <div className="signup">
+              <button>
                 <p>Sign up</p>
+                <img src={signup} />
               </button>
-            </Signup>
-          </Sidebar>
-        </Navbar>
-        <Homebar className="qt-homebar">
-          <h3>
-            Don’t miss out! Explore the <span>vibrant events</span> happening
-            locally and globally.
-          </h3>
-          <SearchBar className="search-bar">
-            <InputCont className="input-container">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search Events, Categories, Location,..."
-              />
-
-              <input
-                type="text"
-                className="extra-input"
-                placeholder="Mumbai"
-                style={{
-                  borderBottomRightRadius: showDropdown ? "0" : "10px", // Adjust border-radius based on dropdown visibility
-                }}
-              />
-
-              <img
-                src={chevron}
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginTop: "31px",
-                  marginLeft: "-50px",
-                }}
-                onClick={toggleDropdown}
-              />
-
-              {showDropdown && (
-                <DropDown className="dropdown-menu">
-                  <MenuItem>Detect Current Location</MenuItem>
-                  <MenuItem>Online</MenuItem>
-                </DropDown>
-              )}
-            </InputCont>
-          </SearchBar>
-        </Homebar>
-      </QtHome>
+            </div>
+          </div>
+        </div>
+        <div className="qt-homebar">
+          <div className="content">
+            <p>
+              Don’t miss out! Explore the <span> vibrant events</span> happening
+              locally and globally.
+            </p>
+          </div>
+        </div>
+        <Categories />
+        <Onlineevents />
+        <BestEvent />
+        <Organizer />
+      </div>
     </>
   );
 };

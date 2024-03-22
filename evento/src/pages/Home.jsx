@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
 import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../../public/assets";
+import { dashboard, event, interest, login, logo } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Organizer from "../modules/Home/pages/Organizer";
+import Categories from "../modules/Home/pages/Categories";
+import Onlineevents from "../modules/Home/pages/Events";
+import BestEvent from "../modules/Home/pages/DiscoverEvent";
 import {
   QtHome,
   Navbar,
@@ -18,7 +22,7 @@ import {
   SearchBar,
   InputCont,
   DropDown,
-} from "../modules/home/components/atoms";
+} from "../modules/Home/components/atoms";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -105,6 +109,10 @@ const Home = () => {
           </SearchBar>
         </Homebar>
       </QtHome>
+      <Categories />
+      <Onlineevents />
+      <BestEvent />
+      <Organizer />
     </>
   );
 };

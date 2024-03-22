@@ -1,0 +1,181 @@
+.qt-home {
+  width: 1440px;
+  height: auto;
+  margin: auto;
+}
+.qt-navbar {
+  width: 1376px;
+  height: 100px;
+  background-image: url("../../assets/LOGO3.png");
+  background-repeat: no-repeat;
+  background-size: 191px;
+  margin-left: 64px;
+}
+
+.sidebar {
+  width: 821px;
+  height: 64px;
+  top: 18px;
+  left: 549px;
+  display: flex;
+  position: relative;
+}
+.category {
+  width: 157px;
+  height: 64px;
+  display: flex;
+  position: relative;
+}
+.category img {
+  width: 24px;
+  height: 24px;
+  top: 20px;
+  left: 16px;
+  position: relative;
+}
+.category p {
+  width: 93px;
+  height: 25px;
+  /* top: 20px; */
+  left: 20px;
+  position: relative;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.event {
+  width: 169px;
+  height: 64px;
+  display: flex;
+  border-radius: 8px;
+  position: relative;
+}
+.event img {
+  width: 18px;
+  height: 18px;
+  top: 20px;
+  position: relative;
+}
+.event p {
+  width: 111px;
+  height: 25px;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-left: 8px;
+}
+.interest {
+  width: 155px;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+}
+.interest img {
+  width: 24px;
+  height: 24px;
+  top: 21px;
+
+  position: relative;
+}
+.interest p {
+  width: 91px;
+  height: 25px;
+  top: 21px;
+  left: 48px;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  margin-left: 8px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.login {
+  width: 116px;
+  height: 64px;
+  display: flex;
+  position: relative;
+}
+.login p {
+  width: 52px;
+  height: 25px;
+
+  position: relative;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.login img {
+  width: 24px;
+  height: 24px;
+  top: 21px;
+
+  position: relative;
+}
+.signup {
+  width: 128px;
+  height: 64px;
+  display: flex;
+}
+.signup button {
+  background-color: red;
+  border: none;
+  width: 128px;
+  height: 64px;
+  border-radius: 8px;
+}
+.signup button p {
+  width: 64px;
+  height: 25px;
+
+  position: relative;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.signup button img {
+  width: 24px;
+  height: 20px;
+  top: -38px;
+  left: 35px;
+  position: relative;
+}
+.qt-homebar {
+  height: 630px;
+  width: 1440px;
+  background-image: url("../../assets//Home2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.content {
+  width: 1005px;
+  height: 130px;
+  top: 140px;
+  left: 217px;
+  position: relative;
+}
+.content p {
+  font-family: "Open Sans";
+  color: rgba(255, 255, 255, 1);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 65px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.content p span {
+  color: rgba(255, 212, 0, 1);
+}

@@ -1,4 +1,4 @@
-.qt-create {
+/* .qt-create {
   height: 720px;
   width: 1440px;
   background-color: red;
@@ -8,7 +8,7 @@
   background-image: url(src/assets/group1.png);
   background-size: 787px;
   background-repeat: no-repeat;
-}
+} */
 .qt-back {
   width: 40px;
 }
@@ -34,15 +34,14 @@
   position: relative;
   float: left;
 }
-.qt-logo {
+/* .qt-logo {
   width: 147px;
   height: 75px;
-  top: 35px;
-  /* left: 889px; */
+  margin-top: 35px;
   position: relative;
   background-image: url("../../assets/LOGO.png");
   background-size: cover;
-}
+} */
 /* .qt-text {
   width: 303px;
   height: 19px;
@@ -89,9 +88,8 @@
   text-align: left;
 }
 */
-.qt-para {
+/* .qt-para {
   width: 303px;
-  top: 90px;
   position: relative;
 }
 .qt-para p {
@@ -107,19 +105,18 @@
   line-height: 14px;
   letter-spacing: 0em;
   text-align: left;
-}
-.qt-para p span {
+} */
+/* .qt-para p span {
   color: rgba(0, 0, 0, 1);
   font-size: 14px;
 }
 .qt-para p span:hover {
   cursor: pointer;
-}
-.qt-head {
+} */
+/* .qt-head {
   width: 437px;
   height: 65px;
   position: relative;
-  top: 55px;
 }
 .qt-head p {
   font-family: "Open Sans";
@@ -129,13 +126,13 @@
   line-height: 65px;
   letter-spacing: 0em;
   text-align: left;
-}
-.qt-account-right-container {
+} */
+/* .qt-account-right-container {
   display: block;
   width: 551px;
   margin-left: 100px;
-  /* border: 2px solid black; */
-}
+
+} */
 /* .singin p:hover {
   color: red;
   cursor: default;
@@ -151,11 +148,14 @@
   text-transform: none;
   margin-left: -6px;
 } */
+.custom-input1 {
+  position: relative;
+}
+
 .custom-input1 label {
   position: relative;
   border-radius: 8px;
   margin-top: 8px;
-  top: 54px;
   margin-left: 2px;
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
@@ -166,6 +166,7 @@
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
+  display: block;
 }
 input.style {
   width: 419px;
@@ -174,7 +175,6 @@ input.style {
   width: 419px;
 
   border: none;
-  margin-top: 58px;
   /* padding: 10px; */
   border: 1px solid #ccc;
 
@@ -256,4 +256,15 @@ input.style {
   border: 1px;
   border-radius: 8px;
   padding-left: 26px;
+}
+
+.input-error {
+  position: absolute;
+  top: 20px;
+  width: auto;
+  background: white;
+  color: red;
+  left: 25px;
+  font-size: 18px;
+  font-family: "Open Sans";
 }

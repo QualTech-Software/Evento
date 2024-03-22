@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import icon from "../../../public/assets/danger.png";
 import "../../Components/AccountExtraFields/Account.css";
 import axios from "axios";
 import { Checkbox, FormControlLabel } from "@mui/material";
@@ -11,12 +10,6 @@ import {
   CreateAccBtn,
 } from "./components/atoms";
 import {
-  validatePass,
-  validateCpass,
-  validateCon,
-  validateFullName,
-} from "./utils/FormValidation";
-import {
   CustomInputB,
   CustomInputC,
   CustomInputD,
@@ -24,10 +17,6 @@ import {
 } from "./pages/RegisterInput";
 
 const AccountForm = ({
-  email,
-  handleEmail,
-  name,
-  handleName,
   firstName,
   lastName,
   handleFirstName,
@@ -38,25 +27,19 @@ const AccountForm = ({
   handleCpassword,
   phoneNumber,
   handlePhoneNumberChange,
-  ErrorMsg,
-  setErrorMsg,
   errorPhoneMsg,
   setErrorPhoneMsg,
-  handleCreateAccount,
-  errorCpassMsg,
-  setErrorCpassMsg,
 }) => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [checkboxEnabled, setCheckboxEnabled] = useState(false);
-  const [buttonOpacity, setButtonOpacity] = useState(0.5); // Initial opacity
-  const [fullNameError, setFullNameError] = useState(""); // State for full name error message
+  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+  const [fullNameError, setFullNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [cpasswordError, setCpasswordError] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
 
   useEffect(() => {
-    // Check if all fields are filled and set checkboxEnabled accordingly
     if (
       password &&
       cpassword &&
@@ -70,25 +53,40 @@ const AccountForm = ({
     }
   }, [password, cpassword, phoneNumber, errorPhoneMsg]);
 
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      // Assuming `handleEmail` is not needed since we retrieve email from localStorage
+      // handleEmail(email);
+    }
+  }, []);
+
   const handleSubmit = async () => {
-    if (!email || !password || !cpassword || !phoneNumber) {
+    const email = localStorage.getItem("email");
+    if (
+      !email ||
+      !password ||
+      !cpassword ||
+      !phoneNumber ||
+      !firstName ||
+      !lastName
+    ) {
       setIsEmpty(true);
       return;
     }
 
-    //validateFullName(name, setFullNameError); // Validate full name
-
     try {
       const response = await axios.post("http://localhost:3000/api/register", {
+        email,
         firstName,
         lastName,
-        password,
         phoneNumber,
+        password,
       });
 
-      console.log(response.data); // Handle success response
+      console.log(response.data);
     } catch (error) {
-      console.error("Registration error:", error.response.data.msg); // Handle error response
+      console.error("Registration error:", error);
     }
 
     const error = validateForm();
@@ -96,15 +94,14 @@ const AccountForm = ({
       alert(error || fullNameError);
     } else {
       setIsEmpty(false);
-      // handleCreateAccount();
-      setCheckboxEnabled(true); // Enable the checkbox
-      setButtonOpacity(1); // Increase opacity
+      setCheckboxEnabled(true);
+      setButtonOpacity(1);
     }
   };
 
   const handleCheckboxClick = () => {
     if (checkboxEnabled) {
-      setButtonOpacity(1); // Increase opacity when checkbox is clicked
+      setButtonOpacity(1);
     }
   };
 
@@ -121,12 +118,12 @@ const AccountForm = ({
         firstName={firstName}
         lastName={lastName}
         handleFirstName={handleFirstName}
-        handleLastName={handleLastName} // Corrected
+        handleLastName={handleLastName}
         firstNameError={firstNameError}
         lastNameError={lastNameError}
         isEmpty={isEmpty}
         setFirstNameError={setFirstNameError}
-        setLastNameError={setLastNameError} // Corrected
+        setLastNameError={setLastNameError}
       />
 
       <CustomInputC

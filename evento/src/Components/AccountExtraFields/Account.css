@@ -79,6 +79,7 @@
 .custom-inputb .input-wrapper2 {
   height: 48px;
   width: 214px;
+  margin-top: -49px;
 }
 /* .custom-inputb label {
   position: relative;
@@ -94,10 +95,10 @@
   color: rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
 } */
-.custom-inputb .input-wrapper2 label {
+/* .custom-inputb .input-wrapper2 label {
   top: -2px;
   left: -48px;
-}
+} */
 /* .custom-inputb input {
  
   border: 1px solid white;
@@ -191,7 +192,7 @@
   height: 48px;
   width: 214px;
   margin-left: 245px;
-  margin-top: -69px;
+  margin-top: -49px;
 }
 .textfieldphone {
   border-radius: 5px;

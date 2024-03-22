@@ -29,7 +29,7 @@ export const CustomInputB = ({
   setLastNameError,
 }) => {
   const handleBlurFirstName = () => {
-    if (!firstName) {
+    if (!firstName && !firstNameError) {
       setFirstNameError("Please enter first name");
     } else {
       setFirstNameError("");
@@ -46,42 +46,44 @@ export const CustomInputB = ({
 
   return (
     <CustInputB className="custom-inputb">
-      <label htmlFor="firstName">First Name</label>
+      {/* <label htmlFor="firstName">First Name</label> */}
       <div className="input-wrapper1">
         <StyledTextField
           className={firstNameError ? "textfieldlname error" : "textfieldlname"}
-          id="firstName"
-          value={firstName}
-          onChange={(e) => {
-            setFirstNameError(""); // Clear error when typing
-          }}
-          placeholder={firstNameError ? firstNameError : "Ketan"}
+          placeholder="John"
+          // type={firstNameError ? "text" : "password"}
+          id="field1"
+          value={firstNameError ? firstNameError : firstName}
+          onChange={handleFirstName}
+          onFocus={(e) => (e.target.placeholder = "")}
           onBlur={handleBlurFirstName}
+          onKeyDown={(e) => {
+            if (e.keyCode === 8 && firstNameError !== "") {
+              // Check if backspace key was pressed and there's at least one character in the password field
+              setFirstNameError(""); // Clear the error message
+            }
+          }}
         />
-        {/* {isEmpty && !firstName && (
-          <div className="icon-wrapper" style={{ marginTop: "-7px" }}>
-            <img
-              src={icon}
-              alt="icon"
-              className="error-icon"
-              style={{ marginLeft: "93px" }}
-            />
-          </div>
-        )} */}
       </div>
 
       <div className="input-wrapper2">
-        <label htmlFor="lastName">Last Name</label>
+        {/* <label htmlFor="lastName">Last Name</label> */}
 
         <StyledTextField
           className={lastNameError ? "textfieldlname error" : "textfieldlname"}
-          id="lastName"
-          value={lastName}
-          onChange={(e) => {
-            setLastNameError(""); // Clear error when typing
-          }}
-          placeholder={lastNameError ? lastNameError : "Jagtap"}
+          placeholder="Smith"
+          // type={firstNameError ? "text" : "password"}
+          id="field3"
+          value={lastNameError ? lastNameError : lastName}
+          onChange={handleLastName}
+          onFocus={(e) => (e.target.placeholder = "")}
           onBlur={handleBlurLastName}
+          onKeyDown={(e) => {
+            if (e.keyCode === 8 && lastNameError !== "") {
+              // Check if backspace key was pressed and there's at least one character in the password field
+              setLastNameError(""); // Clear the error message
+            }
+          }}
         />
         {/* {isEmpty && !lastName && (
           <div className="icon-wrapper" style={{ marginTop: "-7px" }}>
@@ -106,11 +108,11 @@ export const CustomInputC = ({
   setPasswordError,
 }) => (
   <CustInputC className="custom-inputc">
-    <label htmlFor="field3">Password</label>
+    {/* <label htmlFor="field3">Password</label> */}
     <div className="input-wrapper">
       <StyledTextFieldPass
         className={passwordError ? "textfield error" : "textfield"}
-        placeholder="Ketan@123"
+        placeholder="Password"
         type={passwordError ? "text" : "password"}
         id="field3"
         value={passwordError ? passwordError : password}
@@ -120,8 +122,14 @@ export const CustomInputC = ({
         }}
         onFocus={(e) => (e.target.placeholder = "")}
         onBlur={(e) => {
-          e.target.placeholder = passwordError ? "" : "Ketan@123";
+          e.target.placeholder = passwordError ? "" : "Password";
           validatePass(password, setPasswordError);
+        }}
+        onKeyDown={(e) => {
+          if (e.keyCode === 8 && password.length > 0 && passwordError !== "") {
+            // Check if backspace key was pressed and there's at least one character in the password field
+            setPasswordError(""); // Clear the error message
+          }
         }}
       />
       {/* {isEmpty && !password && (
@@ -148,11 +156,11 @@ export const CustomInputD = ({
   password,
 }) => (
   <CustInputD className="custom-inputd">
-    <label htmlFor="field4">Confirm Password</label>
+    {/* <label htmlFor="field4">Confirm Password</label> */}
     <div className="input-wrapper">
       <StyledTextFieldPhone
         className={cpasswordError ? "textfield error" : "textfield"}
-        placeholder="Ketan@123"
+        placeholder="Confirm Password"
         type={cpasswordError ? "text" : "password"}
         id="field4"
         value={cpasswordError ? cpasswordError : cpassword}
@@ -162,9 +170,19 @@ export const CustomInputD = ({
         }}
         onFocus={(e) => (e.target.placeholder = "")}
         onBlur={(e) => {
-          e.target.placeholder = cpasswordError ? "" : "Ketan@123";
+          e.target.placeholder = cpasswordError ? "" : "Confirm Password";
           console.log(password, cpassword);
           validateCpass(password, cpassword, setCpasswordError);
+        }}
+        onKeyDown={(e) => {
+          if (
+            e.keyCode === 8 &&
+            cpassword.length > 0 &&
+            cpasswordError !== ""
+          ) {
+            // Check if backspace key was pressed and there's at least one character in the password field
+            setCpasswordError(""); // Clear the error message
+          }
         }}
       />
       {isEmpty && !cpassword && (
@@ -175,7 +193,6 @@ export const CustomInputD = ({
       {cpasswordError && (
         <div className="error-message">
           <img src={icon} alt="icon" className="error-icon" />
-          <p>{cpasswordError}</p>{" "}
         </div>
       )}
     </div>
@@ -191,7 +208,7 @@ export const CustomInputE = ({
   setErrorPhoneMsg,
 }) => (
   <CustInputE className="custom-inpute">
-    <label htmlFor="field5">Phone Number</label>
+    {/* <label htmlFor="field5">Phone Number</label> */}
     <div className="input-wrapper">
       <StyledTextFieldCpass
         className={errorPhoneMsg ? "textfieldphone error" : "textfieldphone"}
@@ -207,6 +224,16 @@ export const CustomInputE = ({
         onBlur={(e) => {
           e.target.placeholder = errorPhoneMsg ? "" : "+91 72666028800";
           validateCon(phoneNumber, setErrorPhoneMsg);
+        }}
+        onKeyDown={(e) => {
+          if (
+            e.keyCode === 8 &&
+            phoneNumber.length > 0 &&
+            errorPhoneMsg !== ""
+          ) {
+            // Check if backspace key was pressed and there's at least one character in the password field
+            setErrorPhoneMsg(""); // Clear the error message
+          }
         }}
       />
       {/* {isEmpty && !phoneNumber && (

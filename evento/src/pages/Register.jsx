@@ -18,12 +18,21 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [errorPhoneMsg, setErrorPhoneMsg] = useState(""); // New state for phone number error
   const [errorCpassMsg, setErrorCpassMsg] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
     setIsEmpty(false); // Clear isEmpty state when name is updated
   };
 
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
+  };
   return (
     <>
       <QtAcc className="qt-acc">
@@ -45,6 +54,10 @@ const Register = () => {
                 setEmail(e.target.value);
                 setIsEmpty(false);
               }}
+              firstName={firstName}
+              lastName={lastName}
+              handleFirstName={handleFirstName}
+              handleLastName={handleLastName}
               name={name}
               handleName={handleNameChange}
               password={password}

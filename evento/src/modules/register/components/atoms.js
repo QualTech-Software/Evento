@@ -39,11 +39,14 @@ export const StyledTextFieldPass = styled(StyledTextField)`
 `;
 export const StyledTextFieldCpass = styled(StyledTextField)`
   input {
-    padding-left: 51px;
+    padding-left: 61px;
   }
   &.textfieldphone.error input {
     color: red !important;
     font-size: 10px;
+  }
+  &::placeholder {
+    margin-left: 30px;
   }
 `;
 
@@ -166,7 +169,7 @@ export const CustInputB = styled.div`
   }
 `;
 export const CustInputC = styled.div`
-  margin-top: 43px;
+  margin-top: 37px;
   label {
     position: relative;
     top: -6px;

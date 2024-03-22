@@ -1,14 +1,25 @@
 // RightContainer.jsx
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import { group2, icon } from "../../../public/assets";
-import TextBox from "../../Components/Form/TextBox"; // Import the custom Textbox component
-import { Signin, ContPara, OrPara } from "../create/components/atoms";
-import "../../Components/Account/Create.css";
+import { group2, icon } from "../../../../public/assets";
+import TextBox from "../../../Components/Form/TextBox";
+import axios from "axios";
+import {
+  Signin,
+  ContPara,
+  OrPara,
+  CreateAcc,
+  AccLogo,
+  Ptag,
+  AccHead,
+} from "../components/atoms";
+import "../../../Components/Account/Create.css";
+import { useNavigate } from "react-router-dom";
 
-const RightContainer = ({ handleEmailChange, handleSubmit }) => {
+const RightContainer = ({}) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,32 +30,51 @@ const RightContainer = ({ handleEmailChange, handleSubmit }) => {
     console.log(email);
   });
 
-  const handleChange = (e) => {
-    console.log(e, e.target, e.target.value);
+  const handleSubmit = async () => {
+    if (email) {
+      try {
+        localStorage.setItem("email", email);
+        // Handle success response
+        // console.log(response.data);
+        navigate("/account");
+      } catch (error) {
+        // Handle error response
+        console.error("Registration error:");
+      }
+    }
+
+    if (validateEmail(email)) {
+      navigate("/account");
+    } else {
+      setEmailError("Invalid email");
+    }
   };
 
   return (
-    <div className="qt-account-right-container">
-      <div className="qt-logo">
-        <div className="qt-para">
+    <CreateAcc className="qt-account-right-container">
+      <AccLogo className="qt-logo"></AccLogo>
+      <div classname="qt-register-container">
+        <Ptag className="qt-para">
           <p>
             If you already have an account register You can{" "}
             <span>Login here !</span>
           </p>
-        </div>
-        <div className="qt-head">
+        </Ptag>
+        <AccHead className="qt-head">
           <p>Create an account</p>
-        </div>
+        </AccHead>
 
         <div className="form-container-main">
           <TextBox
             value={email}
-            onChange={handleEmailChange}
+            email={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="custom-input1"
             style={{ width: "419px" }} // Pass additional styles
             ErrorMsg={emailError}
             setErrorMsg={setEmailError}
             validateEmail={validateEmail}
+            setEmail={setEmail}
           />
         </div>
 
@@ -60,7 +90,7 @@ const RightContainer = ({ handleEmailChange, handleSubmit }) => {
           </Signin>
         </Button>
       </div>
-    </div>
+    </CreateAcc>
   );
 };
 

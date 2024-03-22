@@ -1,0 +1,154 @@
+.og-card-main {
+  width: 1356px;
+  height: 300px;
+  top: 40px;
+  left: 64px;
+  position: relative;
+}
+.head {
+  width: 312px;
+  height: 44px;
+  top: 2644px;
+  left: 64px;
+  font-family: Open Sans;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 44px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.card {
+  width: 300px !important;
+  height: 300px !important;
+}
+.card .heading {
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: 142px;
+  height: 27px;
+}
+
+.card-category-2 ul {
+  padding: 0;
+}
+
+.card-category-2 ul li {
+  list-style-type: none;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.card-category-2 {
+  font-family: sans-serif;
+  margin-bottom: 45px;
+  /* text-align: center; */
+}
+.card-category-2 .iCard-style1 {
+  margin: 0px 37px 0px 0px;
+}
+.card-category-2 .iCard-style2 {
+  margin: 0px 37px 0px 0px;
+}
+.card-category-2 .iCard-style3 {
+  margin: 0px 37px 0px 0px;
+}
+.card-category-2 .iCard-style4 {
+  margin: 0px 0px 0px 0px;
+}
+.card-category-2 > div:not(:last-child) {
+  margin: 10px 5px;
+  text-align: left;
+}
+
+.img-card {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border-radius: 5px;
+  /* text-align: left; */
+  border: 1px solid #ababab;
+}
+.img-card:hover {
+  background-color: #ffefef;
+}
+.img-card .card-content .card-image {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.img-card .card-image img {
+  width: 280px;
+  padding: 10px;
+  border-radius: 5px 5px 0px 0px;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.img-card .card-text {
+  padding: 0 15px 0px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.img-card {
+  /* padding: 20px 15px 30px; */
+  text-align: center;
+}
+
+.img-card a {
+  text-decoration: none;
+  position: relative;
+  padding: 10px 0;
+}
+
+.img-card .card-button {
+  background: #ff0000;
+  width: 252px;
+  height: 48px;
+  border-radius: 8px;
+  border: 0;
+  margin-top: -7px;
+}
+
+.img-card .card-button a {
+  color: #ffffff;
+  font-family: Open Sans;
+  font-size: 18px;
+}
+.img-card.iCard-style1 .card-title {
+  font-family: "Open Sans";
+  color: #1e0a3c;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+}
+
+.card-text .card-des {
+  display: flex;
+  justify-content: space-evenly;
+  /* margin-left: 77px; */
+}
+.card-text .card-des p {
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.card-text .card-des span {
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+}

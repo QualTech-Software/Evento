@@ -1,0 +1,134 @@
+.qt-create {
+  height: 720px;
+  width: 1440px;
+  background-color: red;
+  position: relative;
+  margin: auto;
+  display: flex;
+  background-image: url(src/assets/group1.png);
+  background-size: 787px;
+  background-repeat: no-repeat;
+}
+.qt-back {
+  width: 40px;
+}
+
+.qt-back img {
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  left: 54px;
+  position: relative;
+  padding: 10px;
+  border-radius: 50px;
+}
+.qt-form {
+  width: 787px;
+  height: 720px;
+  position: relative;
+  float: left;
+}
+.qt-form2 {
+  width: 787px;
+  height: 720px;
+  position: relative;
+  float: left;
+}
+.qt-logo {
+  width: 147px;
+  height: 75px;
+  top: 35px;
+  /* left: 889px; */
+  position: relative;
+  background-image: url("../../assets/LOGO.png");
+  background-size: cover;
+}
+
+.qt-para {
+  width: 351px;
+  height: 24px;
+}
+.qt-para p {
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.qt-para p span a {
+  color: rgba(0, 0, 0, 1);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.qt-para p span:hover {
+  cursor: pointer;
+}
+.qt-head {
+  width: 437px;
+  height: 65px;
+  position: relative;
+  top: 55px;
+}
+.qt-head p {
+  font-family: "Open Sans";
+  font-size: 48px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  line-height: 65px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.qt-account-right-container {
+  display: block;
+  width: 551px;
+  margin-left: 100px;
+  /* border: 2px solid black; */
+}
+.singin p:hover {
+  color: red;
+  cursor: default;
+}
+.singin p {
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+  margin-left: -6px;
+}
+.custom-input1 label {
+  position: relative;
+  border-radius: 8px;
+  top: 90px;
+  /* top: 78px;
+  left: -5px; */
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  transition: all 0.3s ease;
+}
+.custom-input1 input {
+  width: 421px;
+  border: none;
+  margin-top: 58px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.form-container1 {
+  margin-top: -50px;
+}

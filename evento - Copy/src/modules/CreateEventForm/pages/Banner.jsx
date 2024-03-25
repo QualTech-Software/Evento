@@ -16,8 +16,11 @@ import {
   StyledBrowseButtonText,
   StyledEventButton,
   StyledEventButtonP,
+  Styleduploadline,
+  StyledLine,
+  StyledBannerP,
 } from "../components/atoms.js";
-import { uploadimage } from "../../../icons";
+import { uploadimage, line } from "../../../icons";
 
 export default function Banner({ setCurrentStep }) {
   const fileInputRef = useRef(null);
@@ -28,8 +31,8 @@ export default function Banner({ setCurrentStep }) {
     const files = Array.from(event.target.files);
 
     // Check if total number of files exceeds 5
-    if (selectedFiles.length + files.length > 5) {
-      alert("You can only upload a maximum of 5 images.");
+    if (selectedFiles.length + files.length > 4) {
+      alert("You can only upload a maximum of 4 images.");
       return;
     }
 
@@ -75,6 +78,11 @@ export default function Banner({ setCurrentStep }) {
           />
           <StyledBannerBrowse className="qt-banner-browse">
             <StyledBrowseP>Upload your Images</StyledBrowseP>
+            <StyledLine>
+              <Styleduploadline src={line} className="qt-banner-line_1" />
+              <p>OR</p>
+              <Styleduploadline src={line} className="qt-banner-line_1" />
+            </StyledLine>
             <StyledBrowseButton onClick={handleBrowseButtonClick}>
               <StyledBrowseButtonText>Browse Files</StyledBrowseButtonText>
             </StyledBrowseButton>
@@ -88,6 +96,7 @@ export default function Banner({ setCurrentStep }) {
             />
           </StyledBannerBrowse>
         </StyledBannerUpload>
+        <StyledBannerP>Only support jpg and png images.</StyledBannerP>
       </EventBanner>
 
       {selectedFiles.length > 0 && (

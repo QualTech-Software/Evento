@@ -17,3 +17,4 @@ export { default as clock } from "./clock.svg";
 export { default as venue } from "./venue.svg";
 export { default as online } from "./online.svg";
 export { default as uploadimage } from "./uploadimage.svg";
+export { default as line } from "./line_1.svg";

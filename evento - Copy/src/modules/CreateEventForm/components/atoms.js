@@ -46,7 +46,7 @@ export const EditLabel = styled.p`
   font-weight: 600;
   line-height: 32.68px;
   text-align: center;
-  color: rgba(30, 10, 60, 1); // Color for the "Edit" label
+  color: rgba(30, 10, 60, 1);
 `;
 
 export const CommonLabel = styled.p`
@@ -497,7 +497,7 @@ export const StyledBrowseButton = styled.button`
   border-radius: 8px;
   border: 1px solid rgba(151, 71, 255, 1);
   opacity: 0px;
-  top: 32px;
+
   left: 178px;
   position: relative;
   cursor: pointer;
@@ -509,4 +509,38 @@ export const StyledBrowseButtonText = styled.span`
   line-height: 19.07px;
   text-align: left;
   color: rgba(151, 71, 255, 1);
+`;
+export const Styleduploadline = styled.img`
+  width: 80px;
+  height: 0.97px;
+  gap: 0px;
+  opacity: 0px;
+`;
+export const StyledLine = styled.div`
+  width: 201px;
+  height: 16px;
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+  margin-left: 143px;
+
+  p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.34px;
+    text-align: center;
+    color: rgba(171, 171, 171, 1);
+    position: relative;
+    margin-top: -7px;
+  }
+`;
+export const StyledBannerP = styled.p`
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.34px;
+
+  color: rgba(171, 171, 171, 1);
+  position: relative;
 `;

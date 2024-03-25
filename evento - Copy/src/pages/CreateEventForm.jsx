@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { arrow, editfilled, bannerfilled } from "../icons";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   NewEvent,
   EventEdit,
@@ -36,10 +36,20 @@ const Step = ({ stepNumber, step }) => (
 
 const CreateEventForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const navigate = useNavigate();
+
+  const goToPreviousPage = () => {
+    // Navigate to the previous page
+    navigate(-1);
+  };
 
   return (
     <NewEvent className="qt-newevent">
-      <StyledArrow src={arrow} className="qt-event-arrow" />
+      <StyledArrow
+        src={arrow}
+        className="qt-event-arrow"
+        onClick={goToPreviousPage}
+      />
       <StyledNewEventh1>Create a New Event</StyledNewEventh1>
 
       {/* Map over steps array and render each step dynamically */}

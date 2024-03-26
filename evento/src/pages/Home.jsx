@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
-import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../assets";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { dashboard, event, interest, logo } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -22,6 +22,7 @@ import {
   SearchBar,
   InputCont,
   DropDown,
+  StyledLink,
 } from "../modules/Home/components/atoms";
 
 const Home = () => {
@@ -31,6 +32,9 @@ const Home = () => {
 
   const handleClick = () => {
     navigate("/create");
+  };
+  const handleoClick = () => {
+    navigate("/login");
   };
 
   const toggleDropdown = () => {
@@ -55,10 +59,11 @@ const Home = () => {
               <img src={interest} alt="Interest" />
               <p>Interested</p>
             </Interest>
-            <QtLogin className="login">
-              <p>Log in</p>
-              <img src={login} alt="Login" />
-            </QtLogin>
+            <StyledLink to="/login">
+              <QtLogin>
+                <p>Log in</p>
+              </QtLogin>
+            </StyledLink>
             <Signup className="signup">
               <button onClick={handleClick}>
                 <p>Sign up</p>
@@ -108,11 +113,11 @@ const Home = () => {
             </InputCont>
           </SearchBar>
         </Homebar>
+        <Categories />
+        <Onlineevents />
+        <BestEvent />
+        <Organizer />
       </QtHome>
-      <Categories />
-      <Onlineevents />
-      <BestEvent />
-      <Organizer />
     </>
   );
 };

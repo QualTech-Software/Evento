@@ -114,7 +114,7 @@ export const CustomInputC = ({
         className={passwordError ? "textfield error" : "textfield"}
         placeholder="Password"
         type={passwordError ? "text" : "password"}
-        id="field3"
+        id="field2"
         value={passwordError ? passwordError : password}
         onChange={(e) => {
           handlePassword(e);

@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, IconButton, Typography, Card, CardMedia } from "@mui/material";
-import { Close, Photo } from "@mui/icons-material"; // Import Close and Photo icons
+import { Grid, IconButton, Card, Modal, Backdrop } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import {
   EventBanner,
   BannerHeading,
@@ -19,12 +23,16 @@ import {
   Styleduploadline,
   StyledLine,
   StyledBannerP,
+  StyledCardMedia,
+  StyledImgFade,
 } from "../components/atoms.js";
 import { uploadimage, line } from "../../../icons";
 
 export default function Banner({ setCurrentStep }) {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const navigate = useNavigate();
 
   const handleFileInputChange = (event) => {
@@ -58,10 +66,25 @@ export default function Banner({ setCurrentStep }) {
       prevSelectedFiles.filter((file, i) => i !== index)
     );
   };
-  const handleSaveAndContinue = () => {
+
+  const handleSave = () => {
+    if (selectedFiles.length === 0) {
+      alert("Please upload images.");
+      return;
+    }
     setCurrentStep(2);
-    navigate("/ticketing");
+    navigate("/createeventform/ticketing");
   };
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+    setOpenPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
+  };
+
   return (
     <>
       <EventBanner className="qt-event-banner">
@@ -102,16 +125,28 @@ export default function Banner({ setCurrentStep }) {
       {selectedFiles.length > 0 && (
         <StyledUploadedImagesContainer>
           {selectedFiles.map((file, index) => (
-            <Grid item key={index}>
-              <Card>
-                <CardMedia
+            <Grid item key={index} style={{ margin: "24px" }}>
+              <Card
+                style={{
+                  width: "310px",
+                  height: "310px",
+                  position: "relative",
+                }}
+              >
+                <StyledCardMedia
                   component="img"
                   image={URL.createObjectURL(file)}
                   alt={file.name}
+                  onClick={() => handleImageClick(index)}
                 />
                 <IconButton
                   onClick={() => handleDeleteImage(index)}
-                  style={{ position: "absolute", top: 0, right: 0 }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    backgroundColor: "rgba(217, 217, 217, 1)",
+                  }}
                 >
                   <Close />
                 </IconButton>
@@ -120,9 +155,34 @@ export default function Banner({ setCurrentStep }) {
           ))}
         </StyledUploadedImagesContainer>
       )}
-      <StyledEventButton variant="contained" onClick={handleSaveAndContinue}>
+
+      <StyledEventButton onClick={handleSave}>
         <StyledEventButtonP>Save & Continue</StyledEventButtonP>
       </StyledEventButton>
+
+      {/* Popup for Selected Image */}
+      <Modal
+        open={openPopup}
+        onClose={handleClosePopup}
+        aria-labelledby="image-popup-modal"
+        aria-describedby="image-popup-modal-description"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <StyledImgFade in={openPopup}>
+          <div>
+            {selectedFiles[selectedImageIndex] && (
+              <img
+                src={URL.createObjectURL(selectedFiles[selectedImageIndex])}
+                alt={selectedFiles[selectedImageIndex].name}
+              />
+            )}
+          </div>
+        </StyledImgFade>
+      </Modal>
     </>
   );
 }

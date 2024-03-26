@@ -1,5 +1,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+import { CardMedia, Fade } from "@mui/material";
 import styled from "styled-components";
 
 //createeventform
@@ -487,7 +488,6 @@ export const StyledUploadedImagesContainer = styled.p`
   font-weight: 400;
   line-height: 19.07px;
   text-align: center;
-  margin: auto;
 `;
 export const StyledBrowseButton = styled.button`
   width: 105px;
@@ -543,4 +543,21 @@ export const StyledBannerP = styled.p`
 
   color: rgba(171, 171, 171, 1);
   position: relative;
+`;
+export const StyledCardMedia = styled(CardMedia)`
+  width: 310px;
+  height: 310px;
+`;
+export const StyledImgFade = styled(Fade)`
+  width: 310px;
+  height: 310px;
+  position: relative;
+
+  img {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    margin-top: 200px;
+    margin-left: 500px;
+  }
 `;

@@ -16,6 +16,11 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
+import Organizer from "../modules/home/pages/Organizer";
+import Categories from "../modules/home/pages/Categories";
+import Onlineevents from "../modules/home/pages/Events";
+import BestEvent from "../modules/home/pages/DiscoverEvent";
+
 import {
   QtHome,
   Navbar,
@@ -29,10 +34,12 @@ import {
   SearchBar,
   InputCont,
   DropDown,
+  StyledLink,
   MenuItemStyle,
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
+
 } from "../modules/home/components/atoms";
 
 const Home = () => {
@@ -63,10 +70,12 @@ const Home = () => {
               <img src={dashboard} alt="Dashboard" />
               <p>Categories</p>
             </Category>
-            <Event className="event">
-              <img src={event} alt="Event" />
-              <p>Create Event</p>
-            </Event>
+            <StyledLink to="/createeventform" className="home-createevent">
+              <Event className="event">
+                <img src={event} alt="Event" />
+                <p>Create Event</p>
+              </Event>
+            </StyledLink>
             <Interest className="interest">
               <img src={interest} alt="Interest" />
               <p>Interested</p>

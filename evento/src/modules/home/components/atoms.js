@@ -4,7 +4,11 @@ import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
+import { CardContent, IconButton, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
+export const MenuItem = styled.menuitem`
+  background-color: "red";
 import { CardContent, IconButton } from "@mui/material";
 // export const MenuItem = styled.menuitem`
 //   background-color: "red";
@@ -76,6 +80,7 @@ export const MenuItemStyleOl = styled(MenuItem)`
     color: gray;
     font-size: 17px;
   }
+
 `;
 export const QtHome = styled.div`
   width: 1440px;
@@ -142,7 +147,7 @@ export const Event = styled.div`
     line-height: 25px;
     letter-spacing: 0em;
     text-align: center;
-    margin-left: 8px;
+    // margin-left: 8px;
   }
   img {
     width: 18px;
@@ -539,4 +544,8 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.25) !important;
     background-color: transparent !important;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

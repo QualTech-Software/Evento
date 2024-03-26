@@ -114,7 +114,6 @@ export const Category = styled.div`
   p {
     width: 93px;
     height: 25px;
-
     left: 8px;
     position: relative;
     font-family: "Open Sans";
@@ -183,29 +182,31 @@ export const Interest = styled.div`
     position: relative;
   }
 `;
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 export const QtLogin = styled.div`
   width: 116px;
   height: 64px;
   display: flex;
-  position: relative;
+  cursor: pointer;
+  background-image: url("../../../assets/login.png");
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: 60px center;
+
   p {
-    width: 52px;
+    width: 54px;
     height: 25px;
-    margin-left: 16px;
+    margin-left: 6px;
     position: relative;
+    color: #000;
     font-family: "Open Sans";
     font-size: 18px;
     font-weight: 600;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
-  }
-  img {
-    width: 24px;
-    height: 24px;
-    top: 21px;
-    margin-left: 8px;
-    position: relative;
   }
 `;
 export const Signup = styled.div`
@@ -489,7 +490,7 @@ export const StyledCardTypography = styled(Typography)`
   }
 `;
 export const CardOutline = styled.div`
-  margin-left: 64px;
+  // margin-left: 64px;
 `;
 
 export const StyledButtonGroup = styled(ButtonGroup)`

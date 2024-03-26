@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { dashboard, event, interest, logo } from "../assets";
 import { useNavigate } from "react-router-dom";
 import { dashboard, event, interest, login, logo } from "../assets";
 import Categories from "../modules/home/pages/Categories";
@@ -35,12 +37,15 @@ import {
   InputCont,
   DropDown,
   StyledLink,
+
+} from "../modules/Home/components/atoms";
   MenuItemStyle,
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
 
 } from "../modules/home/components/atoms";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -50,6 +55,9 @@ const Home = () => {
 
   const handleClick = () => {
     navigate("/create");
+  };
+  const handleoClick = () => {
+    navigate("/login");
   };
 
   const toggleDropdown = () => {
@@ -80,10 +88,11 @@ const Home = () => {
               <img src={interest} alt="Interest" />
               <p>Interested</p>
             </Interest>
-            <QtLogin className="login">
-              <p>Log in</p>
-              <img src={login} alt="Login" />
-            </QtLogin>
+            <StyledLink to="/login">
+              <QtLogin>
+                <p>Log in</p>
+              </QtLogin>
+            </StyledLink>
             <Signup className="signup">
               <button onClick={handleClick}>
                 <p>Sign up</p>
@@ -155,11 +164,17 @@ const Home = () => {
             )}
           </InputCont>
         </Homebar>
+        <Categories />
+        <Onlineevents />
+        <BestEvent />
+        <Organizer />
       </QtHome>
+
       <Categories />
       <Events />
       <DiscoverEvent />
       <Organizer />
+
     </>
   );
 };

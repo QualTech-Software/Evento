@@ -21,7 +21,7 @@ import {
   StyledButtonGroup,
 } from "../components/atoms.js";
 import {
-  icon,
+  icon1,
   ticket,
   banner,
   star,
@@ -59,7 +59,7 @@ const EventCard = ({
       </StyledCardOverflow>
       <StyledCardContent>
         <StyledCardTypography level="title-md">
-          <img src={icon} />
+          <img src={icon1} />
           {event.date}
         </StyledCardTypography>
         <Typography level="body-sm">

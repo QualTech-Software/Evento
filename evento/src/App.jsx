@@ -10,6 +10,7 @@ function App() {
     <Routes>
       <Route path="/createeventform/*" element={<CreateEventForm />} />
       <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/create" element={<Create />} />
       <Route path="/account" element={<Register />} />
     </Routes>

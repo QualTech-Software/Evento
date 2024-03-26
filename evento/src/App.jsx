@@ -1,16 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Create from "./Pages/Create";
-import Login from "./modules/Login/pages/Login";
-import Home from "./Pages/Home";
-import Register from "./Pages/Register";
+import Create from "./pages/Create";
+
+import Home from "./pages/Home.jsx";
+import Register from "./pages/Register.jsx";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/" element={<Login />} />
+
       <Route path="/create" element={<Create />} />
       <Route path="/account" element={<Register />} />
     </Routes>

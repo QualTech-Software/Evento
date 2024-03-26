@@ -2,13 +2,25 @@ import React, { useState } from "react";
 import "../Components/Home/Home.css";
 import { useNavigate } from "react-router-dom";
 import { dashboard, event, interest, login, logo } from "../assets";
+import Categories from "../modules/home/pages/Categories";
+import Events from "../modules/home/pages/Events";
+import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
+import Organizer from "../modules/home/pages/Organizer";
 import chevron from "../../public/assets/Chevron.png";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  ListItemIcon,
+} from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 import Organizer from "../modules/home/pages/Organizer";
 import Categories from "../modules/home/pages/Categories";
 import Onlineevents from "../modules/home/pages/Events";
 import BestEvent from "../modules/home/pages/DiscoverEvent";
+
 import {
   QtHome,
   Navbar,
@@ -23,12 +35,18 @@ import {
   InputCont,
   DropDown,
   StyledLink,
+  MenuItemStyle,
+  MenuItemStyleOl,
+  TrendingSearch,
+  EventGroup,
+
 } from "../modules/home/components/atoms";
 
 const Home = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(""); // State to manage selected location
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
+  const [showTrendingSearch, setShowTrendingSearch] = useState(false); // State to manage trending search visibility
 
   const handleClick = () => {
     navigate("/create");
@@ -36,6 +54,10 @@ const Home = () => {
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  const toggleTrendingSearch = () => {
+    setShowTrendingSearch(!showTrendingSearch);
   };
 
   return (
@@ -74,50 +96,71 @@ const Home = () => {
             Don’t miss out! Explore the <span>vibrant events</span> happening
             locally and globally.
           </h3>
-          <SearchBar className="search-bar">
-            <InputCont className="input-container">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search Events, Categories, Location,..."
-              />
 
-              <input
-                type="text"
-                className="extra-input"
-                placeholder="Mumbai"
-                style={{
-                  borderBottomRightRadius: showDropdown ? "0" : "10px", // Adjust border-radius based on dropdown visibility
-                }}
-              />
+          <InputCont className="input-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search Events, Categories, Location,..."
+              onClick={toggleTrendingSearch}
+              style={{
+                borderBottomLeftRadius: showTrendingSearch ? "0" : "10px",
+              }}
+            />
 
-              <img
-                src={chevron}
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginTop: "31px",
-                  marginLeft: "-50px",
-                }}
-                onClick={toggleDropdown}
-              />
-
-              {showDropdown && (
-                <DropDown className="dropdown-menu">
-                  <MenuItem>Detect Current Location</MenuItem>
-                  <MenuItem>Online</MenuItem>
-                </DropDown>
-              )}
-            </InputCont>
-          </SearchBar>
+            <input
+              type="text"
+              className="extra-input"
+              placeholder="Mumbai"
+              style={{
+                borderBottomRightRadius: showDropdown ? "0" : "10px",
+              }}
+            />
+            <img
+              src={chevron}
+              style={{
+                width: "30px",
+                height: "30px",
+                marginTop: "31px",
+                marginLeft: "-50px",
+              }}
+              onClick={toggleDropdown}
+            />
+            {showDropdown && (
+              <DropDown className="dropdown-menu">
+                <MenuItemStyle className="location">
+                  <p>Detect Current Location</p>
+                </MenuItemStyle>
+                <MenuItemStyleOl className="world">
+                  <p>Online</p>
+                </MenuItemStyleOl>
+              </DropDown>
+            )}
+            {showTrendingSearch && (
+              <TrendingSearch className="trending-search">
+                <p>Trending Topics</p>
+                <EventGroup className="events-group">
+                  <button>Exibitions</button>
+                  <button>Art</button>
+                  <button>Workshop</button>
+                  <button>Business</button>
+                  <button>Training</button>
+                  <button>Festival</button>
+                  <button>Adventures</button>
+                  <button>Kids</button>
+                  <button>Music</button>
+                  <button>Entertainment</button>
+                </EventGroup>
+              </TrendingSearch>
+            )}
+          </InputCont>
         </Homebar>
       </QtHome>
       <Categories />
-      <Onlineevents />
-      <BestEvent />
+      <Events />
+      <DiscoverEvent />
       <Organizer />
     </>
   );
 };
-
 export default Home;

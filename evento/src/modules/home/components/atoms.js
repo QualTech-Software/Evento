@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { InputLabel } from "@mui/material";
+import { InputLabel, MenuItem, Typography } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -9,6 +9,78 @@ import { Link } from "react-router-dom";
 
 export const MenuItem = styled.menuitem`
   background-color: "red";
+import { CardContent, IconButton } from "@mui/material";
+// export const MenuItem = styled.menuitem`
+//   background-color: "red";
+// `;
+export const MenuItemStyle = styled(MenuItem)`
+  &.location {
+    background-image: url("../../public/assets/Location2.png");
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  p {
+    margin-left: 20px;
+    margin-top: -5px;
+    color: gray;
+    font-size: 17px;
+  }
+`;
+export const TrendingSearch = styled.div`
+  background-color: white;
+  width: 817px;
+  height: 271px;
+  margin-top: -187px;
+  position: relative;
+
+  border-radius: 0px 0px 10px 10px;
+  p {
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27.24px;
+    text-align: left;
+    margin-left: 22px;
+  }
+`;
+export const EventGroup = styled.div`
+  position: relative;
+  width: 738px;
+  height: 104px;
+  margin-top: 25px;
+  button {
+    width: Hug (137px) px;
+    margin: 10px;
+    height: Hug (45px) px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 50px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: rgba(218, 217, 226, 1);
+  }
+`;
+export const MenuItemStyle1 = styled(MenuItem)`
+  height: 300px;
+  width: 800px;
+  margin-right: 20px;
+`;
+export const MenuItemStyleOl = styled(MenuItem)`
+  &.world {
+    background-image: url("../../public/assets/world.png");
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  p {
+    margin-left: 20px;
+    margin-top: -5px;
+    color: gray;
+    font-size: 17px;
+  }
+
 `;
 export const QtHome = styled.div`
   width: 1440px;
@@ -201,8 +273,10 @@ export const SearchBar = styled.div`
   margin-top: 188px;
   position: relative;
   margin-left: 152px;
-  input {
-    width: 735px;
+  display: flex;
+  // width: 1136px;
+  .search-input {
+    width: 834px;
     height: 80px;
     font-size: 20px;
     font-weight: 400;
@@ -213,9 +287,47 @@ export const SearchBar = styled.div`
     background-size: 29.84px 30px;
     padding-left: 79px;
   }
+  .extra-input {
+    width: 302px;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 10px 0px 0px 10px;
+    background-image: url("../../../public/assets/location.png");
+    background-repeat: no-repeat;
+    background-position: 25px;
+    background-size: 29.84px 30px;
+    padding-left: 79px;
+  }
 `;
 export const InputCont = styled.div`
-  display: flex;
+  margin-top: 190px;
+  margin-left: 152px;
+  display: block;
+  .search-input {
+    width: 733px;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 10px 0px 0px 10px;
+    background-image: url("../../../public/assets/search.png");
+    background-repeat: no-repeat;
+    background-position: 25px;
+    background-size: 29.84px 30px;
+    padding-left: 79px;
+  }
+  .extra-input {
+    width: 302px;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 0px 10px 0px 0px;
+    background-image: url("../../../public/assets/location.png");
+    background-repeat: no-repeat;
+    background-position: 25px;
+    background-size: 29.84px 30px;
+    padding-left: 79px;
+  }
 `;
 export const ExtraHome = styled.div`
   background-color: white;
@@ -230,10 +342,12 @@ export const Arrow = styled.div`
   }
 `;
 export const DropDown = styled.div`
-  margin-left: -254px;
   background-color: white;
-  width: 274px;
-  margin-top: 87px;
+  margin-top: -7px;
+  margin-left: 820px;
+  top: 392;
+  width: 377px;
+  height: 160px;
   border-radius: 0px 0px 10px 10px;
 `;
 //Css Of my home

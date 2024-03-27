@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import "../Components/Home/Home.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo } from "../assets";
-import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../assets";
 import Categories from "../modules/home/pages/Categories";
 import Events from "../modules/home/pages/Events";
 import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
-import Organizer from "../modules/home/pages/Organizer";
 import chevron from "../../public/assets/Chevron.png";
 import {
   FormControl,
@@ -17,42 +14,42 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
 import Organizer from "../modules/home/pages/Organizer";
-import Categories from "../modules/home/pages/Categories";
 import Onlineevents from "../modules/home/pages/Events";
 import BestEvent from "../modules/home/pages/DiscoverEvent";
-
 import {
-  QtHome,
-  Navbar,
-  Sidebar,
-  Category,
-  Event,
-  Interest,
-  QtLogin,
-  Signup,
-  Homebar,
+  StyledQtHome,
+  StyledNavbar,
+  StyledSidebar,
+  StyledCategory,
+  StyledEvent,
+  StyledInterest,
+  StyledQtLogin,
+  StyledSignup,
+  StyledHomebar,
   SearchBar,
-  InputCont,
+  StyledInputCont,
   DropDown,
   StyledLink,
-
-} from "../modules/Home/components/atoms";
   MenuItemStyle,
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
-
+  StyledDropDownTrending,
+  StyledSecondInput,
+  DropdownIconWrapper,
+  IconButtonStyle,
+  StyledFirstInput,
 } from "../modules/home/components/atoms";
-
+import CreateEvent from "../modules/home/pages/CreateEvent";
+import TopDestination from "../modules/home/pages/TopDestination";
 
 const Home = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(""); // State to manage selected location
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
   const [showTrendingSearch, setShowTrendingSearch] = useState(false); // State to manage trending search visibility
-
+  const [searchInputValue, setSearchInputValue] = useState("");
   const handleClick = () => {
     navigate("/create");
   };
@@ -67,114 +64,142 @@ const Home = () => {
   const toggleTrendingSearch = () => {
     setShowTrendingSearch(!showTrendingSearch);
   };
+  const handleButtonClicked = (text) => {
+    setSearchInputValue(text);
+  };
 
   return (
     <>
-      <QtHome className="qt-home">
-        <Navbar className="qt-navbar">
+      <StyledQtHome className="qt-home">
+        <StyledNavbar className="qt-navbar">
           <img src={logo} alt="Logo" />
-          <Sidebar className="sidebar">
-            <Category className="category">
+          <StyledSidebar className="sidebar">
+            <StyledCategory className="category">
               <img src={dashboard} alt="Dashboard" />
               <p>Categories</p>
-            </Category>
+            </StyledCategory>
             <StyledLink to="/createeventform" className="home-createevent">
-              <Event className="event">
+              <StyledEvent className="event">
                 <img src={event} alt="Event" />
                 <p>Create Event</p>
-              </Event>
+              </StyledEvent>
             </StyledLink>
-            <Interest className="interest">
+            <StyledInterest className="interest">
               <img src={interest} alt="Interest" />
               <p>Interested</p>
-            </Interest>
+            </StyledInterest>
             <StyledLink to="/login">
-              <QtLogin>
+              <StyledQtLogin>
                 <p>Log in</p>
-              </QtLogin>
+              </StyledQtLogin>
             </StyledLink>
-            <Signup className="signup">
+            <StyledSignup className="signup">
               <button onClick={handleClick}>
                 <p>Sign up</p>
               </button>
-            </Signup>
-          </Sidebar>
-        </Navbar>
-        <Homebar className="qt-homebar">
+            </StyledSignup>
+          </StyledSidebar>
+        </StyledNavbar>
+        <StyledHomebar className="qt-homebar">
           <h3>
             Don’t miss out! Explore the <span>vibrant events</span> happening
             locally and globally.
           </h3>
 
-          <InputCont className="input-container">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search Events, Categories, Location,..."
-              onClick={toggleTrendingSearch}
-              style={{
-                borderBottomLeftRadius: showTrendingSearch ? "0" : "10px",
-              }}
-            />
+          <StyledInputCont className="input-container">
+            <StyledFirstInput>
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search Events, Categories, Location,..."
+                onClick={toggleTrendingSearch}
+                value={searchInputValue} // Bind input value to searchInputValue state
+                onChange={(e) => setSearchInputValue(e.target.value)}
+                style={{
+                  borderBottomLeftRadius: showTrendingSearch ? "0" : "10px",
+                }}
+              />
+              <StyledDropDownTrending className="Dropdown-trending">
+                {showTrendingSearch && (
+                  <TrendingSearch className="trending-search">
+                    <p>Trending Topics</p>
+                    <EventGroup className="events-group">
+                      <button
+                        onClick={() => handleButtonClicked("Exhibitions")}
+                      >
+                        Exhibitions
+                      </button>
+                      <button onClick={() => handleButtonClicked("Art")}>
+                        Art
+                      </button>
+                      <button onClick={() => handleButtonClicked("Workshop")}>
+                        Workshop
+                      </button>
+                      <button onClick={() => handleButtonClicked("Business")}>
+                        Business
+                      </button>
+                      <button onClick={() => handleButtonClicked("Training")}>
+                        Training
+                      </button>
+                      <button onClick={() => handleButtonClicked("Festival")}>
+                        Festival
+                      </button>
+                      <button onClick={() => handleButtonClicked("Adventures")}>
+                        Adventures
+                      </button>
+                      <button onClick={() => handleButtonClicked("Kids")}>
+                        Kids
+                      </button>
+                      <button onClick={() => handleButtonClicked("Music")}>
+                        Music
+                      </button>
+                      <button
+                        onClick={() => handleButtonClicked("Entertainment")}
+                      >
+                        Entertainment
+                      </button>
+                    </EventGroup>
+                  </TrendingSearch>
+                )}
+              </StyledDropDownTrending>
+            </StyledFirstInput>
+            <StyledSecondInput className="second-input">
+              <input
+                type="text"
+                className="extra-input"
+                placeholder="Mumbai"
+                style={{
+                  borderBottomRightRadius: showDropdown ? "0" : "10px",
+                }}
+              />
 
-            <input
-              type="text"
-              className="extra-input"
-              placeholder="Mumbai"
-              style={{
-                borderBottomRightRadius: showDropdown ? "0" : "10px",
-              }}
-            />
-            <img
-              src={chevron}
-              style={{
-                width: "30px",
-                height: "30px",
-                marginTop: "31px",
-                marginLeft: "-50px",
-              }}
-              onClick={toggleDropdown}
-            />
-            {showDropdown && (
-              <DropDown className="dropdown-menu">
-                <MenuItemStyle className="location">
-                  <p>Detect Current Location</p>
-                </MenuItemStyle>
-                <MenuItemStyleOl className="world">
-                  <p>Online</p>
-                </MenuItemStyleOl>
-              </DropDown>
-            )}
-            {showTrendingSearch && (
-              <TrendingSearch className="trending-search">
-                <p>Trending Topics</p>
-                <EventGroup className="events-group">
-                  <button>Exibitions</button>
-                  <button>Art</button>
-                  <button>Workshop</button>
-                  <button>Business</button>
-                  <button>Training</button>
-                  <button>Festival</button>
-                  <button>Adventures</button>
-                  <button>Kids</button>
-                  <button>Music</button>
-                  <button>Entertainment</button>
-                </EventGroup>
-              </TrendingSearch>
-            )}
-          </InputCont>
-        </Homebar>
+              <DropdownIconWrapper onClick={toggleDropdown}>
+                {" "}
+                {/* Wrapper for dropdown icon */}
+                <IconButtonStyle>
+                  <ArrowDropDownIcon />
+                </IconButtonStyle>
+              </DropdownIconWrapper>
+              {showDropdown && (
+                <DropDown className="dropdown-menu">
+                  <MenuItemStyle className="location">
+                    <p>Detect Current Location</p>
+                  </MenuItemStyle>
+                  <MenuItemStyleOl className="world">
+                    <p>Online</p>
+                  </MenuItemStyleOl>
+                </DropDown>
+              )}
+            </StyledSecondInput>
+          </StyledInputCont>
+        </StyledHomebar>
         <Categories />
         <Onlineevents />
         <BestEvent />
         <Organizer />
-      </QtHome>
-
-      <Categories />
-      <Events />
-      <DiscoverEvent />
-      <Organizer />
-
+        <CreateEvent />
+        <TopDestination />
+      </StyledQtHome>
     </>
   );
 };

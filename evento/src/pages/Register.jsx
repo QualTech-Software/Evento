@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LeftContainer from "../modules/common/LeftContainer";
 import AccountForm from "../modules/register/AccountForm";
+import { useNavigate } from "react-router-dom";
 import {
   QtAcc,
   QtRight,
@@ -20,6 +21,7 @@ const Register = () => {
   const [errorCpassMsg, setErrorCpassMsg] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const navigate = useNavigate();
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
@@ -33,12 +35,15 @@ const Register = () => {
   const handleLastName = (e) => {
     setLastName(e.target.value);
   };
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <>
       <QtAcc className="qt-acc">
         <LeftContainer />
         <QtRight className="qt-right">
-          <QtLogo className="qt-logo">
+          <QtLogo className="qt-logo" onClick={handleHome}>
             <QtPara className="qt-para">
               <p>
                 If you already have an account register You can{" "}

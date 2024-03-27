@@ -29,7 +29,9 @@ const RightContainer = ({}) => {
   useEffect(() => {
     console.log(email);
   });
-
+  const handleHome = () => {
+    navigate("/");
+  };
   const handleSubmit = async () => {
     if (email) {
       try {
@@ -52,7 +54,7 @@ const RightContainer = ({}) => {
 
   return (
     <CreateAcc className="qt-account-right-container">
-      <AccLogo className="qt-logo"></AccLogo>
+      <AccLogo className="qt-logo" onClick={handleHome}></AccLogo>
       <div classname="qt-register-container">
         <Ptag className="qt-para">
           <p>

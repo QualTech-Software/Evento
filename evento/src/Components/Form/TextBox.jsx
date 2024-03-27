@@ -44,7 +44,7 @@ const TextBox = ({
         onChange={onChange}
         onFocus={(e) => (e.target.placeholder = "")} // Clear placeholder onFocus
         onBlur={(e) => {
-          e.target.placeholder = value ? "" : "Ketan@gmail.com"; // Reset placeholder onBlur if no input
+          e.target.placeholder = value ? "" : "John@gmail.com"; // Reset placeholder onBlur if no input
           handleBlur(); // Validate email onBlur
         }}
         onKeyDown={(e) => {

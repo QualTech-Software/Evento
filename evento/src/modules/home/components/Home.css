@@ -1,4 +1,4 @@
-.qt-home {
+/* .qt-home {
   width: 1440px;
   height: auto;
   margin: auto;
@@ -37,40 +37,8 @@
   width: 93px;
   height: 25px;
   /* top: 20px; */
-  left: 20px;
-  position: relative;
-  font-family: "Open Sans";
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 25px;
-  letter-spacing: 0em;
-  text-align: center;
-}
-.event {
-  width: 169px;
-  height: 64px;
-  display: flex;
-  border-radius: 8px;
-  position: relative;
-}
-.event img {
-  width: 18px;
-  height: 18px;
-  top: 20px;
-  position: relative;
-}
-.event p {
-  width: 111px;
-  height: 25px;
-  font-family: "Open Sans";
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 25px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-left: 8px;
-}
-.interest {
+/* */
+/* .interest {
   width: 155px;
   height: 64px;
   border-radius: 8px;
@@ -166,8 +134,8 @@
   top: 140px;
   left: 217px;
   position: relative;
-}
-.content p {
+} */
+/* .content p {
   font-family: "Open Sans";
   color: rgba(255, 255, 255, 1);
   font-size: 48px;
@@ -178,8 +146,12 @@
 }
 .content p span {
   color: rgba(255, 212, 0, 1);
+<<<<<<< HEAD
 }
 
 .first-input {
   position: relative;
 }
+=======
+} */
+>>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15

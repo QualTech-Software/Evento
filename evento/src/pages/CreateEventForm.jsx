@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { arrow, editfilled, bannerfilled } from "../icons";
+import { arrow, editfilled, bannerfilled } from "../icons/index.js";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   NewEvent,

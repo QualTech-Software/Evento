@@ -5,7 +5,13 @@ import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import Create from "./pages/Create.jsx";
 import CreateEventForm from "./pages/CreateEventForm.jsx";
+<<<<<<< HEAD
 import Login from "./modules/login/pages/Login.jsx";
+=======
+import Login from "./modules/Login/pages/Login.jsx";
+import Login from "./pages/Login.jsx";
+
+>>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
 function App() {
   return (
     <Routes>
@@ -17,5 +23,4 @@ function App() {
     </Routes>
   );
 }
-
 export default App;

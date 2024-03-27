@@ -54,7 +54,7 @@ const RightContainer = ({}) => {
     // Check if the Email is an Empty string or not.
 
     if (validateEmail(email)) {
-      navigate("/account");
+      navigate("/welcome");
     } else {
       setEmailError("Invalid email");
     }

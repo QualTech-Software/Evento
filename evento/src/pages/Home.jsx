@@ -1,22 +1,9 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
-<<<<<<< HEAD
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo } from "../assets";
-=======
-
-import { Link, NavLink } from "react-router-dom";
-// import { event, interest, logo } from "../assets";
-import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../assets";
-import Categories from "../modules/Home/pages/Categories";
-import Events from "../modules/Home/pages/Events";
-import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
-import Organizer from "../modules/Home/pages/Organizer";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { dashboard, event, interest, logo, login } from "../assets";
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
 import Categories from "../modules/home/pages/Categories";
+
 import Events from "../modules/home/pages/Events";
 import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
 import chevron from "../../public/assets/Chevron.png";
@@ -28,16 +15,9 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-<<<<<<< HEAD
 import Organizer from "../modules/home/pages/Organizer";
 import Onlineevents from "../modules/home/pages/Events";
 import BestEvent from "../modules/home/pages/DiscoverEvent";
-=======
-import Onlineevents from "../modules/Home/pages/Events";
-import BestEvent from "../modules/Home/pages/DiscoverEvent";
-
-
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
 import {
   StyledQtHome,
   StyledNavbar,
@@ -56,19 +36,15 @@ import {
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
-<<<<<<< HEAD
   StyledDropDownTrending,
   StyledSecondInput,
   DropdownIconWrapper,
   IconButtonStyle,
   StyledFirstInput,
+  StyledCardTypography,
 } from "../modules/home/components/atoms";
 import CreateEvent from "../modules/home/pages/CreateEvent";
 import TopDestination from "../modules/home/pages/TopDestination";
-=======
-} from "../modules/Home/components/atoms";
-
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
 
 const Home = () => {
   const navigate = useNavigate();
@@ -223,13 +199,9 @@ const Home = () => {
         <Onlineevents />
         <BestEvent />
         <Organizer />
-<<<<<<< HEAD
         <CreateEvent />
         <TopDestination />
       </StyledQtHome>
-=======
-      </QtHome>
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
     </>
   );
 };

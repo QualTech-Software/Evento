@@ -18,19 +18,19 @@ const TopDestination = () => {
         <StyledWrapper>
           <StyledCards>
             <DestinationCard
-              image="../../../public/assets/CardMumbai.png"
+              image="../../../public/assets/RecMumbai.png"
               buttonText="Mumbai"
             />
             <DestinationCard
-              image="../../../public/assets/CardPune.png"
+              image="../../../public/assets/RecPune.png"
               buttonText="Pune"
             />
             <DestinationCard
-              image="../../../public/assets/CardBangalore.png"
+              image="../../../public/assets/RecBangalore.png"
               buttonText="BANGALORE"
             />
             <DestinationCard
-              image="../../../public/assets/CardDelhi.png"
+              image="../../../public/assets/recDelhi.png"
               buttonText="Delhi"
             />
           </StyledCards>

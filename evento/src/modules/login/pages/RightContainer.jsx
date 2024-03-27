@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 import group2 from "../../../assets/Group2.png";
 import "../components/Login.css";
 import icon from "../../../assets/Googleicon.png";
+import axios from "axios";
 import {
   StyledRightcontainer,
   StyledLogo,
@@ -33,6 +34,7 @@ const validatePass = (password, setPasswordError) => {
     setPasswordError("");
   }
 };
+
 const RightContainer = ({}) => {
   const [email, setEmail] = useState(""); // useState to store Email address of the user
   const [emailError, setEmailError] = useState("");
@@ -48,15 +50,52 @@ const RightContainer = ({}) => {
       setEmailError("");
     }
   };
-
   function validateForm() {
     setButtonOpacity(1);
-    // Check if the Email is an Empty string or not.
 
-    if (validateEmail(email)) {
-      navigate("/account");
+    if (validateEmail(email) && password) {
+      axios
+        .post(
+          "http://localhost:3000/api/login",
+          { email, password },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            if (response.data && response.data.msg === "Logged in!") {
+              navigate("/");
+            } else {
+              console.log("Email or password is incorrect");
+              // Set appropriate error message or handle as needed
+            }
+          } else {
+            console.log("Unexpected response:", response);
+            // Handle other success status codes or unexpected responses
+          }
+          setEmailError(""); // Clear email error if login request succeeds
+        })
+        .catch((error) => {
+          if (error.response) {
+            // Server responded with an error status code
+            console.error("Server error:", error.response.data);
+            // Set error message or handle as needed
+          } else if (error.request) {
+            // No response received (network error)
+            console.error("Network error:", error.request);
+            // Set error message or handle as needed
+          } else {
+            // Something else went wrong
+            console.error("Error:", error.message);
+            // Set error message or handle as needed
+          }
+        });
     } else {
       setEmailError("Invalid email");
+      // Optionally set a password error if needed
     }
   }
 
@@ -82,14 +121,13 @@ const RightContainer = ({}) => {
           className={emailError ? "textfieldemail error" : "textfieldemail"}
           placeholder="Email"
           id="field1"
-          value={emailError ? emailError : email} // Add value prop to bind the input field to the email state
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           onFocus={(e) => (e.target.placeholder = "")}
           onBlur={handleBlurEmail}
           onKeyDown={(e) => {
             if (e.keyCode === 8 && emailError !== "") {
-              // Check if backspace key was pressed and there's at least one character in the password field
-              setEmailError(""); // Clear the error message
+              setEmailError("");
             }
           }}
         />
@@ -101,7 +139,7 @@ const RightContainer = ({}) => {
           placeholder="Password"
           id="field2"
           type={passwordError ? "text" : "password"}
-          value={passwordError ? passwordError : password} // Add value prop to bind the input field to the email state
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           onFocus={(e) => (e.target.placeholder = "")}
           onBlur={(e) => {
@@ -110,15 +148,14 @@ const RightContainer = ({}) => {
           }}
           onKeyDown={(e) => {
             if (e.keyCode === 8 && passwordError !== "") {
-              // Check if backspace key was pressed and there's at least one character in the password field
-              setPasswordError(""); // Clear the error message
+              setPasswordError("");
             }
           }}
         />
       </StyledForm>
       <CreateAccBtn className="create-acc">
         <StyledButton onClick={validateForm} style={{ opacity: buttonOpacity }}>
-          <p> Create Account</p>
+          <p> Continue</p>
         </StyledButton>
       </CreateAccBtn>
       <Styleddivider>

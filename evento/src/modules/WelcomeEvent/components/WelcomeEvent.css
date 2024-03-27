@@ -1,21 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
 .qt-cards-container {
-  background-image: url("src/assets/Textures.png"); /* Replace 'background-image.jpg' with your image path */
-  background-size: contain;
-  width: 1440px;
-  height: 720px;
-  margin: auto;
-  display: flex;
+  background-image: url("../../../assets/Textures.png");
 }
-.qt-welcome {
+/* .qt-welcome {
   width: 550px;
   height: 114px;
   position: relative;
   top: 64px;
   left: 445px;
-}
-.qt-welcome h1 {
+} */
+/* .qt-welcome h1 {
   width: 486px;
   height: 65px;
   font-family: "Inter", sans-serif;
@@ -28,8 +23,8 @@
   position: relative;
   top: -30px;
   left: -2px;
-}
-.qt-welcome p {
+} */
+/* .qt-welcome p {
   width: 490px;
   height: 25px;
   font-family: "Inter", sans-serif;
@@ -42,7 +37,7 @@
   position: relative;
   top: -40px;
   left: 30px;
-}
+} */
 .qt-sign {
   width: 56px;
   height: 56px;
@@ -50,7 +45,7 @@
   left: 498px;
   top: -61.5px;
 }
-.qt-card {
+/* .qt-card {
   width: 399px;
   height: 400px;
   position: relative;
@@ -58,7 +53,7 @@
   left: 64px;
   border-radius: 8px;
   background-color: white;
-}
+} */
 .qt-ellipse {
   width: 180px;
   height: 180px;
@@ -66,7 +61,7 @@
   top: 40px;
   left: 109.5px;
 }
-.qt-button_1 {
+/* .qt-button_1 {
   width: 243px;
   height: 48px;
   position: relative;
@@ -74,13 +69,13 @@
   left: 78px;
   border-radius: 8px;
   border: 1px solid rgba(172, 172, 172, 1);
-}
-.qt-button_1:hover {
+} */
+/* .qt-button_1:hover {
   cursor: pointer;
   color: white;
   background-color: red;
-}
-.qt-button_1 p {
+} */
+/* .qt-button_1 p {
   height: 22px;
   position: relative;
   top: -6px;
@@ -91,8 +86,8 @@
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-}
-.qt-card h3 {
+} */
+/* .qt-card h3 {
   width: 209px;
   height: 44px;
   position: relative;
@@ -104,7 +99,7 @@
   line-height: 44px;
   letter-spacing: 0em;
   text-align: left;
-}
+} */
 .qt-card + .qt-card {
   margin-left: 57px; /* Add margin to create gap between cards */
   margin-top: 0; /* Reset top margin */
@@ -165,11 +160,11 @@
   letter-spacing: 0em;
   text-align: center;
 }
-.qt-wrapper {
+/* .qt-wrapper {
   width: 1440px;
   margin-left: -549px;
   display: flex;
-}
+} */
 .qt-ellipse_3 {
   width: 180px;
   height: 180px;

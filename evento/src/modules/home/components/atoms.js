@@ -6,6 +6,7 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
 import { CardContent, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import Typography from "@mui/joy/Typography";
 
 // export const MenuItem = styled.menuitem`
 //   background-color: "red";
@@ -546,4 +547,5 @@ export const StyledButtonGroup = styled(ButtonGroup)`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  color: #000;
 `;

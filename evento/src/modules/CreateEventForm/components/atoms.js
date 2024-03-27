@@ -1,6 +1,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
-import { CardMedia, Fade } from "@mui/material";
+import { CardMedia, Fade, IconButton } from "@mui/material";
 import styled from "styled-components";
 
 //createeventform
@@ -549,15 +549,15 @@ export const StyledCardMedia = styled(CardMedia)`
   height: 310px;
 `;
 export const StyledImgFade = styled(Fade)`
-  width: 310px;
-  height: 310px;
+  width: 624px;
+  height: 312px;
   position: relative;
+  margin: auto;
 
   img {
-    width: 500px;
-    height: 500px;
+    width: 624px;
+    height: 312px;
     position: relative;
-    margin-top: 200px;
-    margin-left: 500px;
+    //margin-top: 250px;
   }
 `;

@@ -5,6 +5,7 @@ import { Close } from "@mui/icons-material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
 
 import {
   EventBanner,
@@ -27,6 +28,15 @@ import {
   StyledImgFade,
 } from "../components/atoms.js";
 import { uploadimage, line } from "../../../icons";
+
+const StyledSlider = styled(Slider)`
+  position: relative;
+  border: 2px solid black;
+  margin-top: 30%;
+  // .slick-next {
+  //   top: 300px;
+  // }
+`;
 
 export default function Banner({ setCurrentStep }) {
   const fileInputRef = useRef(null);
@@ -143,8 +153,8 @@ export default function Banner({ setCurrentStep }) {
                   onClick={() => handleDeleteImage(index)}
                   style={{
                     position: "absolute",
-                    top: 0,
-                    right: 0,
+                    top: "5px",
+                    right: "5px",
                     backgroundColor: "rgba(217, 217, 217, 1)",
                   }}
                 >
@@ -174,12 +184,13 @@ export default function Banner({ setCurrentStep }) {
       >
         <StyledImgFade in={openPopup}>
           <div>
-            {selectedFiles[selectedImageIndex] && (
-              <img
-                src={URL.createObjectURL(selectedFiles[selectedImageIndex])}
-                alt={selectedFiles[selectedImageIndex].name}
-              />
-            )}
+            <StyledSlider>
+              {selectedFiles.map((file, index) => (
+                <div key={index}>
+                  <img src={URL.createObjectURL(file)} alt={file.name} />
+                </div>
+              ))}
+            </StyledSlider>
           </div>
         </StyledImgFade>
       </Modal>

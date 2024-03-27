@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { InputLabel, MenuItem, Typography } from "@mui/material";
+import { InputLabel, MenuItem } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";

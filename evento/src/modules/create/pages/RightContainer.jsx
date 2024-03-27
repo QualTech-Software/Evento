@@ -70,6 +70,7 @@ const RightContainer = ({}) => {
             email={email}
             onChange={(e) => setEmail(e.target.value)}
             className="custom-input1"
+            id="emailfield"
             style={{ width: "419px" }} // Pass additional styles
             ErrorMsg={emailError}
             setErrorMsg={setEmailError}

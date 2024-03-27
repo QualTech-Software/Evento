@@ -4,7 +4,7 @@ import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
-import { CardContent, IconButton, Typography } from "@mui/material";
+import { CardContent, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // export const MenuItem = styled.menuitem`
@@ -181,9 +181,7 @@ export const Interest = styled.div`
     position: relative;
   }
 `;
-// export const StyledLink = styled(Link)`
-//   text-decoration: none;
-// `;
+
 export const QtLogin = styled.div`
   width: 116px;
   height: 64px;

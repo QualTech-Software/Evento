@@ -6,6 +6,8 @@ import Home from "./pages/Home.jsx";
 import Create from "./pages/Create.jsx";
 import CreateEventForm from "./pages/CreateEventForm.jsx";
 import Login from "./modules/Login/pages/Login.jsx";
+import Login from "./pages/Login.jsx";
+
 function App() {
   return (
     <Routes>
@@ -17,5 +19,4 @@ function App() {
     </Routes>
   );
 }
-
 export default App;

@@ -112,7 +112,7 @@ export const CreateAccBtn = styled.div`
     cursor: pointer;
   }
 `;
-export const Styleddivider = styled.div`
+export const StyledDivider = styled.div`
   img {
     width: 449px;
     height: 32px;
@@ -130,7 +130,7 @@ export const Styleddivider = styled.div`
     color: rgba(255, 255, 255, 1);
   }
 `;
-export const Styledgooglebutton = styled.div`
+export const StyledGoogleBtn = styled.div`
   width: 449px;
   height: 56px;
   margin-top: 24px;

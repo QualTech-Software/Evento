@@ -4,24 +4,11 @@ import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
-<<<<<<< HEAD
 import { CardContent } from "@mui/material";
-=======
 import { CardContent, IconButton } from "@mui/material";
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
 import { Link } from "react-router-dom";
+import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/material/IconButton";
-
-// export const MenuItem = styled.menuitem`
-//   background-color: "red";
-<<<<<<< HEAD
-
-=======
-// import { CardContent, IconButton } from "@mui/material";
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
-// export const MenuItem = styled.menuitem`;
-//   background-color: "red";
-// `;
 export const MenuItemStyle = styled(MenuItem)`
   &.location {
     background-image: url("../../public/assets/Location2.png");
@@ -213,15 +200,9 @@ export const StyledInterest = styled.div`
     position: relative;
   }
 `;
-<<<<<<< HEAD
-// export const StyledLink = styled(Link)`
-//   text-decoration: none;
-// `;
-export const StyledQtLogin = styled.div`
-=======
 
 export const QtLogin = styled.div`
->>>>>>> 45237bce7481204a3b7e2ce120191e99e7d31a15
+
   width: 116px;
   height: 64px;
   display: flex;
@@ -586,6 +567,7 @@ export const StyledButtonGroup = styled(ButtonGroup)`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  color: #000;
 `;
 //create event
 export const StyledCreateEvent = styled.div`

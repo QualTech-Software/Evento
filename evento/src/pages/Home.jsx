@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { dashboard, event, interest, logo } from "../assets";
+import { Link, NavLink } from "react-router-dom";
+// import { event, interest, logo } from "../assets";
 import { useNavigate } from "react-router-dom";
 import { dashboard, event, interest, login, logo } from "../assets";
-import Categories from "../modules/home/pages/Categories";
-import Events from "../modules/home/pages/Events";
-import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
-import Organizer from "../modules/home/pages/Organizer";
+import Categories from "../modules/Home/pages/Categories";
+import Events from "../modules/Home/pages/Events";
+import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
+import Organizer from "../modules/Home/pages/Organizer";
 import chevron from "../../public/assets/Chevron.png";
 import {
   FormControl,
@@ -18,10 +18,8 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-import Organizer from "../modules/home/pages/Organizer";
-import Categories from "../modules/home/pages/Categories";
-import Onlineevents from "../modules/home/pages/Events";
-import BestEvent from "../modules/home/pages/DiscoverEvent";
+import Onlineevents from "../modules/Home/pages/Events";
+import BestEvent from "../modules/Home/pages/DiscoverEvent";
 
 import {
   QtHome,
@@ -37,15 +35,11 @@ import {
   InputCont,
   DropDown,
   StyledLink,
-
-} from "../modules/Home/components/atoms";
   MenuItemStyle,
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
-
-} from "../modules/home/components/atoms";
-
+} from "../modules/Home/components/atoms";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -170,11 +164,10 @@ const Home = () => {
         <Organizer />
       </QtHome>
 
-      <Categories />
+      {/* <Categories />
       <Events />
       <DiscoverEvent />
-      <Organizer />
-
+      <Organizer /> */}
     </>
   );
 };

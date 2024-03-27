@@ -9,122 +9,55 @@ import {
   StyledForm,
   QTpara,
   StyledButton,
+  Styleddivider,
   QThead,
   CreateAccBtn,
+  Styledgooglebutton,
 } from "../components/atoms";
-import { Link } from "react-router-dom";
-import { validatePass } from "../../register/utils/FormValidation";
-export const validateEmail = (email) => {
+import { Link, useNavigate } from "react-router-dom";
+
+const validateEmail = (email) => {
   // Regular expression for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
+const validatePass = (password, setPasswordError) => {
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
+  if (!password.match(passwordRegex)) {
+    setPasswordError(
+      "Password must have at least 8 characters including at least 1 lowercase, 1 uppercase, 1 digit, and 1 special symbol"
+    );
+  } else {
+    setPasswordError("");
+  }
+};
 const RightContainer = ({}) => {
   const [email, setEmail] = useState(""); // useState to store Email address of the user
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState(""); // useState to store Password
   const [buttonOpacity, setButtonOpacity] = useState(0.5);
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+
+  const handleBlurEmail = () => {
+    if (!email && !emailError) {
+      setEmailError("Invalid Email");
+    } else {
+      setEmailError("");
+    }
+  };
 
   function validateForm() {
+    setButtonOpacity(1);
     // Check if the Email is an Empty string or not.
 
-    if (email.length == 0) {
-      alert("Invalid Form, Email Address can not be empty");
-      return;
+    if (validateEmail(email)) {
+      navigate("/account");
+    } else {
+      setEmailError("Invalid email");
     }
-
-    // check if the password follows constraints or not.
-
-    // if password length is less than 8 characters, alert invalid form.
-
-    if (password.length < 8) {
-      setPasswordError(
-        "Invalid Form, Password must contain greater than or equal to 8 characters."
-      );
-      return;
-    }
-
-    // variable to count upper case characters in the password.
-    let countUpperCase = 0;
-    // variable to count lowercase characters in the password.
-    let countLowerCase = 0;
-    // variable to count digit characters in the password.
-    let countDigit = 0;
-    // variable to count special characters in the password.
-    let countSpecialCharacters = 0;
-
-    for (let i = 0; i < password.length; i++) {
-      const specialChars = [
-        "!",
-        "@",
-        "#",
-        "$",
-        "%",
-        "^",
-        "&",
-        "*",
-        "(",
-        ")",
-        "_",
-        "-",
-        "+",
-        "=",
-        "[",
-        "{",
-        "]",
-        "}",
-        ":",
-        ";",
-        "<",
-        ">",
-      ];
-
-      if (specialChars.includes(password[i])) {
-        // this means that the character is special, so increment countSpecialCharacters
-        countSpecialCharacters++;
-      } else if (!isNaN(password[i] * 1)) {
-        // this means that the character is a digit, so increment countDigit
-        countDigit++;
-      } else {
-        if (password[i] == password[i].toUpperCase()) {
-          // this means that the character is an upper case character, so increment countUpperCase
-          countUpperCase++;
-        }
-        if (password[i] == password[i].toLowerCase()) {
-          // this means that the character is lowercase, so increment countUpperCase
-          countLowerCase++;
-        }
-      }
-    }
-
-    if (countLowerCase == 0) {
-      // invalid form, 0 lowercase characters
-      alert("Invalid Form, 0 lower case characters in password");
-      return;
-    }
-
-    if (countUpperCase == 0) {
-      // invalid form, 0 upper case characters
-      alert("Invalid Form, 0 upper case characters in password");
-      return;
-    }
-
-    if (countDigit == 0) {
-      // invalid form, 0 digit characters
-      alert("Invalid Form, 0 digit characters in password");
-      return;
-    }
-
-    if (countSpecialCharacters == 0) {
-      // invalid form, 0 special characters characters
-      alert("Invalid Form, 0 special characters in password");
-      return;
-    }
-
-    // if all the conditions are valid, this means that the form is valid
-
-    alert("Form is valid");
   }
 
   return (
@@ -146,21 +79,41 @@ const RightContainer = ({}) => {
 
       <StyledForm>
         <input
-          type="email"
+          className={emailError ? "textfieldemail error" : "textfieldemail"}
           placeholder="Email"
           id="field1"
-          value={email} // Add value prop to bind the input field to the email state
+          value={emailError ? emailError : email} // Add value prop to bind the input field to the email state
           onChange={(e) => setEmail(e.target.value)}
+          onFocus={(e) => (e.target.placeholder = "")}
+          onBlur={handleBlurEmail}
+          onKeyDown={(e) => {
+            if (e.keyCode === 8 && emailError !== "") {
+              // Check if backspace key was pressed and there's at least one character in the password field
+              setEmailError(""); // Clear the error message
+            }
+          }}
         />
       </StyledForm>
 
       <StyledForm>
         <input
-          type={passwordError ? "text" : "password"}
+          className={passwordError ? "textfieldpass error" : "textfieldpass"}
           placeholder="Password"
           id="field2"
+          type={passwordError ? "text" : "password"}
           value={passwordError ? passwordError : password} // Add value prop to bind the input field to the email state
           onChange={(e) => setPassword(e.target.value)}
+          onFocus={(e) => (e.target.placeholder = "")}
+          onBlur={(e) => {
+            e.target.placeholder = passwordError ? "" : "Password";
+            validatePass(password, setPasswordError);
+          }}
+          onKeyDown={(e) => {
+            if (e.keyCode === 8 && passwordError !== "") {
+              // Check if backspace key was pressed and there's at least one character in the password field
+              setPasswordError(""); // Clear the error message
+            }
+          }}
         />
       </StyledForm>
       <CreateAccBtn className="create-acc">
@@ -168,57 +121,14 @@ const RightContainer = ({}) => {
           <p> Create Account</p>
         </StyledButton>
       </CreateAccBtn>
-
-      <img
-        src={group2}
-        alt="Group 2"
-        style={{
-          width: "449px",
-          height: "32px",
-          top: "45px",
-          borderRadius: "50px",
-          position: "relative",
-        }}
-      />
-      <p
-        style={{
-          top: "-2px",
-          position: "relative",
-          left: "220px",
-          fontSize: "16px",
-          fontFamily: "Open Sans",
-          fontWeight: "600",
-          color: "rgba(255, 255, 255, 1)",
-        }}
-      >
-        Or
-      </p>
-      <Button
-        style={{
-          width: "449px",
-          height: "56px",
-          top: "20px",
-          position: "relative",
-          backgroundColor: "rgba(255, 255, 255, 1)",
-          border: "1px solid rgba(171, 171, 171, 1)",
-          borderRadius: "8px",
-        }}
-      >
-        <img
-          src={icon}
-          alt="Google Icon"
-          style={{
-            width: "24px",
-            height: "24px",
-            top: "17px",
-            margin: "10px",
-            paddingRight: "10px",
-          }}
-        />
-        <div className="singin">
-          <p>Sign in with Google </p>
-        </div>
-      </Button>
+      <Styleddivider>
+        <img src={group2} alt="Group 2" />
+        <p>Or</p>
+      </Styleddivider>
+      <Styledgooglebutton>
+        <img src={icon} alt="Google Icon" />
+        <p>Log in with Google Account </p>
+      </Styledgooglebutton>
     </StyledRightcontainer>
   );
 };

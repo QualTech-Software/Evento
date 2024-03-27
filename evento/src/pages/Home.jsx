@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { dashboard, event, interest, logo } from "../assets";
-import { useNavigate } from "react-router-dom";
-import { dashboard, event, interest, login, logo } from "../assets";
+import { dashboard, event, interest, logo, login } from "../assets";
 import Categories from "../modules/home/pages/Categories";
 import Events from "../modules/home/pages/Events";
 import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
@@ -17,9 +15,6 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-import Organizer from "../modules/home/pages/Organizer";
-import Categories from "../modules/home/pages/Categories";
 import Onlineevents from "../modules/home/pages/Events";
 import BestEvent from "../modules/home/pages/DiscoverEvent";
 
@@ -37,15 +32,11 @@ import {
   InputCont,
   DropDown,
   StyledLink,
-
-} from "../modules/Home/components/atoms";
   MenuItemStyle,
   MenuItemStyleOl,
   TrendingSearch,
   EventGroup,
-
 } from "../modules/home/components/atoms";
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -169,12 +160,6 @@ const Home = () => {
         <BestEvent />
         <Organizer />
       </QtHome>
-
-      <Categories />
-      <Events />
-      <DiscoverEvent />
-      <Organizer />
-
     </>
   );
 };

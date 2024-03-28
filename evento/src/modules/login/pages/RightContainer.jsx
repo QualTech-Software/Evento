@@ -32,7 +32,7 @@ const validateCredentials = (email, password) => {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
 
   if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-    return "invalid username or password. Please try again.";
+    return "invalid username or password please try again.";
   } else {
     return ""; // No error
   }

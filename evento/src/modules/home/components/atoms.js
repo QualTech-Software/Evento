@@ -577,6 +577,7 @@ export const StyledButtonGroup = styled(ButtonGroup)`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  color: #000;
 `;
 //create event
 export const StyledCreateEvent = styled.div`

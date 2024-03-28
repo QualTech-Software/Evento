@@ -13,15 +13,20 @@ import {
   StyledForm,
   QTpara,
   StyledButton,
-  Styleddivider,
+  StyledDivider,
   QThead,
   CreateAccBtn,
-  Styledgooglebutton,
-  ErrorText,
+  StyledGoogleBtn,
   StyledModalButton,
   StyledInvalidText,
+  ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  validatePass,
+  clearPlaceholderOnFocus,
+  handleBackspaceKeyDown,
+} from "../utils/FormValid";
 
 const validateCredentials = (email, password) => {
   // Regular expression for email validation
@@ -32,7 +37,7 @@ const validateCredentials = (email, password) => {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
 
   if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-    return "invalid username or password please try again.";
+    return "Invalid username or password. Please try again.";
   } else {
     return ""; // No error
   }
@@ -145,14 +150,14 @@ const RightContainer = () => {
           <p>Continue</p>
         </StyledButton>
       </CreateAccBtn>
-      <Styleddivider>
+      <StyledDivider>
         <img src={group2} alt="Group 2" />
         <p>Or</p>
-      </Styleddivider>
-      <Styledgooglebutton>
+      </StyledDivider>
+      <StyledGoogleBtn>
         <img src={icon} alt="Google Icon" />
         <p>Log in with Google Account</p>
-      </Styledgooglebutton>
+      </StyledGoogleBtn>
 
       {/* Modal for displaying error messages */}
       <Modal open={modalOpen} onClose={handleCloseModal}>

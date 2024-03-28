@@ -35,15 +35,13 @@ const Register = () => {
   const handleLastName = (e) => {
     setLastName(e.target.value);
   };
-  const handleHome = () => {
-    navigate("/");
-  };
+
   return (
     <>
       <QtAcc className="qt-acc">
         <LeftContainer />
         <QtRight className="qt-right">
-          <QtLogo className="qt-logo" onClick={handleHome}>
+          <QtLogo className="qt-logo">
             <QtPara className="qt-para">
               <p>
                 If you already have an account register You can{" "}

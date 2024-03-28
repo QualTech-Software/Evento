@@ -6,38 +6,27 @@ import {
   StyledCards,
 } from "../components/atoms";
 import DestinationCard from "./DestinationCard";
+import DestinationData from "../components/DestinationData.json";
+const TopDestination = () => (
+  <>
+    <StyledDestination className="qt-destination-main">
+      <StyledDestText>
+        <p>Top destinations in India</p>
+      </StyledDestText>
 
-const TopDestination = () => {
-  return (
-    <>
-      <StyledDestination className="qt-destination-main">
-        <StyledDestText>
-          <p>Top destinations in India</p>
-        </StyledDestText>
-
-        <StyledWrapper>
-          <StyledCards>
+      <StyledWrapper>
+        <StyledCards>
+          {DestinationData.map((destination, index) => (
             <DestinationCard
-              image="../../../public/assets/RecMumbai.png"
-              buttonText="Mumbai"
+              key={index}
+              image={destination.image}
+              buttonText={destination.buttonText}
             />
-            <DestinationCard
-              image="../../../public/assets/RecPune.png"
-              buttonText="Pune"
-            />
-            <DestinationCard
-              image="../../../public/assets/RecBangalore.png"
-              buttonText="BANGALORE"
-            />
-            <DestinationCard
-              image="../../../public/assets/recDelhi.png"
-              buttonText="Delhi"
-            />
-          </StyledCards>
-        </StyledWrapper>
-      </StyledDestination>
-    </>
-  );
-};
+          ))}
+        </StyledCards>
+      </StyledWrapper>
+    </StyledDestination>
+  </>
+);
 
 export default TopDestination;

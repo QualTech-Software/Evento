@@ -13,7 +13,8 @@ import {
   StyledCardContent,
   StyledCardTypography,
   CardOutline,
-} from "../components/atoms.js";
+} from "../components/atoms";
+
 import icon from "../../../assets/Organizer.png";
 
 const EventCard = ({

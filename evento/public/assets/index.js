@@ -5,3 +5,5 @@ export { default as event } from "./createevent.png";
 export { default as interest } from "./favorite.png";
 export { default as login } from "./login.png";
 export { default as logo } from "./LOGO3.png";
+export { default as googleplay } from "./googleplay.png";
+export { default as ios } from "./ios.png";

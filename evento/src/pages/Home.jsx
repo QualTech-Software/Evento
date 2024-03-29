@@ -8,6 +8,7 @@ import Categories from "../modules/Home/pages/Categories";
 import Events from "../modules/Home/pages/Events";
 import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
 import Organizer from "../modules/Home/pages/Organizer";
+import Footer from "../modules/footer/pages/Footer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo, login } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
@@ -164,6 +165,7 @@ const Home = () => {
         <Onlineevents />
         <BestEvent />
         <Organizer />
+        <Footer />
       </QtHome>
     </>
   );

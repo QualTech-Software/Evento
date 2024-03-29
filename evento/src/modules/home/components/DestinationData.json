@@ -1,0 +1,18 @@
+[
+  {
+    "image": "../../../public/assets/RecMumbai.png",
+    "buttonText": "Mumbai"
+  },
+  {
+    "image": "../../../public/assets/RecPune.png",
+    "buttonText": "Pune"
+  },
+  {
+    "image": "../../../public/assets/RecBangalore.png",
+    "buttonText": "Bangalore"
+  },
+  {
+    "image": "../../../public/assets/recDelhi.png",
+    "buttonText": "Delhi"
+  }
+]

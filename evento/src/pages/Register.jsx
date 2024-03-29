@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LeftContainer from "../modules/common/LeftContainer";
 import AccountForm from "../modules/register/AccountForm";
-import { useNavigate } from "react-router-dom";
+
 import {
   QtAcc,
   QtRight,
@@ -21,7 +21,7 @@ const Register = () => {
   const [errorCpassMsg, setErrorCpassMsg] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const navigate = useNavigate();
+
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);

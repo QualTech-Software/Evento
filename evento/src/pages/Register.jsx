@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LeftContainer from "../modules/common/LeftContainer";
 import AccountForm from "../modules/register/AccountForm";
+
 import {
   QtAcc,
   QtRight,
@@ -20,6 +21,7 @@ const Register = () => {
   const [errorCpassMsg, setErrorCpassMsg] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setName(newName);
@@ -33,6 +35,7 @@ const Register = () => {
   const handleLastName = (e) => {
     setLastName(e.target.value);
   };
+
   return (
     <>
       <QtAcc className="qt-acc">

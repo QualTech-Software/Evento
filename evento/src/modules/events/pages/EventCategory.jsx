@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackBtn from "../../../../public/assets/Backbtn.png";
-import Navbar from "./Navbar";
+import Navbar from "./CategoryNavbar";
 import {
   StyledFunEvent,
-  FunEventMain,
+  StyledFunEventMain,
   StyledEventText,
   StyledEventLocation,
   StyledEventSubText,
@@ -24,12 +24,19 @@ import TopDestination from "../../Home/pages/TopDestination";
 const EventCategory = () => {
   const { id } = useParams();
   const eventId = parseInt(id);
+  const [eventDataItem, setEventDataItem] = useState(null);
 
-  if (!eventData[eventId]) {
+  useEffect(() => {
+    if (eventId > 0) {
+      setEventDataItem(eventData[eventId]);
+    }
+  }, [eventId]);
+
+  if (!eventDataItem) {
     return <div>Event not found</div>;
   }
 
-  const { text, location, subtext, backgroundImage } = eventData[eventId];
+  const { text, location, subtext, backgroundImage } = eventDataItem;
 
   // Extract exploreText from the first item in exploreData
   const exploreText = exploreData.exploreData[0].exploreText;
@@ -41,7 +48,7 @@ const EventCategory = () => {
 
   return (
     <>
-      <FunEventMain className="fun-event-main">
+      <StyledFunEventMain className="fun-event-main">
         <Navbar />
         <StyledFunEvent style={{ backgroundImage: `url(${backgroundImage})` }}>
           <img src={BackBtn} />
@@ -75,7 +82,7 @@ const EventCategory = () => {
         <CreateEvent />
         <Orgnizer />
         <TopDestination />
-      </FunEventMain>
+      </StyledFunEventMain>
     </>
   );
 };

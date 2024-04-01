@@ -16,7 +16,7 @@ export const StyledFunEvent = styled.div`
     opacity: 0px;
   }
 `;
-export const FunEventMain = styled.div`
+export const StyledFunEventMain = styled.div`
   margin: auto;
   width: 1440px;
   height: 458px;

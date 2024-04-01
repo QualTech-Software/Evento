@@ -1,0 +1,37 @@
+{
+  "1": {
+    "id": 1,
+    "text": "Fun events",
+    "location": "In Kolhapur",
+    "subtext": "Discover the best fun events in your area and online",
+    "backgroundImage": "../../../assets/FunEvent.png"
+  },
+  "2": {
+    "id": 2,
+    "text": "Sports events",
+    "location": "In Kolhapur",
+    "subtext": "Discover the best fun events in your area and online",
+    "backgroundImage": "../../../assets/SportEvent.png"
+  },
+  "3": {
+    "id": 3,
+    "text": "Travel events",
+    "location": "In Kolhapur",
+    "subtext": "Discover the best fun events in your area and online",
+    "backgroundImage": "../../../assets/TravelEvent.png"
+  },
+  "4": {
+    "id": 4,
+    "text": "Education events",
+    "location": "In Kolhapur",
+    "subtext": "Discover the best fun events in your area and online",
+    "backgroundImage": "../../../assets/EducationEvent.png"
+  },
+  "5": {
+    "id": 5,
+    "text": "Business events",
+    "location": "In Kolhapur",
+    "subtext": "Discover the best fun events in your area and online",
+    "backgroundImage": "../../../assets/BusinessEvent.png"
+  }
+}

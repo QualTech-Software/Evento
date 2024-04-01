@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Fun",
+    "image": "../../../assets/fun.png"
+  },
+  {
+    "id": 2,
+    "name": "Sports",
+    "image": "../../../assets/sports.png"
+  },
+  {
+    "id": 3,
+    "name": "Traditional",
+    "image": "../../../assets/traditional.png"
+  },
+  {
+    "id": 4,
+    "name": "Travel",
+    "image": "../../../assets/travel.png"
+  },
+  {
+    "id": 5,
+    "name": "Education",
+    "image": "../../../assets/education.png"
+  },
+  {
+    "id": 6,
+    "name": "Business",
+    "image": "../../../assets/business.png"
+  }
+]

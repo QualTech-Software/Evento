@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Button } from "@mui/material";
+import React, { useState } from "react";
+import { TextField, Button, Modal, Box, Typography } from "@mui/material";
 import group2 from "../../../assets/Group2.png";
 import "../components/Login.css";
 import icon from "../../../assets/Googleicon.png";
+import danger from "../../../assets/danger.png";
+import Closebtn from "../../../../public/assets/CloseBtn.png";
+
+import axios from "axios";
 import {
   StyledRightcontainer,
   StyledLogo,
@@ -13,6 +17,9 @@ import {
   QThead,
   CreateAccBtn,
   StyledGoogleBtn,
+  StyledModalButton,
+  StyledInvalidText,
+  ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -21,44 +28,78 @@ import {
   handleBackspaceKeyDown,
 } from "../utils/FormValid";
 
-const validateEmail = (email) => {
+const validateCredentials = (email, password) => {
   // Regular expression for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+
+  // Regular expression for password validation
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
+
+  if (!emailRegex.test(email) || !passwordRegex.test(password)) {
+    return "Invalid username or password. Please try again.";
+  } else {
+    return ""; // No error
+  }
 };
 
-const RightContainer = ({}) => {
-  const [email, setEmail] = useState(""); //useState to store Email address of the user
+const RightContainer = () => {
+  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [password, setPassword] = useState(""); // useState to store Password
-  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+  const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
+  const [modalMessage, setModalMessage] = useState(""); // State to store modal message
   const navigate = useNavigate();
 
-  const handleBlurEmail = () => {
-    if (!email && !emailError) {
-      setEmailError("Invalid Email");
-    } else {
-      setEmailError("");
-    }
-  };
-  const handleEmailKeyDown = (e) => {
-    handleBackspaceKeyDown(e, emailError, setEmailError);
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
-  const handlePasswordKeyDown = (e) => {
-    handleBackspaceKeyDown(e, passwordError, setPasswordError);
-  };
-  function validateForm() {
+  const validateForm = () => {
     setButtonOpacity(1);
-    // Check if the Email is an Empty string or not.
 
-    if (validateEmail(email)) {
-      navigate("/welcome");
-    } else {
-      setEmailError("Invalid email");
+    const error = validateCredentials(email, password);
+
+    if (error) {
+      setModalMessage(error);
+      setModalOpen(true);
+      return;
     }
-  }
+
+    axios
+      .post(
+        "http://localhost:3000/api/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          if (response.data && response.data.msg === "Logged in!") {
+            navigate("/");
+          } else {
+            console.log("Email or password is incorrect");
+          }
+        } else {
+          console.log("Unexpected response:", response);
+        }
+        setEmailError(""); // Clear email error if login request succeeds
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Server error:", error.response.data);
+        } else if (error.request) {
+          console.error("Network error:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
+      });
+  };
 
   return (
     <StyledRightcontainer>
@@ -67,10 +108,8 @@ const RightContainer = ({}) => {
       </StyledLogo>
       <QTpara>
         <p>
-          If you don’t have an account register You can{"  "}
-          <Link to={"/create"} sx={{}}>
-            Register here!
-          </Link>
+          If you don’t have an account register You can{" "}
+          <Link to={"/create"}>Register here!</Link>
         </p>
       </QTpara>
       <QThead className="qt-head">
@@ -79,36 +118,36 @@ const RightContainer = ({}) => {
 
       <StyledForm>
         <input
-          className={emailError ? "textfieldemail error" : "textfieldemail"}
           placeholder="Email"
-          id="field1"
-          value={emailError ? emailError : email} // Add value prop to bind the input field to the email state
-          onChange={(e) => handleInputChange(e, setEmail)}
-          onFocus={clearPlaceholderOnFocus}
-          onBlur={handleBlurEmail}
-          onKeyDown={handleEmailKeyDown}
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setEmailError(validateCredentials(e.target.value, password));
+          }}
         />
+        {emailError && (
+          <ErrorText className="error-message">{emailError}</ErrorText>
+        )}
       </StyledForm>
 
       <StyledForm>
         <input
-          className={passwordError ? "textfieldpass error" : "textfieldpass"}
           placeholder="Password"
-          id="field2"
-          type={passwordError ? "text" : "password"}
-          value={passwordError ? passwordError : password} // Add value prop to bind the input field to the email state
-          onChange={(e) => handleInputChange(e, setPassword)}
-          onFocus={clearPlaceholderOnFocus}
-          onBlur={(e) => {
-            e.target.placeholder = passwordError ? "" : "Password";
-            validatePass(password, setPasswordError);
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setPasswordError(validateCredentials(email, e.target.value));
           }}
-          onKeyDown={handlePasswordKeyDown}
         />
+        {passwordError && (
+          <ErrorText className="error-message">{passwordError}</ErrorText>
+        )}
       </StyledForm>
+
       <CreateAccBtn className="create-acc">
         <StyledButton onClick={validateForm} style={{ opacity: buttonOpacity }}>
-          <p> Create Account</p>
+          <p>Continue</p>
         </StyledButton>
       </CreateAccBtn>
       <StyledDivider>
@@ -117,8 +156,65 @@ const RightContainer = ({}) => {
       </StyledDivider>
       <StyledGoogleBtn>
         <img src={icon} alt="Google Icon" />
-        <p>Log in with Google Account </p>
+        <p>Log in with Google Account</p>
       </StyledGoogleBtn>
+
+      {/* Modal for displaying error messages */}
+      <Modal open={modalOpen} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: "relative",
+            top: "12%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 720,
+            height: "131px",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            borderRadius: "0px 0px 8px 8px",
+            p: 4,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "left", mb: 2 }}>
+            <img
+              src={danger}
+              alt="Danger Icon"
+              style={{
+                marginRight: "2px",
+                height: "24px",
+                width: "24px",
+                marginLeft: "126px",
+              }}
+            />
+
+            <Typography variant="h6" component="h2" gutterBottom></Typography>
+          </Box>
+          <Typography
+            variant="body1"
+            style={{ color: "red", marginTop: "-38px", marginLeft: "160px" }}
+          >
+            {modalMessage}
+          </Typography>
+          <StyledModalButton onClick={handleCloseModal} sx={{ mt: 2 }}>
+            <img src={Closebtn} />
+          </StyledModalButton>
+
+          <StyledInvalidText>
+            <hr
+              style={{
+                marginTop: "8px",
+                width: "776px",
+                marginLeft: "-29px",
+
+                borderTop: "0.5px solid red",
+              }}
+            />
+
+            <h4>Oops!</h4>
+            <p>Enter the correct email address and password to log in</p>
+          </StyledInvalidText>
+        </Box>
+      </Modal>
     </StyledRightcontainer>
   );
 };

@@ -157,3 +157,39 @@ export const StyledGoogleBtn = styled.div`
     margin-top: -32px;
   }
 `;
+export const ErrorText = styled.div`
+  color: red;
+  //styleName: 16 MEDIUM SANS;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.79px;
+  text-align: left;
+`;
+export const StyledModalButton = styled(Button)`
+  img {
+    height: 40px;
+    width: 40px;
+    margin-left: 664px;
+    margin-top: -65px;
+  }
+`;
+export const StyledInvalidText = styled.div`
+  h4 {
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: center;
+    margin-top: 9px;
+  }
+  p {
+    //styleName: 16 REGULAR SANS;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: center;
+    margin-top: -17px;
+  }
+`;

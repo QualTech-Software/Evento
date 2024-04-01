@@ -1,151 +1,60 @@
 import styled from "@emotion/styled";
 import Button from "@mui/joy/Button";
+import { Link } from "react-router-dom";
+
 export const StyledMain = styled.div`
   background-color: #1e0a3c;
   width: 1440px;
   display: block;
-  // height: 456px;
 `;
 export const StyledFooter = styled.div`
   color: white;
   display: flex;
   margin-bottom: 96px;
 `;
-export const StyledlinkEvento = styled.div`
+
+const SharedStyle = styled.div`
+  margin-top: 64px;
+  h3 {
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.51px;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+`;
+
+export const StyledLinkEvento = styled(SharedStyle)`
   width: 108px;
   height: 203px;
-  margin-top: 64px;
   margin-left: 64px;
-
-  h3 {
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24.51px;
-    text-align: left;
-    margin-bottom: 24px;
-  }
-  .aStyles {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 8px 0px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
-    text-align: left;
-  }
 `;
-export const StyledlinkHelp = styled.div`
+export const StyledLinkHelp = styled(SharedStyle)`
   width: 160px;
   height: 176px;
-  margin-top: 64px;
   margin-right: 164px;
-  h3 {
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24.51px;
-    text-align: left;
-    margin-bottom: 24px;
-  }
-  .aStyles {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 8px 0px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
-    text-align: left;
-  }
 `;
-export const StyledlinkFollow = styled.div`
+export const StyledLinkFollow = styled(SharedStyle)`
   width: 84px;
   height: 149px;
-  margin-top: 64px;
   margin-right: 164px;
-  h3 {
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24.51px;
-    text-align: left;
-    margin-bottom: 24px;
-  }
-  .aStyles {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 8px 0px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
-    text-align: left;
-  }
 `;
-export const StyledlinkApp = styled.div`
+export const StyledLinkApp = styled(SharedStyle)`
   width: 243px;
   height: 225px;
-  margin-top: 64px;
-  h3 {
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24.51px;
-    text-align: left;
-    margin-bottom: 24px;
-  }
-  .aStyles {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 8px 0px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
-    text-align: left;
-  }
+  margin-right: 63px;
 `;
-export const StyledlinkCategories = styled.div`
+export const StyledLinkCategories = styled(SharedStyle)`
   width: 93px;
   height: 203px;
-  margin-top: 64px;
-  margin-left: 164px;
+  margin-left: 133px;
   margin-right: 164px;
-  h3 {
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24.51px;
-    text-align: left;
-    margin-bottom: 24px;
-  }
-  .aStyles {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 8px 0px;
-    color: #fff;
-    text-decoration: none;
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
-    text-align: left;
-  }
 `;
 export const StyledButton = styled(Button)`
   width: 243px;
   height: 78px;
-  padding: 12px 14px 12px 14px;
+  padding: 12px 12px 12px 14px;
   border-radius: 6px;
   border: 1px solid #fff;
   &.googleplay {
@@ -154,6 +63,7 @@ export const StyledButton = styled(Button)`
   img {
     width: 50px;
     height: 50px;
+    margin-right: 20px;
   }
   p {
     font-family: Open Sans;
@@ -181,4 +91,12 @@ export const StyledBottom = styled.div`
   font-size: 18px;
   font-weight: 400;
   line-height: 24.51px;
+`;
+export const StyledLink = styled(Link)`
+  display: flex;
+  margin: 0px 0px 8px 0px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Open Sans;
+  font-size: 14px;
 `;

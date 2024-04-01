@@ -3,96 +3,55 @@ import { googleplay, ios } from "../../../../public/assets/index.js";
 
 import {
   StyledFooter,
-  StyledlinkEvento,
-  StyledlinkCategories,
-  StyledlinkHelp,
-  StyledlinkFollow,
-  StyledlinkApp,
+  StyledLinkEvento,
+  StyledLinkCategories,
+  StyledLinkHelp,
+  StyledLinkFollow,
+  StyledLinkApp,
   StyledButton,
   StyledBottom,
   StyledMain,
+  StyledLink,
 } from "../components/atom";
-const Footercontainer = () => {
+const FooterContainer = () => {
   return (
     <>
       <StyledMain>
         <StyledFooter>
-          <StyledlinkEvento>
+          <StyledLinkEvento>
             <h3>Evento</h3>
-            <a href="#" className="aStyles">
-              About Us
-            </a>
-            <a href="#" className="aStyles">
-              Create Event
-            </a>
-            <a href="#" className="aStyles">
-              Interest
-            </a>
-            <a href="#" className="aStyles">
-              FAQs
-            </a>
-            <a href="#" className="aStyles">
-              Terms of Service
-            </a>
-            <a href="#" className="aStyles">
-              Privacy Policy
-            </a>
-          </StyledlinkEvento>
-          <StyledlinkCategories>
+            <StyledLink href="#">About Us</StyledLink>
+            <StyledLink href="#">Create Event</StyledLink>
+            <StyledLink href="#">Interest</StyledLink>
+            <StyledLink href="#">FAQs</StyledLink>
+            <StyledLink href="#">Terms of Service</StyledLink>
+            <StyledLink href="#">Privacy Policy</StyledLink>
+          </StyledLinkEvento>
+          <StyledLinkCategories>
             <h3>Categories</h3>
-            <a href="#" className="aStyles">
-              Fun
-            </a>
-            <a href="#" className="aStyles">
-              Sports
-            </a>
-            <a href="#" className="aStyles">
-              Travel
-            </a>
-            <a href="#" className="aStyles">
-              Traditional
-            </a>
-            <a href="#" className="aStyles">
-              Business
-            </a>
-            <a href="#" className="aStyles">
-              Education
-            </a>
-          </StyledlinkCategories>
-          <StyledlinkHelp>
+            <StyledLink href="#">Fun</StyledLink>
+            <StyledLink href="#">Sports</StyledLink>
+            <StyledLink href="#">Travel</StyledLink>
+            <StyledLink href="#">Traditional</StyledLink>
+            <StyledLink href="#">Business</StyledLink>
+            <StyledLink href="#">Education</StyledLink>
+          </StyledLinkCategories>
+          <StyledLinkHelp>
             <h3>Help</h3>
-            <a href="#" className="aStyles">
-              Account Support
-            </a>
-            <a href="#" className="aStyles">
-              Listing Events
-            </a>
-            <a href="#" className="aStyles">
-              Event Ticketing
-            </a>
-            <a href="#" className="aStyles">
-              Ticket Purchase
-            </a>
-            <a href="#" className="aStyles">
-              Terms and Conditions
-            </a>
-          </StyledlinkHelp>
-          <StyledlinkFollow>
+            <StyledLink href="#">Account Support</StyledLink>
+            <StyledLink href="#">Listing Events</StyledLink>
+            <StyledLink href="#">Event Ticketing</StyledLink>
+            <StyledLink href="#">Ticket Purchase</StyledLink>
+            <StyledLink href="#">Terms and Conditions</StyledLink>
+          </StyledLinkHelp>
+          <StyledLinkFollow>
             <h3>Follow Us</h3>
-            <a href="#" className="aStyles">
-              Facebook
-            </a>
-            <a href="#" className="aStyles">
-              Instagram
-            </a>
-            <a href="#" className="aStyles">
-              Twitter
-            </a>
-            <a href="#" className="aStyles">
-              Youtube
-            </a>
-          </StyledlinkFollow>
-          <StyledlinkApp>
+            <StyledLink href="#">Facebook</StyledLink>
+            <StyledLink href="#">Instagram</StyledLink>
+            <StyledLink href="#">Twitter</StyledLink>
+            <StyledLink href="#">Youtube</StyledLink>
+          </StyledLinkFollow>
+          <StyledLinkApp>
             <h3>Download The App</h3>
             <StyledButton
               variant="contained"
@@ -114,7 +73,7 @@ const Footercontainer = () => {
                 <span>App Store</span>
               </p>
             </StyledButton>
-          </StyledlinkApp>
+          </StyledLinkApp>
         </StyledFooter>
         <hr />
         <StyledBottom>&#169;2024Evento. All rights reserved</StyledBottom>
@@ -122,4 +81,4 @@ const Footercontainer = () => {
     </>
   );
 };
-export default Footercontainer;
+export default FooterContainer;

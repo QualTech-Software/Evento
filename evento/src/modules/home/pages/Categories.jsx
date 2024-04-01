@@ -59,7 +59,7 @@ const Categories = () => {
         </div>
 
         <div
-          onClick={() => handleCategoryClick(6)}
+          onClick={() => handleCategoryClick(5)}
           className="qt-card-bussiness"
         >
           <Typography variant="h6">Business</Typography>

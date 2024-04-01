@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledFunEvent = styled.div`
   width: 1440px;
@@ -31,7 +31,7 @@ export const StyledEventText = styled.div`
   p {
     //styleName: 48 BOLD SANS;
     font-family: Open Sans;
-    font-size: 38px;
+    font-size: 30px;
     font-weight: 700;
     line-height: 65.37px;
     text-align: left;
@@ -70,5 +70,59 @@ export const StyledEventSubText = styled.div`
     line-height: 27.24px;
     text-align: left;
     color: white;
+  }
+`;
+export const StyledExploreCategory = styled.div`
+  width: 1160px;
+  height: 268px;
+  margin-left: 140px;
+  position: relative;
+`;
+export const ExploreText = styled.div`
+  width: 520px;
+  height: 44px;
+  margin-left: 320px;
+
+  position: relative;
+  p {
+    //styleName: 32 SEMIBOLD SANS;
+    font-family: Open Sans;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 43.58px;
+    text-align: center;
+  }
+`;
+export const StyledExploreCard = styled.div`
+  width: 1160px;
+  height: 200px;
+  margin: 10px;
+  opacity: 0px;
+  display: ruby;
+
+  margin-left: 23px;
+`;
+export const Explore = styled.div`
+  width: 200px;
+  height: 200px;
+  gap: 0px;
+  opacity: 0px;
+  margin-top: 34px;
+  background-repeat: no-repeat;
+  background-size: 168px 125px;
+  background-position: 16px 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+  p {
+    //styleName: 20 SEMIBOLD SANS;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27.24px;
+    text-align: center;
+    color: rgba(255, 0, 0, 1);
+    margin-top: 157px;
   }
 `;

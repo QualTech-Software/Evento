@@ -193,3 +193,15 @@ export const StyledInvalidText = styled.div`
     margin-top: -17px;
   }
 `;
+export const StyledRedModalButton = styled.div`
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin-top: 8px;
+  margin-left: 692px;
+  padding: 12px 0px 0px 0px;
+  gap: 0px;
+  border-radius: 50px;
+  opacity: 0px;
+  angle: -180 deg;
+`;

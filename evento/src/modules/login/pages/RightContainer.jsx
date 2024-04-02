@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { TextField, Button, Modal, Box, Typography } from "@mui/material";
-import group2 from "../../../assets/Group2.png";
+import { Modal } from "@mui/material";
+import { group2, icon } from "../../../assets";
 import "../components/Login.css";
-import icon from "../../../assets/Googleicon.png";
-import danger from "../../../assets/danger.png";
-import Closebtn from "../../../../public/assets/CloseBtn.png";
 
+import SuccessModal from "../components/LoginSuccessModal";
 import axios from "axios";
 import {
   StyledRightcontainer,
@@ -17,27 +15,19 @@ import {
   QThead,
   CreateAccBtn,
   StyledGoogleBtn,
-  StyledModalButton,
-  StyledInvalidText,
   ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  validatePass,
-  clearPlaceholderOnFocus,
-  handleBackspaceKeyDown,
-} from "../utils/FormValid";
+import LoginErrorModal from "../components/LoginErrorModal";
 
 const validateCredentials = (email, password) => {
-  // Regular expression for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Regular expression for password validation
   const passwordRegex =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
 
   if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-    return "Invalid username or password. Please try again.";
+    return "Invalid username or password please try again.";
   } else {
     return ""; // No error
   }
@@ -51,15 +41,39 @@ const RightContainer = () => {
   const [buttonOpacity, setButtonOpacity] = useState(0.5);
   const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
   const [modalMessage, setModalMessage] = useState(""); // State to store modal message
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+  const handleSuccessModalClose = () => {
+    setModalOpen(false);
+    setIsLoginSuccess(false); // Reset login success state
+    navigate("/");
+  };
+
+  const handleLoginSuccess = () => {
+    setIsLoginSuccess(true);
+    setModalOpen(true); // Open the modal
+    setTimeout(() => {
+      setIsLoginSuccess(false);
+      setModalOpen(false);
+      navigate("/");
+    }, 10000);
+  };
+
+  const handleLoginFailure = (errorMessage) => {
+    setModalMessage(errorMessage);
+    setModalOpen(true); // Open the modal
+  };
 
   const validateForm = () => {
-    setButtonOpacity(1);
-
+    if (email.trim() !== "" && password.trim() !== "") {
+      setButtonOpacity(1); // Set opacity to full
+    } else {
+      setButtonOpacity(0.5); // Set opacity to half
+    }
     const error = validateCredentials(email, password);
 
     if (error) {
@@ -81,7 +95,6 @@ const RightContainer = () => {
       .then((response) => {
         if (response.status === 200) {
           if (response.data && response.data.msg === "Logged in!") {
-            navigate("/");
           } else {
             console.log("Email or password is incorrect");
           }
@@ -99,6 +112,13 @@ const RightContainer = () => {
           console.error("Error:", error.message);
         }
       });
+    const loginSuccess = true; // Change to false to simulate login failure
+
+    if (loginSuccess) {
+      handleLoginSuccess();
+    } else {
+      handleLoginFailure("Invalid username or password please try again.");
+    }
   };
 
   return (
@@ -159,61 +179,15 @@ const RightContainer = () => {
         <p>Log in with Google Account</p>
       </StyledGoogleBtn>
 
-      {/* Modal for displaying error messages */}
       <Modal open={modalOpen} onClose={handleCloseModal}>
-        <Box
-          sx={{
-            position: "relative",
-            top: "12%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 720,
-            height: "131px",
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            borderRadius: "0px 0px 8px 8px",
-            p: 4,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "left", mb: 2 }}>
-            <img
-              src={danger}
-              alt="Danger Icon"
-              style={{
-                marginRight: "2px",
-                height: "24px",
-                width: "24px",
-                marginLeft: "126px",
-              }}
-            />
-
-            <Typography variant="h6" component="h2" gutterBottom></Typography>
-          </Box>
-          <Typography
-            variant="body1"
-            style={{ color: "red", marginTop: "-38px", marginLeft: "160px" }}
-          >
-            {modalMessage}
-          </Typography>
-          <StyledModalButton onClick={handleCloseModal} sx={{ mt: 2 }}>
-            <img src={Closebtn} />
-          </StyledModalButton>
-
-          <StyledInvalidText>
-            <hr
-              style={{
-                marginTop: "8px",
-                width: "776px",
-                marginLeft: "-29px",
-
-                borderTop: "0.5px solid red",
-              }}
-            />
-
-            <h4>Oops!</h4>
-            <p>Enter the correct email address and password to log in</p>
-          </StyledInvalidText>
-        </Box>
+        {isLoginSuccess ? (
+          <SuccessModal handleCloseModal={handleSuccessModalClose} />
+        ) : (
+          <LoginErrorModal
+            handleCloseModal={handleCloseModal}
+            modalMessage={modalMessage}
+          />
+        )}
       </Modal>
     </StyledRightcontainer>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Box, Typography } from "@mui/material";
 
 export const StyledRightcontainer = styled.div`
   display: block;
@@ -157,6 +157,31 @@ export const StyledGoogleBtn = styled.div`
     margin-top: -32px;
   }
 `;
+export const StyledMainErrorBox = styled(Box)`
+  position: relative;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 161px;
+  background-color: white;
+  box-shadow: 24;
+  border-radius: 0px 0px 8px 8px;
+  p: 4;
+`;
+export const StyledSubErrorBox = styled(Box)`
+  display: flex;
+  align-items: left;
+
+  mb: 2;
+  img {
+    margin-right: 2px;
+    height: 24px;
+    width: 24px;
+    margin-left: 163px;
+    margin-top: 25px;
+  }
+`;
 export const ErrorText = styled.div`
   color: red;
   //styleName: 16 MEDIUM SANS;
@@ -171,7 +196,16 @@ export const StyledModalButton = styled(Button)`
     height: 40px;
     width: 40px;
     margin-left: 664px;
-    margin-top: -65px;
+    margin-top: -109px;
+  }
+`;
+export const StyleErrorTypography = styled(Typography)`
+  color: red;
+  margin-top: 25px;
+  margin-left: 7px;
+  p {
+    margin-left: 7px;
+    margin-top: 25px;
   }
 `;
 export const StyledInvalidText = styled.div`
@@ -191,5 +225,60 @@ export const StyledInvalidText = styled.div`
     line-height: 21.79px;
     text-align: center;
     margin-top: -17px;
+  }
+  hr {
+    margin-top: -19px;
+    width: 718px;
+    border-top: 0.5px solid red;
+  }
+`;
+export const StyledRedModalButton = styled.div`
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin-top: 8px;
+  margin-left: 672px;
+  padding: 12px 0px 0px 0px;
+  gap: 0px;
+  border-radius: 50px;
+  opacity: 0px;
+  angle: -180 deg;
+`;
+export const StyledMainBox = styled(Box)`
+  position: relative;
+  top: 12%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 259px;
+  background-color: white;
+  box-shadow: 24;
+  border-radius: 0px 0px 8px 8px;
+  p: 4;
+`;
+export const StyledSubSuccessBox = styled(Box)`
+  width: 469px;
+  height: 179px;
+  margin-left: 125px;
+  border: 1px;
+  margin-top: -14px;
+  img {
+    width: 80px;
+    height: 80px;
+    margin-left: 194px;
+  }
+  h2 {
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: center;
+  }
+  p {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: center;
   }
 `;

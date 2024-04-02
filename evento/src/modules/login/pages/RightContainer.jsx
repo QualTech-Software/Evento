@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "@mui/material";
-import group2 from "../../../assets/Group2.png";
+import { group2, icon } from "../../../assets";
 import "../components/Login.css";
-import icon from "../../../assets/Googleicon.png";
+
 import SuccessModal from "../components/LoginSuccessModal";
 import axios from "axios";
 import {

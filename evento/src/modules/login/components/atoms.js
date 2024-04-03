@@ -284,13 +284,17 @@ export const StyledSubSuccessBox = styled(Box)`
   }
 `;
 // account otp
-export const StyledAccountOtp = styled.div`
+export const StyledAccountOtp = styled(Box)`
   width: 658px;
   height: 415px;
   border-radius: 8px;
   opacity: 0px;
   margin: auto;
   background: rgba(255, 255, 255, 1);
+  margin-top: 5%;
+`;
+export const StyledOtpForm = styled.div`
+  padding-top: 20px;
 `;
 export const StyledOtpText = styled.div`
   width: 307px;
@@ -352,6 +356,7 @@ export const StyledCall = styled.div`
       line-height: 21.79px;
       text-align: left;
       color: rgba(151, 71, 255, 1);
+      text-decoration:underline;
     }
   }
 `;
@@ -373,6 +378,7 @@ export const StyledEmail = styled.div`
       line-height: 21.79px;
       text-align: left;
       color: rgba(151, 71, 255, 1);
+      text-decoration: underline;
     }
   }
 `;
@@ -391,8 +397,57 @@ export const StyledOtpSubText = styled.div`
   }
 `;
 export const StyledOtpInput = styled.div`
-  width: 208px;
-  height: 40px;
   margin-left: 225px;
   display: flex;
+  margin-top: 24px;
+  gap: 16px;
+`;
+export const StyledTextField1 = styled(TextField)`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0, 0, 0, 1);
+  opacity: 0px;
+  & input {
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+  }
+  & .MuiOutlinedInput-root {
+    border-width: 0.5px;
+  }
+`;
+export const StyledOtpResend = styled.div`
+  width: 298px;
+  height: 27px;
+  margin-top: 20px;
+  margin-left: 180px;
+  p {
+    //styleName: 16 REGULAR SANS;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: left;
+    span {
+      color: rgba(151, 71, 255, 1);
+    }
+  }
+`;
+export const StyledOtpButton = styled.div`
+  width: 177px;
+  height: 64px;
+  margin-top: 32px;
+  margin-left: 240px;
+  border-radius: 8px;
+  background-color: rgba(30, 10, 60, 1);
+  p {
+    font-family: Open Sans;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.24px;
+    text-align: center;
+    color: white;
+    padding-top: 19px;
+  }
 `;

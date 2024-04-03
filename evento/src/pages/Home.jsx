@@ -48,6 +48,7 @@ import {
   StyledDropDownTrending,
   DropdownIconWrapper,
   IconButtonStyle,
+  StyledEventoLogo,
 } from "../modules/Home/components/atoms";
 
 const Home = () => {
@@ -76,7 +77,9 @@ const Home = () => {
     <>
       <StyledQtHome className="qt-home">
         <StyledNavbar className="qt-navbar">
-          <img src={logo} alt="Logo" />
+          <StyledEventoLogo>
+            <img src={logo} alt="Logo" />
+          </StyledEventoLogo>
           <StyledSidebar className="sidebar">
             <StyledCategory className="category">
               <img src={dashboard} alt="Dashboard" />

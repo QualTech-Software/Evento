@@ -1,20 +1,25 @@
 import React from "react";
 import {
   StyledAccountOtp,
+  StyledOtpForm,
   StyledOtpText,
   StyledOtpText2,
   StyledEmailCall,
   StyledCall,
   StyledEmail,
   StyledOtpSubText,
+  StyledOtpInput,
+  StyledTextField1,
+  StyledOtpResend,
+  StyledOtpButton,
 } from "../components/atoms";
 import CallIcon from "../../../../public/assets/Call.svg";
 import EmailIcon from "../../../../public/assets/Email.svg";
 
-const AccountOTP = () => {
-  return (
-    <>
-      <StyledAccountOtp className="qt-account-otp">
+const AccountOTP = () => (
+  <>
+    <StyledAccountOtp className="qt-account-otp">
+      <StyledOtpForm>
         <StyledOtpText>
           <p>Enter the verification code</p>
         </StyledOtpText>
@@ -44,9 +49,23 @@ const AccountOTP = () => {
             email.
           </p>
         </StyledOtpSubText>
-        {/* <StyledOtpInput></StyledOtpInput> */}
-      </StyledAccountOtp>
-    </>
-  );
-};
+        <StyledOtpInput>
+          <StyledTextField1 />
+          <StyledTextField1 />
+          <StyledTextField1 />
+          <StyledTextField1 />
+        </StyledOtpInput>
+        <StyledOtpResend>
+          <p>
+            Didn’t reccive your code? <span>Re-send Code</span>
+          </p>
+        </StyledOtpResend>
+        <StyledOtpButton>
+          <p>Submit</p>
+        </StyledOtpButton>
+      </StyledOtpForm>
+    </StyledAccountOtp>
+  </>
+);
+
 export default AccountOTP;

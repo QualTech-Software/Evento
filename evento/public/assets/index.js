@@ -8,4 +8,4 @@ export { default as logo } from "./LOGO3.png";
 export { default as danger } from "./danger.png";
 export { default as Closebtn } from "./CloseBtn.png";
 export { default as success } from "./Success.png";
-export { default as RedBtn } from "./RedBtn.png";
+export { default as OkBtn } from "./RedBtn.png";

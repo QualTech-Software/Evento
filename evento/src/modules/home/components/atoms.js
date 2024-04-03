@@ -114,6 +114,13 @@ export const StyledQtHome = styled.div`
   height: 730px;
   margin: auto;
 `;
+export const StyledEventoLogo = styled.div`
+  img {
+    height: 76px;
+    width: 165px;
+    margin-top: 12px;
+  }
+`;
 export const StyledNavbar = styled.div`
   width: 1440px;
   height: 100px;
@@ -583,13 +590,13 @@ export const StyledLink = styled(Link)`
 export const StyledCreateEvent = styled.div`
   width: 1440px;
   height: 315px;
-  background-image: url("../../../public/assets/CreateEvent2.png");
+  background-image: url("../../../public/assets/NewCreateEvent.svg");
   background-repeat: no-repeat;
   background-position: relative;
   background-size: 1440px 315px;
 `;
 export const StyledCreateText = styled.div`
-  width: 491px;
+  width: 564px;
   height: 49px;
   top: 62px;
   margin-left: 475px;
@@ -600,7 +607,8 @@ export const StyledCreateText = styled.div`
     font-weight: 600;
     line-height: 49.03px;
     text-align: left;
-    color: rgba(255, 224, 71, 1);
+    color: white;
+    text-transform: uppercase;
   }
 `;
 export const StyledSubtext = styled.div`
@@ -616,7 +624,7 @@ export const StyledSubtext = styled.div`
     font-weight: 500;
     line-height: 27.24px;
     text-align: left;
-    color: rgba(255, 224, 71, 1);
+    color: white;
   }
   button {
     width: 169px;
@@ -627,11 +635,12 @@ export const StyledSubtext = styled.div`
     padding: 16px 0px 0px 0px;
     position: relative;
     border-radius: 8px;
+    border: none;
     opacity: 0px;
-    background: rgba(255, 212, 0, 1);
+    background: white;
     background-image: url("../../../public/assets/CreateEvent.png");
     background-repeat: no-repeat;
-    background-position: 23px;
+    background-position: 20px;
     background-size: 18px 18px;
     p {
       //styleName: 18 SEMIBOLD SANS;

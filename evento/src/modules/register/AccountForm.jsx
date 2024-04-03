@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../Components/AccountExtraFields/Account.css";
 import axios from "axios";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { Modal, Fade } from "@mui/material";
 import {
   StyledButton,
   CheckboxStyle,
@@ -15,6 +16,7 @@ import {
   CustomInputD,
   CustomInputE,
 } from "./pages/RegisterInput";
+import AccountOTP from "../login/pages/AccountOtp";
 
 const AccountForm = ({
   firstName,
@@ -38,6 +40,7 @@ const AccountForm = ({
   const [cpasswordError, setCpasswordError] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (
@@ -85,6 +88,7 @@ const AccountForm = ({
       });
 
       console.log(response.data);
+      setOpenModal(true);
     } catch (error) {
       console.error("Registration error:", error);
     }
@@ -169,6 +173,13 @@ const AccountForm = ({
         <StyledButton onClick={handleSubmit} style={{ opacity: buttonOpacity }}>
           <p> Create Account</p>
         </StyledButton>
+        <Modal open={openModal} onClose={() => setOpenModal(false)}>
+          <Fade in={openModal}>
+            <div>
+              <AccountOTP />
+            </div>
+          </Fade>
+        </Modal>
       </CreateAccBtn>
     </FormCont>
   );

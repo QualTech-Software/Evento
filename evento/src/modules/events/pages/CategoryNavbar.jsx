@@ -8,12 +8,15 @@ import {
   StyledEvent,
   StyledInterest,
   StyledSignup,
+  StyledEventoLogo,
 } from "../../Home/components/atoms";
 import { StyledLink } from "../../Home/components/atoms";
 
 const Navbar = () => (
   <StyledNavbar className="qt-navbar">
-    <img src={logo} alt="Logo" />
+    <StyledEventoLogo>
+      <img src={logo} alt="Logo" />
+    </StyledEventoLogo>
     <StyledSidebar className="sidebar">
       <StyledCategory className="category">
         <img src={dashboard} alt="Dashboard" />

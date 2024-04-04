@@ -75,8 +75,9 @@ export const Ptag = styled.div`
     text-align: left;
   }
   p span {
-    color: rgba(0, 0, 0, 1);
-    font-size: 14px;
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
   }
   p span:hover {
     cursor: pointer;

@@ -1,15 +1,17 @@
 import styled from "@emotion/styled";
+
 import { InputLabel, MenuItem } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
-import { CardContent } from "@mui/material";
 import { CardContent, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import Typography from "@mui/joy/Typography";
+// import IconButton from "@mui/material/IconButton";
 // export const MenuItem = styled.menuitem`
 //   background-color: "red";
+
 // import { CardContent, IconButton } from "@mui/material";
 // export const MenuItem = styled.menuitem`;
 //   background-color: "red";
@@ -206,8 +208,10 @@ export const StyledInterest = styled.div`
     position: relative;
   }
 `;
-
-export const QtLogin = styled.div`
+// export const StyledLink = styled(Link)`
+//   text-decoration: none;
+// `;
+export const StyledQtLogin = styled.div`
 
   width: 116px;
   height: 64px;
@@ -727,5 +731,4 @@ export const StyledDest = styled.div`
       text-transform: capitalize;
     }
   }
-
 `;

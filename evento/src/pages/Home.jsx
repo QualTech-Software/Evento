@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "../Components/Home/Home.css";
-// import { event, interest, logo } from "../assets";
-//import { useNavigate } from "react-router-dom";
-//import { dashboard, event, interest, login, logo } from "../assets";
 import Events from "../modules/home/pages/Events";
 import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
 import Organizer from "../modules/home/pages/Organizer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo, login } from "../assets";
-// import { event, interest, logo } from "../assets";
 import { useNavigate } from "react-router-dom";
 import { dashboard, event, interest, login, logo } from "../assets";
-import Events from "../modules/Home/pages/Events";
-import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
 import Categories from "../modules/home/pages/Categories";
 import chevron from "../../public/assets/Chevron.png";
+import CreateEvent from "../modules/Home/pages/CreateEvent";
+import TopDestination from "../modules/Home/pages/TopDestination";
 import {
   FormControl,
   InputLabel,
@@ -51,14 +47,14 @@ import {
 } from "../modules/home/components/atoms";
 import CreateEvent from "../modules/home/pages/CreateEvent";
 import TopDestination from "../modules/home/pages/TopDestination";
-} from "../modules/Home/components/atoms";
 
 const Home = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(""); // State to manage selected location
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
   const [showTrendingSearch, setShowTrendingSearch] = useState(false); // State to manage trending search visibility
-  const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState();
+
   const handleClick = () => {
     navigate("/create");
   };
@@ -209,7 +205,6 @@ const Home = () => {
         <CreateEvent />
         <TopDestination />
       </StyledQtHome>
-      </QtHome>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Components/Account/Create.css";
-import { useNavigate } from "react-router-dom";
+
 import LeftContainer from "../modules/common/LeftContainer";
 import RightContainer from "../modules/create/pages/RightContainer";
 import { MainCont } from "../modules/create/components/atoms";

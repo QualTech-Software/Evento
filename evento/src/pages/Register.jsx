@@ -38,6 +38,7 @@ const Register = () => {
   const handleHome = () => {
     navigate("/");
   };
+
   return (
     <>
       <QtAcc className="qt-acc">

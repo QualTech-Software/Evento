@@ -8,6 +8,7 @@ import CreateEventForm from "./pages/CreateEventForm.jsx";
 import Login from "./modules/login/pages/Login.jsx";
 // import Login from "./pages/Login.jsx";
 import WelcomeEvent from "./pages/WelcomeEvent.jsx";
+import EventCategory from "./modules/events/pages/EventCategory.jsx";
 function App() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ function App() {
       <Route path="/create" element={<Create />} />
       <Route path="/account" element={<Register />} />
       <Route path="/welcome" element={<WelcomeEvent />} />
+      <Route path="/category/event/:id" element={<EventCategory />} />
     </Routes>
   );
 }

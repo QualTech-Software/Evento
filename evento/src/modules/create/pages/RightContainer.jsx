@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { group2, icon } from "../../../../public/assets";
 import TextBox from "../../../Components/Form/TextBox";
+
 import axios from "axios";
 import {
   Signin,
@@ -14,7 +15,7 @@ import {
   AccHead,
 } from "../components/atoms";
 import "../../../Components/Account/Create.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RightContainer = ({}) => {
   const [email, setEmail] = useState("");
@@ -59,7 +60,9 @@ const RightContainer = ({}) => {
         <Ptag className="qt-para">
           <p>
             If you already have an account register You can{" "}
-            <span>Login here !</span>
+            <span>
+              <Link to="/login">Register here!</Link>
+            </span>
           </p>
         </Ptag>
         <AccHead className="qt-head">

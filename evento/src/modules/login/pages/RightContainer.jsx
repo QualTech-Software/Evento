@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Button } from "@mui/material";
-import group2 from "../../../assets/Group2.png";
+import React, { useState } from "react";
+import { Modal } from "@mui/material";
+import { group2, icon } from "../../../assets";
 import "../components/Login.css";
-import icon from "../../../assets/Googleicon.png";
+
+import SuccessModal from "../components/LoginSuccessModal";
+import axios from "axios";
 import {
   StyledRightcontainer,
   StyledLogo,
@@ -13,66 +15,111 @@ import {
   QThead,
   CreateAccBtn,
   StyledGoogleBtn,
+  ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  validatePass,
-  clearPlaceholderOnFocus,
-  handleBackspaceKeyDown,
-} from "../utils/FormValid";
-import { Link, useNavigate } from "react-router-dom";
+import LoginErrorModal from "../components/LoginErrorModal";
 
-const validateEmail = (email) => {
-  // Regular expression for email validation
+const validateCredentials = (email, password) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
 
-const validatePass = (password, setPasswordError) => {
   const passwordRegex =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
-  if (!password.match(passwordRegex)) {
-    setPasswordError(
-      "Password must have at least 8 characters including at least 1 lowercase, 1 uppercase, 1 digit, and 1 special symbol"
-    );
+
+  if (!emailRegex.test(email) || !passwordRegex.test(password)) {
+    return "Invalid username or password please try again.";
   } else {
-    setPasswordError("");
+    return ""; // No error
   }
 };
-const RightContainer = ({}) => {
 
-  const [email, setEmail] = useState(""); //useState to store Email address of the user
-
+const RightContainer = () => {
+  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [password, setPassword] = useState(""); // useState to store Password
-  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+  const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
+  const [modalMessage, setModalMessage] = useState(""); // State to store modal message
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleBlurEmail = () => {
-    if (!email && !emailError) {
-      setEmailError("Invalid Email");
-    } else {
-      setEmailError("");
-    }
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+  const handleSuccessModalClose = () => {
+    setModalOpen(false);
+    setIsLoginSuccess(false); // Reset login success state
+    navigate("/");
   };
 
-  const handleEmailKeyDown = (e) => {
-    handleBackspaceKeyDown(e, emailError, setEmailError);
+  const handleLoginSuccess = () => {
+    setIsLoginSuccess(true);
+    setModalOpen(true); // Open the modal
+    setTimeout(() => {
+      setIsLoginSuccess(false);
+      setModalOpen(false);
+      navigate("/");
+    }, 10000);
   };
-  const handlePasswordKeyDown = (e) => {
-    handleBackspaceKeyDown(e, passwordError, setPasswordError);
-  };
-  function validateForm() {
-    setButtonOpacity(1);
-    // Check if the Email is an Empty string or not.
 
-    if (validateEmail(email)) {
-      navigate("/welcome");
+  const handleLoginFailure = (errorMessage) => {
+    setModalMessage(errorMessage);
+    setModalOpen(true); // Open the modal
+  };
+
+  const validateForm = () => {
+    if (email.trim() !== "" && password.trim() !== "") {
+      setButtonOpacity(1); // Set opacity to full
     } else {
-      setEmailError("Invalid email");
+      setButtonOpacity(0.5); // Set opacity to half
     }
-  }
+    const error = validateCredentials(email, password);
+
+    if (error) {
+      setModalMessage(error);
+      setModalOpen(true);
+      return;
+    }
+
+    axios
+      .post(
+        "http://localhost:3000/api/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          if (response.data && response.data.msg === "Logged in!") {
+          } else {
+            console.log("Email or password is incorrect");
+          }
+          } else {
+          console.log("Unexpected response:", response);
+        }
+        setEmailError(""); // Clear email error if login request succeeds
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Server error:", error.response.data);
+        } else if (error.request) {
+          console.error("Network error:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
+      });
+    const loginSuccess = true; // Change to false to simulate login failure
+
+    if (loginSuccess) {
+      handleLoginSuccess();
+    } else {
+      handleLoginFailure("Invalid username or password please try again.");
+    }
+  };
 
   return (
     <StyledRightcontainer>
@@ -81,10 +128,8 @@ const RightContainer = ({}) => {
       </StyledLogo>
       <QTpara>
         <p>
-          If you don’t have an account register You can{"  "}
-          <Link to={"/create"} sx={{}}>
-            Register here!
-          </Link>
+          If you don’t have an account register You can{" "}
+          <Link to={"/create"}>Register here!</Link>
         </p>
       </QTpara>
       <QThead className="qt-head">
@@ -93,56 +138,36 @@ const RightContainer = ({}) => {
 
       <StyledForm>
         <input
-          className={emailError ? "textfieldemail error" : "textfieldemail"}
           placeholder="Email"
-          id="field1"
-          value={emailError ? emailError : email} // Add value prop to bind the input field to the email state
-
-          onChange={(e) => handleInputChange(e, setEmail)}
-          onFocus={clearPlaceholderOnFocus}
-          onBlur={handleBlurEmail}
-          onKeyDown={handleEmailKeyDown}
-
-          onChange={(e) => setEmail(e.target.value)}
-          onFocus={(e) => (e.target.placeholder = "")}
-          onBlur={handleBlurEmail}
-          onKeyDown={(e) => {
-            if (e.keyCode === 8 && emailError !== "") {
-              // Check if backspace key was pressed and there's at least one character in the password field
-              setEmailError(""); // Clear the error message
-            }
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setEmailError(validateCredentials(e.target.value, password));
           }}
-
         />
+        {emailError && (
+          <ErrorText className="error-message">{emailError}</ErrorText>
+        )}
       </StyledForm>
 
       <StyledForm>
         <input
-          className={passwordError ? "textfieldpass error" : "textfieldpass"}
           placeholder="Password"
-          id="field2"
-          type={passwordError ? "text" : "password"}
-          value={passwordError ? passwordError : password} // Add value prop to bind the input field to the email state
-          onChange={(e) => handleInputChange(e, setPassword)}
-          onFocus={clearPlaceholderOnFocus}
-          onChange={(e) => setPassword(e.target.value)}
-          onFocus={(e) => (e.target.placeholder = "")}
-          onBlur={(e) => {
-            e.target.placeholder = passwordError ? "" : "Password";
-            validatePass(password, setPasswordError);
-          }}
-          onKeyDown={handlePasswordKeyDown}
-          onKeyDown={(e) => {
-            if (e.keyCode === 8 && passwordError !== "") {
-              // Check if backspace key was pressed and there's at least one character in the password field
-              setPasswordError(""); // Clear the error message
-            }
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setPasswordError(validateCredentials(email, e.target.value));
           }}
         />
+        {passwordError && (
+          <ErrorText className="error-message">{passwordError}</ErrorText>
+        )}
       </StyledForm>
+
       <CreateAccBtn className="create-acc">
         <StyledButton onClick={validateForm} style={{ opacity: buttonOpacity }}>
-          <p> Create Account</p>
+          <p>Continue</p>
         </StyledButton>
       </CreateAccBtn>
       <StyledDivider>
@@ -151,16 +176,19 @@ const RightContainer = ({}) => {
       </StyledDivider>
       <StyledGoogleBtn>
         <img src={icon} alt="Google Icon" />
-        <p>Log in with Google Account </p>
+        <p>Log in with Google Account</p>
       </StyledGoogleBtn>
-      <Styleddivider>
-        <img src={group2} alt="Group 2" />
-        <p>Or</p>
-      </Styleddivider>
-      <Styledgooglebutton>
-        <img src={icon} alt="Google Icon" />
-        <p>Log in with Google Account </p>
-      </Styledgooglebutton>
+
+      <Modal open={modalOpen} onClose={handleCloseModal}>
+        {isLoginSuccess ? (
+          <SuccessModal handleCloseModal={handleSuccessModalClose} />
+        ) : (
+          <LoginErrorModal
+            handleCloseModal={handleCloseModal}
+            modalMessage={modalMessage}
+          />
+        )}
+      </Modal>
     </StyledRightcontainer>
   );
 };

@@ -4,15 +4,15 @@ import "../Components/Home/Home.css";
 // import { event, interest, logo } from "../assets";
 //import { useNavigate } from "react-router-dom";
 //import { dashboard, event, interest, login, logo } from "../assets";
-import Categories from "../modules/Home/pages/Categories";
-import Events from "../modules/Home/pages/Events";
-import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
-import Organizer from "../modules/Home/pages/Organizer";
+import Categories from "../modules/home/pages/Categories";
+import Events from "../modules/home/pages/Events";
+import DiscoverEvent from "../modules/home/pages/DiscoverEvent";
+import Organizer from "../modules/home/pages/Organizer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo, login } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
-import CreateEvent from "../modules/Home/pages/CreateEvent";
-import TopDestination from "../modules/Home/pages/TopDestination";
+import CreateEvent from "../modules/home/pages/CreateEvent";
+import TopDestination from "../modules/home/pages/TopDestination";
 import {
   FormControl,
   InputLabel,
@@ -22,8 +22,8 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-import Onlineevents from "../modules/Home/pages/Events";
-import BestEvent from "../modules/Home/pages/DiscoverEvent";
+import Onlineevents from "../modules/home/pages/Events";
+import BestEvent from "../modules/home/pages/DiscoverEvent";
 
 import {
   StyledQtHome,
@@ -49,9 +49,9 @@ import {
   DropdownIconWrapper,
   IconButtonStyle,
   StyledEventoLogo,
-} from "../modules/Home/components/atoms";
+} from "../modules/home/components/atoms";
 
-const Home = () => {
+const home = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(""); // State to manage selected location
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
@@ -210,4 +210,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default home;

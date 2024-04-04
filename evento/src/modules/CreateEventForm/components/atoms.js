@@ -220,7 +220,8 @@ export const StyledEventButton = styled.button`
   padding: 20px 67px 20px 67px;
   gap: 10px;
   border-radius: 10px;
-  background-color: #2b293d;
+  background-color: rgba(255, 0, 0, 1);
+  border: 0;
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
 `;

@@ -1,0 +1,23 @@
+{
+  "options": [
+    "Culture and Arts",
+    "Education and Business",
+    "Entertainment",
+    "Food & Drink",
+    "Technology & Innovation",
+    "Travel & Adventure"
+  ],
+  "placeOptions": ["Venue", "Online"],
+  "textAreas": [
+    {
+      "title": "Additional Information",
+      "name": "postContent",
+      "placeholder": "Describe what's special about your event & other important details."
+    },
+    {
+      "title": "Rules and Regulations",
+      "name": "rulesContent",
+      "placeholder": "Rules and regulations."
+    }
+  ]
+}

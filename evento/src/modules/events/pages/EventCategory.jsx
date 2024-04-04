@@ -16,10 +16,10 @@ import eventData from "../components/Event.json";
 import exploreData from "../components/ExploreData.json";
 import { useParams } from "react-router-dom";
 
-import Onlineevents from "../../Home/pages/Events";
-import CreateEvent from "../../Home/pages/CreateEvent";
-import Orgnizer from "../../Home/pages/Organizer";
-import TopDestination from "../../Home/pages/TopDestination";
+import Onlineevents from "../../home/pages/Events";
+import CreateEvent from "../../home/pages/CreateEvent";
+import Orgnizer from "../../home/pages/Organizer";
+import TopDestination from "../../home/pages/TopDestination";
 
 const EventCategory = () => {
   const { id } = useParams();

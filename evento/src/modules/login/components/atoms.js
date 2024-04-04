@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CssBaseline from "@mui/material/CssBaseline";
 import { TextField, Button, Box, Typography } from "@mui/material";
 
 export const StyledRightcontainer = styled.div`
@@ -280,5 +281,173 @@ export const StyledSubSuccessBox = styled(Box)`
     font-weight: 400;
     line-height: 21.79px;
     text-align: center;
+  }
+`;
+// account otp
+export const StyledAccountOtp = styled(Box)`
+  width: 658px;
+  height: 415px;
+  border-radius: 8px;
+  opacity: 0px;
+  margin: auto;
+  background: rgba(255, 255, 255, 1);
+  margin-top: 5%;
+`;
+export const StyledOtpForm = styled.div`
+  padding-top: 20px;
+`;
+export const StyledOtpText = styled.div`
+  width: 307px;
+  height: 33px;
+  margin-top: 40px;
+  margin-left: 175px;
+  gap: 0px;
+  opacity: 0px;
+  p {
+    //styleName: 24 SEMIBOLD SANS;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: left;
+  }
+`;
+export const StyledOtpText2 = styled.div`
+  width: 367px;
+  height: 14px;
+  margin-top: 12px;
+  margin-left: 145px;
+  gap: 0px;
+  opacity: 0px;
+  p {
+    //styleName: 10 REGULAR SANS;
+    font-family: Open Sans;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13.62px;
+    text-align: left;
+  }
+`;
+export const StyledEmailCall = styled.div`
+  display: flex;
+  margin-top: 1px;
+`;
+export const StyledCall = styled.div`
+  width: 161.67px;
+  height: 22px;
+  margin-left: 162px;
+  display flex;
+  
+  p {
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.07px;
+    text-align: left;
+    img {
+    width: 15.67px;
+    height: 15px;
+
+  }
+    span {
+      font-family: Open Sans;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 21.79px;
+      text-align: left;
+      color: rgba(151, 71, 255, 1);
+      text-decoration:underline;
+    }
+  }
+`;
+export const StyledEmail = styled.div`
+  width: 170.33px;
+  height: 22px;
+  margin-left: 16px;
+  p {
+    //styleName: 14 MEDIUM SANS;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.07px;
+    text-align: left;
+    span {
+      font-family: Open Sans;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 21.79px;
+      text-align: left;
+      color: rgba(151, 71, 255, 1);
+      text-decoration: underline;
+    }
+  }
+`;
+export const StyledOtpSubText = styled.div`
+  width: 513px;
+  height: 19px;
+  margin-top: 18px;
+  margin-left: 72px;
+  p {
+    //styleName: 14 MEDIUM SANS;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.07px;
+    text-align: left;
+  }
+`;
+export const StyledOtpInput = styled.div`
+  margin-left: 225px;
+  display: flex;
+  margin-top: 24px;
+  gap: 16px;
+`;
+export const StyledTextField1 = styled(TextField)`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0, 0, 0, 1);
+  opacity: 0px;
+  & input {
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+  }
+  & .MuiOutlinedInput-root {
+    border-width: 0.5px;
+  }
+`;
+export const StyledOtpResend = styled.div`
+  width: 298px;
+  height: 27px;
+  margin-top: 20px;
+  margin-left: 180px;
+  p {
+    //styleName: 16 REGULAR SANS;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: left;
+    span {
+      color: rgba(151, 71, 255, 1);
+    }
+  }
+`;
+export const StyledOtpButton = styled.div`
+  width: 177px;
+  height: 64px;
+  margin-top: 32px;
+  margin-left: 240px;
+  border-radius: 8px;
+  background-color: rgba(30, 10, 60, 1);
+  p {
+    font-family: Open Sans;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.24px;
+    text-align: center;
+    color: white;
+    padding-top: 19px;
   }
 `;

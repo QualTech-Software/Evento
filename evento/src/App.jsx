@@ -9,6 +9,7 @@ import Login from "./modules/login/pages/Login.jsx";
 // import Login from "./pages/Login.jsx";
 import WelcomeEvent from "./pages/WelcomeEvent.jsx";
 import EventCategory from "./modules/events/pages/EventCategory.jsx";
+// import SuccessModal from "./modules/login/pages/SuccessModal.jsx";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { success, RedBtn } from "../../../../public/assets";
+import { success, OkBtn } from "../../../../public/assets";
 
 import {
   StyledRedModalButton,
@@ -11,7 +11,7 @@ const LoginSuccessModal = ({ modalOpen, handleCloseModal, modalMessage }) => {
   return (
     <StyledMainBox>
       <StyledRedModalButton onClick={handleCloseModal}>
-        <img src={RedBtn} alt="Close Button" />
+        <img src={OkBtn} alt="Close Button" />
       </StyledRedModalButton>
       <StyledSubSuccessBox>
         <img src={success} />

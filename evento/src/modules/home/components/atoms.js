@@ -4,36 +4,42 @@ import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
 import CardOverflow from "@mui/joy/CardOverflow";
+import { CardContent } from "@mui/material";
 import { CardContent, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import Typography from "@mui/joy/Typography";
-
 // export const MenuItem = styled.menuitem`
 //   background-color: "red";
 // import { CardContent, IconButton } from "@mui/material";
 // export const MenuItem = styled.menuitem`;
 //   background-color: "red";
 // `;
+import IconButton from "@mui/material/IconButton";
 export const MenuItemStyle = styled(MenuItem)`
   &.location {
     background-image: url("../../public/assets/Location2.png");
     background-repeat: no-repeat;
     background-size: 25px 25px;
-    margin-top: 15px;
+    // margin-top: 25px;
+    top: 20px;
     margin-left: 20px;
   }
   p {
     margin-left: 20px;
-    margin-top: -5px;
+    margin-top: -4px;
     color: gray;
     font-size: 17px;
   }
 `;
+export const StyledFirstInput = styled.div`
+  position: relative;
+  width: 820px;
+`;
 export const TrendingSearch = styled.div`
   background-color: white;
-  width: 817px;
-  height: 271px;
-  margin-top: -187px;
+  width: 814px;
+  height: 188px;
+
   position: relative;
 
   border-radius: 0px 0px 10px 10px;
@@ -46,6 +52,11 @@ export const TrendingSearch = styled.div`
     margin-left: 22px;
   }
 `;
+export const StyledDropDownTrending = styled.div`
+  position: absolute;
+  top: 65px;
+`;
+export const DropdownIconWrapper = styled.div``;
 export const EventGroup = styled.div`
   position: relative;
   width: 738px;
@@ -57,10 +68,19 @@ export const EventGroup = styled.div`
     height: Hug (45px) px;
     padding: 10px 20px 10px 20px;
     border-radius: 50px;
-    border: 1px 0px 0px 0px;
+    border: 1px solid black;
     opacity: 0px;
     background: rgba(218, 217, 226, 1);
   }
+  button:hover {
+    background-color: rgba(170, 166, 207, 1);
+    border: none;
+  }
+`;
+
+export const StyledSecondInput = styled.div`
+  margin-left: 816px;
+  margin-top: -85px;
 `;
 export const MenuItemStyle1 = styled(MenuItem)`
   height: 300px;
@@ -72,7 +92,7 @@ export const MenuItemStyleOl = styled(MenuItem)`
     background-image: url("../../public/assets/world.png");
     background-repeat: no-repeat;
     background-size: 25px 25px;
-    margin-top: 15px;
+    margin-top: 35px;
     margin-left: 20px;
   }
   p {
@@ -82,12 +102,16 @@ export const MenuItemStyleOl = styled(MenuItem)`
     font-size: 17px;
   }
 `;
-export const QtHome = styled.div`
+export const IconButtonStyle = styled.div`
+  margin-left: 300px;
+  margin-top: -48px;
+`;
+export const StyledQtHome = styled.div`
   width: 1440px;
   height: 730px;
   margin: auto;
 `;
-export const Navbar = styled.div`
+export const StyledNavbar = styled.div`
   width: 1440px;
   height: 100px;
   position: relative;
@@ -98,7 +122,7 @@ export const Navbar = styled.div`
     margin-left: 64px;
   }
 `;
-export const Sidebar = styled.div`
+export const StyledSidebar = styled.div`
   width: 821px;
   height: 64px;
   margin-top: -76px;
@@ -106,7 +130,7 @@ export const Sidebar = styled.div`
   display: flex;
   position: relative;
 `;
-export const Category = styled.div`
+export const StyledCategory = styled.div`
   width: 157px;
   height: 64px;
   display: flex;
@@ -131,7 +155,7 @@ export const Category = styled.div`
     position: relative;
   }
 `;
-export const Event = styled.div`
+export const StyledEvent = styled.div`
   width: 169px;
   height: 64px;
   display: flex;
@@ -156,7 +180,7 @@ export const Event = styled.div`
     position: relative;
   }
 `;
-export const Interest = styled.div`
+export const StyledInterest = styled.div`
   width: 155px;
   height: 64px;
   border-radius: 8px;
@@ -184,6 +208,7 @@ export const Interest = styled.div`
 `;
 
 export const QtLogin = styled.div`
+
   width: 116px;
   height: 64px;
   display: flex;
@@ -207,7 +232,7 @@ export const QtLogin = styled.div`
     text-align: left;
   }
 `;
-export const Signup = styled.div`
+export const StyledSignup = styled.div`
   width: 128px;
   height: 64px;
   display: flex;
@@ -243,7 +268,7 @@ export const Signup = styled.div`
     position: relative;
   }
 `;
-export const Homebar = styled.div`
+export const StyledHomebar = styled.div`
   background-position: center;
   height: 630px;
   object-fit: cover;
@@ -283,7 +308,7 @@ export const SearchBar = styled.div`
     background-image: url("../../../public/assets/search.png");
     background-repeat: no-repeat;
     background-position: 25px;
-    background-size: 29.84px 30px;
+    background-size: 22px 30px;
     padding-left: 79px;
   }
   .extra-input {
@@ -295,11 +320,11 @@ export const SearchBar = styled.div`
     background-image: url("../../../public/assets/location.png");
     background-repeat: no-repeat;
     background-position: 25px;
-    background-size: 29.84px 30px;
+    background-size: 22px 30px;
     padding-left: 79px;
   }
 `;
-export const InputCont = styled.div`
+export const StyledInputCont = styled.div`
   margin-top: 190px;
   margin-left: 152px;
   display: block;
@@ -342,10 +367,11 @@ export const Arrow = styled.div`
 `;
 export const DropDown = styled.div`
   background-color: white;
-  margin-top: -7px;
-  margin-left: 820px;
-  top: 392;
-  width: 377px;
+  width: 383px;
+  height: 160px;
+  border-radius: 0px 0px 10px 10px;
+  margin-top: 23px;
+
   height: 160px;
   border-radius: 0px 0px 10px 10px;
 `;
@@ -548,4 +574,158 @@ export const StyledButtonGroup = styled(ButtonGroup)`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #000;
+`;
+//create event
+export const StyledCreateEvent = styled.div`
+  width: 1440px;
+  height: 315px;
+  background-image: url("../../../public/assets/CreateEvent2.png");
+  background-repeat: no-repeat;
+  background-position: relative;
+  background-size: 1440px 315px;
+`;
+export const StyledCreateText = styled.div`
+  width: 491px;
+  height: 49px;
+  top: 62px;
+  margin-left: 475px;
+  position: relative;
+  p {
+    font-family: "Open Sans";
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 49.03px;
+    text-align: left;
+    color: rgba(255, 224, 71, 1);
+  }
+`;
+export const StyledSubtext = styled.div`
+  width: 833px;
+  height: 27px;
+  top: 60px;
+  left: 304px;
+  position: relative;
+  p {
+    //styleName: 20 MEDIUM SANS;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27.24px;
+    text-align: left;
+    color: rgba(255, 224, 71, 1);
+  }
+  button {
+    width: 169px;
+    height: 64px;
+    position: relative;
+    top: 20px;
+    margin-left: 336px;
+    padding: 16px 0px 0px 0px;
+    position: relative;
+    border-radius: 8px;
+    opacity: 0px;
+    background: rgba(255, 212, 0, 1);
+    background-image: url("../../../public/assets/CreateEvent.png");
+    background-repeat: no-repeat;
+    background-position: 23px;
+    background-size: 18px 18px;
+    p {
+      //styleName: 18 SEMIBOLD SANS;
+      font-family: Open Sans;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 24.51px;
+      text-align: center;
+      color: black;
+      margin-top: 3px;
+      margin-left: 33px;
+    }
+    p:hover {
+      color: red;
+    }
+  }
+`;
+//top destination
+export const StyledDestination = styled.div`
+  width: 1440px;
+  height: 600px;
+`;
+export const StyledDestText = styled.div`
+  width: 381px;
+  height: 44px;
+  margin-top: 40px;
+  margin-left: 64px;
+  p {
+    //styleName: 32 SEMIBOLD SANS;
+    font-family: Open Sans;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 43.58px;
+    text-align: left;
+  }
+`;
+export const StyledWrapper = styled.div`
+  width: 1312px;
+  height: 447px;
+  margin-top: 20px;
+  margin-left: 33px;
+`;
+export const StyledCards = styled.div`
+  display: flex;
+`;
+export const StyledDest = styled.div`
+  width: 292px;
+  margin: 20px;
+  height: 447px;
+  background-image: url("../../../public/assets/CardMumbai.png");
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: 292px 447px;
+  border-radius: 8px;
+  p {
+    color: rgba(30, 10, 60, 1);
+    width: 135px;
+    height: 41px;
+    margin-top: 20px;
+    margin-left: 59px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    //styleName: 32 SEMIBOLD SANS;
+    font-family: Open Sans;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 43.58px;
+    text-align: left;
+  }
+  button {
+    width: 120px;
+    height: 40px;
+    margin-top: 300px;
+    margin-left: 58px;
+    background: rgba(255, 0, 0, 1);
+    background-image: url("../../../public/assets/Arrow1.png");
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 16px 16px;
+    background-position: 76px;
+    border-radius: 20px;
+    p {
+      width: 58px;
+      height: 22px;
+      margin-top: 6px;
+      margin-left: 10px;
+      gap: 0px;
+      opacity: 0px;
+      //styleName: 16 MEDIUM SANS;
+      font-family: Open Sans;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 21.79px;
+      text-align: left;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 1);
+      text-transform: capitalize;
+    }
+  }
+
 `;

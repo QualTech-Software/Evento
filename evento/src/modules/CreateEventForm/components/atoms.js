@@ -220,7 +220,8 @@ export const StyledEventButton = styled.button`
   padding: 20px 67px 20px 67px;
   gap: 10px;
   border-radius: 10px;
-  background-color: #2b293d;
+  background-color: rgba(255, 0, 0, 1);
+  border: 0;
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
 `;
@@ -235,8 +236,9 @@ export const StyledEventButtonP = styled.p`
   text-align: center;
   color: rgba(255, 255, 255, 1);
   position: relative;
-  top: -13.5px;
-  left: -40px;
+  margin-top: 0.5px;
+
+  margin-left: -40px;
 `;
 export const StyledTextArea = styled.textarea`
   padding: 14px 24px 14px 24px;

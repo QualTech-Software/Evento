@@ -9,8 +9,8 @@ import {
   StyledInterest,
   StyledSignup,
   StyledEventoLogo,
-} from "../../Home/components/atoms";
-import { StyledLink } from "../../Home/components/atoms";
+} from "../../home/components/atoms";
+import { StyledLink } from "../../home/components/atoms";
 
 const Navbar = () => (
   <StyledNavbar className="qt-navbar">

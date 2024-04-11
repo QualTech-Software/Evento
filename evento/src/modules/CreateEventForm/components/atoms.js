@@ -218,9 +218,9 @@ export const StyledEventButton = styled.button`
   margin-top: 48px;
   left: 1149px;
   padding: 20px 67px 20px 67px;
-  gap: 10px;
   border-radius: 10px;
-  background-color: #2b293d;
+  border: none;
+  background-color: rgba(255, 0, 0, 1);
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
 `;

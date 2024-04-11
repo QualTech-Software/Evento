@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-// import { arrowdropdown, venue, online } from "./icons";
 import { DemoItem, DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-
 import { arrowdropdown, venue, online } from "../../../icons";
 import {
   StyledCreateEvent,
@@ -40,40 +37,25 @@ import {
   StyledEventOnline,
   StyledDropdownItems,
 } from "../components/atoms.js";
+import { options, placeOptions, textAreas } from "../data/Edit.json";
 
-const options = [
-  "Culture and Arts",
-  "Education and Business",
-  "Entertainment",
-  "Food & Drink",
-  "Technology & Innovation",
-  "Travel & Adventure",
-];
-const placeOptions = ["Venue", "Online"];
-
-const textAreas = [
-  {
-    title: "Additional Information",
-    name: "postContent",
-    placeholder:
-      "Describe what's special about your event & other important details.",
-  },
-  {
-    title: "Rules and Regulations",
-    name: "rulesContent",
-    placeholder: "Rules and regulations.",
-  },
-];
+import DialogPopup from "./DialogPopup.jsx";
 
 export default function Edit({ setCurrentStep }) {
+  const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedPlace, setSelectedPlace] = useState("");
-  const [cleared, setCleared] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState("");
+  const [errorTitle, setErrorTitle] = useState("");
+  const [errorCategory, setErrorCategory] = useState("");
+  const [errorLocation, setErrorLocation] = useState("");
+  const [errorDate, setErrorDate] = useState("");
+  const [errorTime, setErrorTime] = useState("");
   const navigate = useNavigate();
 
   const toggleCategoryDropdown = () => {
@@ -98,9 +80,49 @@ export default function Edit({ setCurrentStep }) {
     setSelectedPlace(place);
     setIsPlaceDropdownOpen(false);
   };
+  const openDialog = (message) => {
+    setDialogMessage(message);
+    setDialogOpen(true);
+  };
+
   const handleSaveAndContinue = () => {
-    setCurrentStep(1);
-    navigate("/createeventform/banner");
+    if (validateEventDetails()) {
+      setCurrentStep(1);
+      navigate("/createeventform/banner");
+    } else {
+      openDialog("Please fill in all the details to proceed.");
+    }
+  };
+
+  const validateEventDetails = () => {
+    const isEventTitleValid = eventTitle.trim() !== "";
+    const isEventCategoryValid = selectedOption.trim() !== "";
+    const isStartDateValid = startDate !== null;
+    const isEndDateValid = endDate !== null;
+    const isLocationValid = selectedPlace.trim() !== "";
+
+    return (
+      isEventTitleValid &&
+      isEventCategoryValid &&
+      isStartDateValid &&
+      isEndDateValid &&
+      isLocationValid
+    );
+  };
+  const handleStartDateChange = (date) => {
+    if (date && date >= new Date()) {
+      setStartDate(date);
+    } else {
+      openDialog("Please select a valid start date.");
+    }
+  };
+
+  const handleEndDateChange = (date) => {
+    if (date && startDate && date >= startDate) {
+      setEndDate(date);
+    } else {
+      openDialog("Please select a valid end date");
+    }
   };
 
   return (
@@ -120,7 +142,13 @@ export default function Edit({ setCurrentStep }) {
           <StyledEventinput
             type="text"
             placeholder="Enter the name of your event"
+            value={eventTitle}
+            onChange={(e) => {
+              setEventTitle(e.target.value);
+              setErrorTitle("");
+            }}
           />
+          {errorTitle && <Typography color="error">{errorTitle}</Typography>}
         </StyledEventTitle>
         <StyledEventCategory className="qt-event-category">
           <StyledCategoryLabel>Event Category</StyledCategoryLabel>
@@ -158,7 +186,6 @@ export default function Edit({ setCurrentStep }) {
           </div>
         </StyledEventCategory>
         <StyledEventDates className="qt-event-dates">
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
           <Box
             sx={{
               width: "100%",
@@ -169,18 +196,13 @@ export default function Edit({ setCurrentStep }) {
           >
             <DemoItem label="Start Date">
               <DatePicker
+                value={startDate}
+                onChange={handleStartDateChange}
                 className="custom-datepicker"
-                slotProps={{
-                  field: {
-                    clearable: true,
-                    onClear: () => setCleared(true),
-                  },
-                }}
+                inputProps={{ readOnly: true }}
               />
             </DemoItem>
-            {/* Other date picker components */}
           </Box>
-          {/* </LocalizationProvider> */}
           <StyledEventStartTime className="qt-event-starttime">
             <label>Start Time</label>
             <DemoContainer components={["TimePicker"]}>
@@ -197,14 +219,10 @@ export default function Edit({ setCurrentStep }) {
             <DemoItem label="End Date">
               <DatePicker
                 value={endDate}
-                onChange={(date) => setEndDate(date)}
+                onChange={handleEndDateChange}
                 className="custom-datepicker"
-                slotProps={{
-                  field: {
-                    clearable: true,
-                    onClear: () => setCleared(true),
-                  },
-                }}
+                inputProps={{ readOnly: true }}
+                minDate={startDate}
               />
             </DemoItem>
           </div>
@@ -258,8 +276,7 @@ export default function Edit({ setCurrentStep }) {
                   <>
                     <StyledEventVenue src={venue} className="qt-event-venue" />
                     <span>{placeOption}</span>
-                    <span className="venue-placeholder"></span>{" "}
-                    {/* Placeholder for Venue */}
+                    <span className="venue-placeholder"></span>
                   </>
                 ) : (
                   <>
@@ -268,8 +285,7 @@ export default function Edit({ setCurrentStep }) {
                       className="qt-event-online"
                     />
                     <span>{placeOption}</span>
-                    <span className="online-placeholder"></span>{" "}
-                    {/* Placeholder for Online */}
+                    <span className="online-placeholder"></span>
                   </>
                 )}
               </StyledDropdownItems>
@@ -298,6 +314,11 @@ export default function Edit({ setCurrentStep }) {
         >
           <StyledEventButtonP>Save & Continue</StyledEventButtonP>
         </StyledEventButton>
+        <DialogPopup
+          dialogOpen={dialogOpen}
+          setDialogOpen={setDialogOpen}
+          dialogMessage={dialogMessage}
+        />
       </StyledCreateEvent>
     </LocalizationProvider>
   );

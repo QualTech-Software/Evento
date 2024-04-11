@@ -8,7 +8,7 @@ import {
   StyleErrorTypography,
 } from "./atoms";
 
-const OtpErrorModal = ({ modalOpen, handleCloseModal, modalMessage }) => {
+const OtpErrorModal = ({ modalOpen, handleCloseModal, modalMessage }) =>
   modalOpen && (
     <StyledMainErrorBox style={{ marginTop: "-230px" }}>
       <StyledSubErrorBox>
@@ -25,10 +25,9 @@ const OtpErrorModal = ({ modalOpen, handleCloseModal, modalMessage }) => {
       <StyledInvalidText>
         <hr />
         <h4>Oops!</h4>
-        <p>Enter the correct email address and password to log in</p>
+        <p>Enter the correct OTP to verify your account details.</p>
       </StyledInvalidText>
     </StyledMainErrorBox>
   );
-};
 
 export default OtpErrorModal;

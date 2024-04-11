@@ -7,7 +7,7 @@ import {
   StyledSubSuccessBox,
 } from "./atoms";
 
-const OtpSuccessModal = ({ modalOpen, handleCloseModal, modalMessage }) => {
+const OtpSuccessModal = ({ modalOpen, handleCloseModal, modalMessage }) =>
   modalOpen && (
     <StyledMainBox style={{ marginTop: "-230px" }}>
       <StyledRedModalButton onClick={handleCloseModal}>
@@ -23,6 +23,5 @@ const OtpSuccessModal = ({ modalOpen, handleCloseModal, modalMessage }) => {
       </StyledSubSuccessBox>
     </StyledMainBox>
   );
-};
 
 export default OtpSuccessModal;

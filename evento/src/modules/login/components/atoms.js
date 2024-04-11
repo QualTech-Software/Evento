@@ -397,7 +397,7 @@ export const StyledOtpSubText = styled.div`
   }
 `;
 export const StyledOtpInput = styled.div`
-  margin-left: 225px;
+  margin-left: 190px;
   display: flex;
   margin-top: 24px;
   gap: 16px;

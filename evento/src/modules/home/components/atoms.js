@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { InputLabel, MenuItem } from "@mui/material";
+import { Button, InputLabel, MenuItem } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -390,7 +390,7 @@ export const DropDown = styled.div`
 export const Head = styled.div`
   width: 485px;
   height: 44px;
-  margin: 40px 0px 16px 64px;
+  margin: 40px 0px 21px;
 
   font-family: Open Sans;
   font-size: 32px;
@@ -406,6 +406,9 @@ export const Eventname = styled.div`
   text-align: left;
   color: #1e0a3c;
   height: 27px;
+  p {
+    margin-top: -28px;
+  }
 `;
 export const Eventadd = styled.div`
   font-family: Open Sans;
@@ -428,6 +431,7 @@ export const Eventtime = styled.div`
 `;
 export const Tickets = styled.div`
   height: 25px;
+
   display: inline-flex;
   .price {
     font-family: Open Sans;
@@ -480,6 +484,56 @@ export const StyledCard = styled(Card)`
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.2) !important;
   }
 `;
+export const StyledOrgButton = styled(Button)`
+  margin-top: 70px;
+  width: 252px;
+  height: 48px;
+  background-color: rgba(255, 0, 0, 1);
+  margin-left: 24px;
+  border-radius: 8px;
+  p {
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.51px;
+    text-align: left;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+  }
+  &:hover {
+    background-color: rgba(255, 0, 0, 1);
+  }
+`;
+export const StyledPrice = styled.div`
+  h4 {
+    margin-top: 14px;
+    margin-left: 14px;
+  }
+  p {
+    margin-top: -17px;
+  }
+`;
+export const StyledOrgInterest = styled.div`
+  margin-left: 24px;
+  h4 {
+    margin-top: 14px;
+    margin-left: 12px;
+  }
+  p {
+    margin-top: -14px;
+  }
+`;
+export const StyledCardOrganizer = styled(Card)`
+  width: 300px;
+  margin: 10px;
+  border: 1px solid rgba(171, 171, 171, 1);
+  &:hover {
+    background: rgba(255, 239, 239, 1);
+    border: 1px solid black;
+  }
+`;
+
 export const StyledCardOverflow = styled(CardOverflow)`
   width: 410px;
   height: 205px;
@@ -489,6 +543,7 @@ export const StyledAspectRatio = styled(AspectRatio)`
   img {
     position: "absolute";
     left: 0;
+
     z-index: 1;
   }
 `;
@@ -537,7 +592,7 @@ export const StyledButtonGroup = styled(ButtonGroup)`
   line-height: 27px;
   letter-spacing: 0em;
   text-align: left;
-  margin-left: 64px;
+  // margin-left: 64px;
   margin-top: 16px;
   border-radius: 8;
 

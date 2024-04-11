@@ -62,7 +62,6 @@ const RightContainer = () => {
       navigate("/");
     }, 10000);
   };
-
   const handleLoginFailure = (errorMessage) => {
     setModalMessage(errorMessage);
     setModalOpen(true); // Open the modal

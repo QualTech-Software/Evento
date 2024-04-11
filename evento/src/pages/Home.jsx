@@ -11,7 +11,7 @@ import Organizer from "../modules/Home/pages/Organizer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo, login } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
-import CreateEvent from "../modules/Home/pages/CreateEvent";
+import CreateEvent from "../modules/events/pages/CreateEvent";
 import TopDestination from "../modules/Home/pages/TopDestination";
 import {
   FormControl,

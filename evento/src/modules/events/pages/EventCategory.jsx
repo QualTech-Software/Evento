@@ -17,9 +17,10 @@ import exploreData from "../components/ExploreData.json";
 import { useParams } from "react-router-dom";
 
 import Onlineevents from "../../Home/pages/Events";
-import CreateEvent from "../../Home/pages/CreateEvent";
+
 import Orgnizer from "../../Home/pages/Organizer";
 import TopDestination from "../../Home/pages/TopDestination";
+import CreateEvent from "./CreateEvent";
 
 const EventCategory = () => {
   const { id } = useParams();

@@ -74,7 +74,7 @@ const EventCategory = () => {
         </StyledExploreCategory>
         <Onlineevents />
         <CreateEvent />
-        <Orgnizer />
+        <Organizer />
         <TopDestination />
       </StyledFunEventMain>
     </>

@@ -1,40 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import "../components/Categories.css";
+import { connect } from "react-redux";
+import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
-import CategoryData from "../components/CategoryData.json";
-import {
-  fun,
-  sports,
-  traditional,
-  travel,
-  education,
-  business,
-} from "../../../assets";
-
-const Categories = () => {
+const Categories = ({ categories, loading, fetchCategories }) => {
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
   const navigate = useNavigate();
-
   const handleCategoryClick = (id) => {
-    // Navigate to the EventCategory component with the corresponding ID
     navigate(`/category/event/${id}`);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="qt-categories">
       <Typography variant="h1">Explore Categories</Typography>
       <div className="qt-categories-cards">
-        {CategoryData.map((category) => (
+        {categories.map((category) => (
           <div
             key={category.id}
-            onClick={() => handleCategoryClick(category.id)}
             className={`qt-card-${category.name.toLowerCase()}`}
+            onClick={() => handleCategoryClick(category.id)}
           >
             <Typography variant="h6">{category.name}</Typography>
             <img
-              src={getImage(category.name)}
-              className={`qt-${category.name.toLowerCase()}-png`}
+              src={category.logo_img}
               alt={category.name}
+              className={`qt-${category.name.toLowerCase()}-png`}
             />
           </div>
         ))}
@@ -43,24 +40,13 @@ const Categories = () => {
   );
 };
 
-// Helper function to get the image based on category name
-const getImage = (categoryName) => {
-  switch (categoryName.toLowerCase()) {
-    case "fun":
-      return fun;
-    case "sports":
-      return sports;
-    case "traditional":
-      return traditional;
-    case "travel":
-      return travel;
-    case "education":
-      return education;
-    case "business":
-      return business;
-    default:
-      return null;
-  }
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories,
+  loading: state.categories.loading,
+});
+
+const mapDispatchToProps = {
+  fetchCategories: fetchCategoriesRequest,
 };
 
-export default Categories;
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

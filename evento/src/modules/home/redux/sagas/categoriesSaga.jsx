@@ -1,4 +1,4 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import {
   fetchCategoriesRequest,
@@ -26,7 +26,7 @@ function* fetchCategoriesSaga() {
 }
 
 function* categoriesSaga() {
-  yield takeEvery("FETCH_CATEGORIES_REQUEST", fetchCategoriesSaga);
+  yield takeLatest("FETCH_CATEGORIES_REQUEST", fetchCategoriesSaga);
 }
 
 export default categoriesSaga;

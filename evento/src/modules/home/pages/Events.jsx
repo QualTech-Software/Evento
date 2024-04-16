@@ -1,6 +1,5 @@
 import * as React from "react";
 import Typography from "@mui/joy/Typography";
-
 import Button from "@mui/joy/Button";
 
 import {
@@ -47,42 +46,44 @@ const EventCard = ({
   },
 }) => (
   <CardOutline>
-    <StyledCard variant="outlined">
-      <StyledCardOverflow>
-        <StyledAspectRatio ratio="2">
-          <img src={event.img} loading="lazy" alt="" />
-        </StyledAspectRatio>
-        <StyledIconButton size="md" variant="solid" backgroundcolor="#fff">
-          <img src={vector} loading="lazy" alt="" />
-        </StyledIconButton>
-        <Text>{event.categoryTitle}</Text>
-      </StyledCardOverflow>
-      <StyledCardContent>
-        <StyledCardTypography level="title-md">
-          <img src={icon1} />
-          {event.date}
-        </StyledCardTypography>
-        <Typography level="body-sm">
-          <Eventname>{event.name}</Eventname>
-          <Eventadd>{event.description}</Eventadd>
-          <Eventtime>{event.time}</Eventtime>
-        </Typography>
-        <Tickets className="tickets" orientation="horizontal">
-          <div className="price">
-            <img src={ticket} />
-            {event.price}
-          </div>
-          <div className="ellipse">
-            <img src={ellipse} />
-          </div>
+    <a href="/eventinformation">
+      <StyledCard variant="outlined">
+        <StyledCardOverflow>
+          <StyledAspectRatio ratio="2">
+            <img src={event.img} loading="lazy" alt="" />
+          </StyledAspectRatio>
+          <StyledIconButton size="md" variant="solid" backgroundcolor="#fff">
+            <img src={vector} loading="lazy" alt="" />
+          </StyledIconButton>
+          <Text>{event.categoryTitle}</Text>
+        </StyledCardOverflow>
+        <StyledCardContent>
+          <StyledCardTypography level="title-md">
+            <img src={icon1} />
+            {event.date}
+          </StyledCardTypography>
+          <Typography level="body-sm">
+            <Eventname>{event.name}</Eventname>
+            <Eventadd>{event.description}</Eventadd>
+            <Eventtime>{event.time}</Eventtime>
+          </Typography>
+          <Tickets className="tickets" orientation="horizontal">
+            <div className="price">
+              <img src={ticket} />
+              {event.price}
+            </div>
+            <div className="ellipse">
+              <img src={ellipse} />
+            </div>
 
-          <div className="interested">
-            <img src={star} />
-            {event.favCount} interested
-          </div>
-        </Tickets>
-      </StyledCardContent>
-    </StyledCard>
+            <div className="interested">
+              <img src={star} />
+              {event.favCount} interested
+            </div>
+          </Tickets>
+        </StyledCardContent>
+      </StyledCard>
+    </a>
   </CardOutline>
 );
 export default function BestEvent() {

@@ -1,47 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import "../components/Categories.css";
+import { connect } from "react-redux";
+import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-const Categories = () => {
-  const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
-
+const Categories = ({ categories, loading, fetchCategories }) => {
   useEffect(() => {
     fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      let allCategories = [];
-
-      for (let i = 1; i <= 6; i++) {
-        const response = await axios.get(
-          `http://localhost:3000/api/categories/${i}`
-        );
-        const data = response.data;
-        if (data.success && data.categories.length > 0) {
-          allCategories = [...allCategories, ...data.categories];
-        } else {
-          console.log(`No data found for category ID ${i}`);
-        }
-      }
-
-      // Filter categories with category_id from 1 to 6
-      const filteredCategories = allCategories.filter(
-        (category) => category.category_id >= 1 && category.category_id <= 6
-      );
-
-      // Update state with the filtered categories
-      setCategories(filteredCategories);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
-
+  }, [fetchCategories]);
+  const navigate = useNavigate();
   const handleCategoryClick = (id) => {
     navigate(`/category/event/${id}`);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="qt-categories">
@@ -49,12 +23,16 @@ const Categories = () => {
       <div className="qt-categories-cards">
         {categories.map((category) => (
           <div
-            key={category.category_id}
-            onClick={() => handleCategoryClick(category.category_id)}
+            key={category.id}
             className={`qt-card-${category.name.toLowerCase()}`}
+            onClick={() => handleCategoryClick(category.id)}
           >
             <Typography variant="h6">{category.name}</Typography>
-            <img src={category.logo_img} alt={category.name} />
+            <img
+              src={category.logo_img}
+              alt={category.name}
+              className={`qt-${category.name.toLowerCase()}-png`}
+            />
           </div>
         ))}
       </div>
@@ -62,4 +40,13 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories,
+  loading: state.categories.loading,
+});
+
+const mapDispatchToProps = {
+  fetchCategories: fetchCategoriesRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

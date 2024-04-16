@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Button,
   Typography,
 } from "@mui/material";
+import { StyledDialogbox } from "../components/atoms";
 
 export default function DialogPopup({
   dialogOpen,
@@ -14,7 +14,7 @@ export default function DialogPopup({
   dialogMessage,
 }) {
   return (
-    <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+    <StyledDialogbox open={dialogOpen} onClose={() => setDialogOpen(false)}>
       <DialogTitle>Message</DialogTitle>
       <DialogContent>
         <Typography>{dialogMessage}</Typography>
@@ -22,6 +22,6 @@ export default function DialogPopup({
       <DialogActions>
         <Button onClick={() => setDialogOpen(false)}>Close</Button>
       </DialogActions>
-    </Dialog>
+    </StyledDialogbox>
   );
 }

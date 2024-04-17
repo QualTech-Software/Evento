@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { googleplay, ios } from "../../../../public/assets/index.js";
-
 import {
   StyledFooter,
   StyledLinkEvento,
@@ -13,43 +12,46 @@ import {
   StyledMain,
   StyledLink,
 } from "../components/atom";
+import FooterData from "../data/Footer.json";
+
 const FooterContainer = () => {
+  const { links } = FooterData;
+
   return (
     <>
       <StyledMain>
         <StyledFooter>
           <StyledLinkEvento>
-            <h3>Evento</h3>
-            <StyledLink href="#">About Us</StyledLink>
-            <StyledLink href="#">Create Event</StyledLink>
-            <StyledLink href="#">Interest</StyledLink>
-            <StyledLink href="#">FAQs</StyledLink>
-            <StyledLink href="#">Terms of Service</StyledLink>
-            <StyledLink href="#">Privacy Policy</StyledLink>
+            <h3>{links.evento.title}</h3>
+            {links.evento.items.map((item, index) => (
+              <StyledLink key={index} href={item.url}>
+                {item.label}
+              </StyledLink>
+            ))}
           </StyledLinkEvento>
           <StyledLinkCategories>
-            <h3>Categories</h3>
-            <StyledLink href="#">Fun</StyledLink>
-            <StyledLink href="#">Sports</StyledLink>
-            <StyledLink href="#">Travel</StyledLink>
-            <StyledLink href="#">Traditional</StyledLink>
-            <StyledLink href="#">Business</StyledLink>
-            <StyledLink href="#">Education</StyledLink>
+            <h3>{links.categories.title}</h3>
+            {links.categories.items.map((item, index) => (
+              <StyledLink key={index} href={item.url}>
+                {item.label}
+              </StyledLink>
+            ))}
           </StyledLinkCategories>
           <StyledLinkHelp>
-            <h3>Help</h3>
-            <StyledLink href="#">Account Support</StyledLink>
-            <StyledLink href="#">Listing Events</StyledLink>
-            <StyledLink href="#">Event Ticketing</StyledLink>
-            <StyledLink href="#">Ticket Purchase</StyledLink>
-            <StyledLink href="#">Terms and Conditions</StyledLink>
+            <h3>{links.help.title}</h3>
+            {links.help.items.map((item, index) => (
+              <StyledLink key={index} href={item.url}>
+                {item.label}
+              </StyledLink>
+            ))}
           </StyledLinkHelp>
           <StyledLinkFollow>
-            <h3>Follow Us</h3>
-            <StyledLink href="#">Facebook</StyledLink>
-            <StyledLink href="#">Instagram</StyledLink>
-            <StyledLink href="#">Twitter</StyledLink>
-            <StyledLink href="#">Youtube</StyledLink>
+            <h3>{links.follow.title}</h3>
+            {links.follow.items.map((item, index) => (
+              <StyledLink key={index} href={item.url}>
+                {item.label}
+              </StyledLink>
+            ))}
           </StyledLinkFollow>
           <StyledLinkApp>
             <h3>Download The App</h3>
@@ -81,4 +83,5 @@ const FooterContainer = () => {
     </>
   );
 };
+
 export default FooterContainer;

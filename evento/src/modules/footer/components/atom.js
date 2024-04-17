@@ -3,7 +3,7 @@ import Button from "@mui/joy/Button";
 import { Link } from "react-router-dom";
 
 export const StyledMain = styled.div`
-  background-color: #1e0a3c;
+  background-color: #000;
   width: 1440px;
   display: block;
 `;

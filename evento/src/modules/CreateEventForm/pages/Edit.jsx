@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { saveEvent } from "../Redux/actions/editactions.js";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-// import { arrowdropdown, venue, online } from "./icons";
 import { DemoItem, DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -9,7 +10,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
 import Box from "@mui/material/Box";
-
 import { arrowdropdown, venue, online } from "../../../icons";
 import {
   StyledCreateEvent,
@@ -39,39 +39,30 @@ import {
   StyledEventOnline,
   StyledDropdownItems,
 } from "../components/atoms.js";
+import { options, placeOptions, textAreas } from "../data/Edit.json";
+import DialogPopup from "../pages/DialogPopup.jsx";
 
-const options = [
-  "Culture and Arts",
-  "Education and Business",
-  "Entertainment",
-  "Food & Drink",
-  "Technology & Innovation",
-  "Travel & Adventure",
-];
-const placeOptions = ["Venue", "Online"];
-
-const textAreas = [
-  {
-    title: "Additional Information",
-    name: "postContent",
-    placeholder:
-      "Describe what's special about your event & other important details.",
-  },
-  {
-    title: "Rules and Regulations",
-    name: "rulesContent",
-    placeholder: "Rules and regulations.",
-  },
-];
-
-export default function Edit({ setCurrentStep }) {
+const Edit = ({ saveEvent, setCurrentStep }) => {
+  const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedPlace, setSelectedPlace] = useState("");
-  const [cleared, setCleared] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState("");
+  const [errorTitle, setErrorTitle] = useState("");
+  const [errorCategory, setErrorCategory] = useState("");
+  const [errorLocation, setErrorLocation] = useState("");
+  const [errorDate, setErrorDate] = useState("");
+  const [errorTime, setErrorTime] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [textAreaValues, setTextAreaValues] = useState(
+    Array(textAreas.length).fill("")
+  );
 
   const navigate = useNavigate();
 
@@ -89,17 +80,83 @@ export default function Edit({ setCurrentStep }) {
       setSelectedPlace("");
     }
   };
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setIsCategoryDropdownOpen(false);
+  const handleOptionClick = async (optionId, optionTitle) => {
+    console.log("Selected Category ID:", optionId); // Logging the category ID
+    try {
+      setSelectedCategory(optionId); // This will now hold the ID
+      setSelectedOption(optionTitle); // This will now hold the Title for display
+      setIsCategoryDropdownOpen(false);
+    } catch (error) {
+      console.error("Error handling category selection:", error);
+    }
   };
+
   const handlePlaceSelect = (place) => {
     setSelectedPlace(place);
     setIsPlaceDropdownOpen(false);
   };
-  const handleSaveAndContinue = () => {
-    setCurrentStep(1);
-    navigate("/createeventform/banner");
+  const openDialog = (message) => {
+    setDialogMessage(message);
+    setDialogOpen(true);
+  };
+  const handleTextAreaChange = (index, value) => {
+    const newTextAreas = [...textAreaValues];
+    newTextAreas[index] = value;
+    setTextAreaValues(newTextAreas);
+  };
+  const handleSaveAndContinue = async () => {
+    const additionalInformation = textAreaValues[0];
+    const rulesRegulations = textAreaValues[1];
+    const formattedStartDate =
+      startDate && startTime
+        ? `${startDate.format("YYYY-MM-DD")}T${startTime.format("HH:mm:ss")}`
+        : "";
+    const formattedEndDate =
+      endDate && endTime
+        ? `${endDate.format("YYYY-MM-DD")}T${endTime.format("HH:mm:ss")}`
+        : "";
+    if (!validateEventDetails()) {
+      // If validation fails, show a dialog
+      openDialog("Please fill in all required fields before continuing.");
+      return;
+    }
+
+    const eventData = {
+      title: eventTitle,
+      category_id: selectedCategory,
+      start_date_time: formattedStartDate,
+      end_date_time: formattedEndDate,
+      location: selectedPlace,
+      additional_information: additionalInformation,
+      rules_regulations: rulesRegulations,
+      is_online: "1",
+      is_approved: "1",
+    };
+
+    try {
+      await saveEvent(eventData);
+      setCurrentStep(1);
+      navigate("/createeventform/banner");
+    } catch (error) {
+      console.error("Failed to save event:", error);
+      openDialog("Failed to save event data. Please try again.");
+    }
+  };
+
+  const validateEventDetails = () => {
+    const isEventTitleValid = eventTitle.trim() !== "";
+    const isEventCategoryValid = selectedOption.trim() !== "";
+    const isStartDateValid = startDate !== null;
+    const isEndDateValid = endDate !== null;
+    const isLocationValid = selectedPlace.trim() !== "";
+
+    return (
+      isEventTitleValid &&
+      isEventCategoryValid &&
+      isStartDateValid &&
+      isEndDateValid &&
+      isLocationValid
+    );
   };
 
   return (
@@ -119,6 +176,10 @@ export default function Edit({ setCurrentStep }) {
           <StyledEventinput
             type="text"
             placeholder="Enter the name of your event"
+            value={eventTitle}
+            onChange={(e) => {
+              setEventTitle(e.target.value);
+            }}
           />
         </StyledEventTitle>
         <StyledEventCategory className="qt-event-category">
@@ -145,19 +206,18 @@ export default function Edit({ setCurrentStep }) {
             >
               {options.map((option, index) => (
                 <StyledDropdownItem
-                  key={option}
-                  className={`dropdown-item`}
+                  key={option.id}
+                  className="dropdown-item"
                   style={{ transitionDelay: `${index * 0.1}s` }}
-                  onClick={() => handleOptionClick(option)}
+                  onClick={() => handleOptionClick(option.id, option.title)}
                 >
-                  <span>{option}</span>
+                  <span>{option.title}</span>
                 </StyledDropdownItem>
               ))}
             </StyledDropdownMenu>
           </div>
         </StyledEventCategory>
         <StyledEventDates className="qt-event-dates">
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
           <Box
             sx={{
               width: "100%",
@@ -168,22 +228,20 @@ export default function Edit({ setCurrentStep }) {
           >
             <DemoItem label="Start Date">
               <DatePicker
+                value={startDate}
+                onChange={(date) => setStartDate(date)}
                 className="custom-datepicker"
-                slotProps={{
-                  field: {
-                    clearable: true,
-                    onClear: () => setCleared(true),
-                  },
-                }}
+                inputProps={{ readOnly: true }}
               />
             </DemoItem>
-            {/* Other date picker components */}
           </Box>
-          {/* </LocalizationProvider> */}
           <StyledEventStartTime className="qt-event-starttime">
             <label>Start Time</label>
             <DemoContainer components={["TimePicker"]}>
               <TimePicker
+                value={startTime}
+                onChange={(time) => setStartTime(time)}
+                renderInput={(params) => <TextField {...params} />}
                 viewRenderers={{
                   hours: renderTimeViewClock,
                   minutes: renderTimeViewClock,
@@ -198,12 +256,8 @@ export default function Edit({ setCurrentStep }) {
                 value={endDate}
                 onChange={(date) => setEndDate(date)}
                 className="custom-datepicker"
-                slotProps={{
-                  field: {
-                    clearable: true,
-                    onClear: () => setCleared(true),
-                  },
-                }}
+                inputProps={{ readOnly: true }}
+                minDate={startDate}
               />
             </DemoItem>
           </div>
@@ -211,6 +265,9 @@ export default function Edit({ setCurrentStep }) {
             <label>End Time</label>
             <DemoContainer components={["TimePicker"]}>
               <TimePicker
+                value={endTime}
+                onChange={(time) => setEndTime(time)}
+                renderInput={(params) => <TextField {...params} />}
                 viewRenderers={{
                   hours: renderTimeViewClock,
                   minutes: renderTimeViewClock,
@@ -257,8 +314,7 @@ export default function Edit({ setCurrentStep }) {
                   <>
                     <StyledEventVenue src={venue} className="qt-event-venue" />
                     <span>{placeOption}</span>
-                    <span className="venue-placeholder"></span>{" "}
-                    {/* Placeholder for Venue */}
+                    <span className="venue-placeholder"></span>
                   </>
                 ) : (
                   <>
@@ -267,8 +323,7 @@ export default function Edit({ setCurrentStep }) {
                       className="qt-event-online"
                     />
                     <span>{placeOption}</span>
-                    <span className="online-placeholder"></span>{" "}
-                    {/* Placeholder for Online */}
+                    <span className="online-placeholder"></span>
                   </>
                 )}
               </StyledDropdownItems>
@@ -288,6 +343,8 @@ export default function Edit({ setCurrentStep }) {
               placeholder={textArea.placeholder}
               rows="10"
               cols="118"
+              value={textAreaValues[index]}
+              onChange={(e) => handleTextAreaChange(index, e.target.value)}
             />
           </StyledDiscriptionTitle>
         ))}
@@ -297,7 +354,17 @@ export default function Edit({ setCurrentStep }) {
         >
           <StyledEventButtonP>Save & Continue</StyledEventButtonP>
         </StyledEventButton>
+        <DialogPopup
+          dialogOpen={dialogOpen}
+          setDialogOpen={setDialogOpen}
+          dialogMessage={dialogMessage}
+        />
       </StyledCreateEvent>
     </LocalizationProvider>
   );
-}
+};
+const mapDispatchToProps = {
+  saveEvent,
+};
+
+export default connect(null, mapDispatchToProps)(Edit);

@@ -1,6 +1,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
-import { CardMedia, Fade, IconButton } from "@mui/material";
+import { CardMedia, Fade, IconButton, Dialog } from "@mui/material";
 import styled from "styled-components";
 
 //createeventform
@@ -157,7 +157,6 @@ export const StyledEventDates = styled.div`
 export const StyledEventStartTime = styled.div`
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
@@ -179,7 +178,7 @@ export const StyledLocationh5 = styled.b`
 export const StyledLocationB = styled.b`
   height: 25px;
   position: relative;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 600;
   line-height: 25px;
@@ -196,7 +195,7 @@ export const StyledEventLocationTitle = styled.div`
 `;
 export const StyledLocationLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -205,7 +204,6 @@ export const StyledLocationLabel = styled.label`
 `;
 export const StyledDiscriptionTitle = styled.div`
   width: 1003px;
-
   gap: 10px;
   position: relative;
   left: 64px;
@@ -218,9 +216,9 @@ export const StyledEventButton = styled.button`
   margin-top: 48px;
   left: 1149px;
   padding: 20px 67px 20px 67px;
-  gap: 10px;
   border-radius: 10px;
-  background-color: #2b293d;
+  border: none;
+  background-color: rgba(255, 0, 0, 1);
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
 `;
@@ -242,16 +240,19 @@ export const StyledTextArea = styled.textarea`
   padding: 14px 24px 14px 24px;
   margin-top: 16px;
   gap: 10px;
-
   border-radius: 6px;
   border: 1px solid rgba(130, 130, 130, 0.7);
-
   &::placeholder {
     color: #ccc;
+    font-size: 16px;
+    font-family: "open sans";
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
   }
 `;
 export const StyledEventLabel = styled.label`
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -261,8 +262,8 @@ export const StyledEventLabel = styled.label`
 export const StyledEventinput = styled.input`
   width: 900px;
   height: 50px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-family: "Open Sans";
+  font-size: 22px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -279,6 +280,7 @@ export const StyledEventinput = styled.input`
 
   &::placeholder {
     color: #ccc;
+    font-size: 16px;
   }
   &:focus {
     border-color: #0076b8;
@@ -289,7 +291,7 @@ export const StyledEventinput = styled.input`
 `;
 export const StyledCategoryLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -334,7 +336,7 @@ export const StyledCategoryInput = styled.input`
 export const StyledLocationInput = styled.input`
   width: 900px;
   height: 50px;
-  font-family: "Inter", sans-serif;
+  font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -357,7 +359,7 @@ export const StyledLocationInput = styled.input`
     border-color: #ccc;
   }
   &.selected {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans";
     font-size: 22px;
     font-weight: 400;
     line-height: 30px;
@@ -398,6 +400,11 @@ export const StyledDropdownItems = styled.div`
     text-align: left;
     position: relative;
     top: -30px; /* Adjust the positioning as needed */
+  }
+`;
+export const StyledDialogbox = styled(Dialog)`
+  .MuiDialog-paper {
+    border-radius: 8px; /* Set border radius to 8px */
   }
 `;
 // banner.js

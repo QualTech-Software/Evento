@@ -1,5 +1,7 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
+import CssBaseline from "@mui/material/CssBaseline";
 import { CardMedia, Fade, IconButton, Dialog } from "@mui/material";
 import styled from "styled-components";
 

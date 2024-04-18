@@ -2,6 +2,7 @@
   "links": {
     "evento": {
       "title": "Evento",
+      "component": "Evento",
       "items": [
         { "label": "About Us", "url": "#" },
         { "label": "Create Event", "url": "#" },
@@ -13,6 +14,7 @@
     },
     "categories": {
       "title": "Categories",
+      "component": "Categories",
       "items": [
         { "label": "Fun", "url": "#" },
         { "label": "Sports", "url": "#" },
@@ -24,6 +26,7 @@
     },
     "help": {
       "title": "Help",
+      "component": "Help",
       "items": [
         { "label": "Account Support", "url": "#" },
         { "label": "Listing Events", "url": "#" },
@@ -34,6 +37,7 @@
     },
     "follow": {
       "title": "Follow Us",
+      "component": "Follow",
       "items": [
         { "label": "Facebook", "url": "#" },
         { "label": "Instagram", "url": "#" },

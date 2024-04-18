@@ -1,0 +1,49 @@
+{
+  "links": {
+    "evento": {
+      "title": "Evento",
+      "component": "Evento",
+      "items": [
+        { "label": "About Us", "url": "#" },
+        { "label": "Create Event", "url": "#" },
+        { "label": "Interest", "url": "#" },
+        { "label": "FAQs", "url": "#" },
+        { "label": "Terms of Service", "url": "#" },
+        { "label": "Privacy Policy", "url": "#" }
+      ]
+    },
+    "categories": {
+      "title": "Categories",
+      "component": "Categories",
+      "items": [
+        { "label": "Fun", "url": "#" },
+        { "label": "Sports", "url": "#" },
+        { "label": "Travel", "url": "#" },
+        { "label": "Traditional", "url": "#" },
+        { "label": "Business", "url": "#" },
+        { "label": "Education", "url": "#" }
+      ]
+    },
+    "help": {
+      "title": "Help",
+      "component": "Help",
+      "items": [
+        { "label": "Account Support", "url": "#" },
+        { "label": "Listing Events", "url": "#" },
+        { "label": "Event Ticketing", "url": "#" },
+        { "label": "Ticket Purchase", "url": "#" },
+        { "label": "Terms and Conditions", "url": "#" }
+      ]
+    },
+    "follow": {
+      "title": "Follow Us",
+      "component": "Follow",
+      "items": [
+        { "label": "Facebook", "url": "#" },
+        { "label": "Instagram", "url": "#" },
+        { "label": "Twitter", "url": "#" },
+        { "label": "Youtube", "url": "#" }
+      ]
+    }
+  }
+}

@@ -1,8 +1,16 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
-
+import {
+  CardMedia,
+  Fade,
+  IconButton,
+  Box,
+  Typography,
+  Button,
+} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { CardMedia, Fade, IconButton, Dialog } from "@mui/material";
+import { Dialog } from "@mui/material";
+
 import styled from "styled-components";
 
 //createeventform
@@ -223,6 +231,10 @@ export const StyledEventButton = styled.button`
   background-color: rgba(255, 0, 0, 1);
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
+  &:hover {
+    background-color: black;
+    cursor: pointer;
+  }
 `;
 export const StyledEventButtonP = styled.p`
   width: 143px;
@@ -251,6 +263,9 @@ export const StyledTextArea = styled.textarea`
     font-weight: 400;
     line-height: 22px;
     letter-spacing: 0em;
+  }
+  &:focus {
+    border: 1px solid #0076b8;
   }
 `;
 export const StyledEventLabel = styled.label`
@@ -404,10 +419,75 @@ export const StyledDropdownItems = styled.div`
     top: -30px; /* Adjust the positioning as needed */
   }
 `;
-export const StyledDialogbox = styled(Dialog)`
-  .MuiDialog-paper {
-    border-radius: 8px; /* Set border radius to 8px */
+export const StyledDialogTypography = styled(Typography)`
+  display: flex;
+  p {
+    color: red;
+    margin-left: 12px !important;
+    margin-top: 21px !important;
+    margin-right: 252px;
+    font-family: "Open Sans";
   }
+  img {
+    height: 24px;
+    width: 24px;
+    margin-left: 309px;
+    margin-top: 20px;
+  }
+`;
+export const StyledDialogbox = styled(Box)`
+  display: flex;
+  height: 64px;
+`;
+export const StyledpopupText = styled.div`
+  h4 {
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: center;
+    margin-top: 9px;
+  }
+  p {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: center;
+    margin-top: -17px;
+  }
+`;
+export const StyledMainErrorBox = styled(Box)`
+  position: relative;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 151px;
+  background-color: white;
+  box-shadow: 24;
+  border-radius: 0px 0px 8px 8px;
+  p: 4;
+  hr {
+    width: 718px;
+    border-top: 0.5px solid red;
+        margin-top: 0px;
+}
+  }
+`;
+export const StyledDialogButton = styled.button`
+  height: 40px;
+  width: 40px;
+  // margin-top: 16px;
+  // margin-right: 16px;
+  background-image: url("../../../../public/assets/RedClosebtn.png");
+  background-size: 40px 40px;
+  border: none;
+  margin-top: 16px;
+  // img {
+  //   height: 40px;
+  //   width: 40px;
+  // }
 `;
 // banner.js
 export const EventBanner = styled.div`

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { saveEvent } from "../Redux/actions/editactions.js";
+import { Modal, Typography } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DemoItem, DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -53,19 +53,18 @@ const Edit = ({ saveEvent, setCurrentStep }) => {
   const [endDate, setEndDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [dialogMessage, setDialogMessage] = useState("");
-  const [errorTitle, setErrorTitle] = useState("");
-  const [errorCategory, setErrorCategory] = useState("");
-  const [errorLocation, setErrorLocation] = useState("");
-  const [errorDate, setErrorDate] = useState("");
-  const [errorTime, setErrorTime] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [textAreaValues, setTextAreaValues] = useState(
     Array(textAreas.length).fill("")
   );
 
   const navigate = useNavigate();
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   const toggleCategoryDropdown = () => {
     setIsCategoryDropdownOpen(!isCategoryDropdownOpen);
@@ -97,8 +96,8 @@ const Edit = ({ saveEvent, setCurrentStep }) => {
     setIsPlaceDropdownOpen(false);
   };
   const openDialog = (message) => {
-    setDialogMessage(message);
-    setDialogOpen(true);
+    setModalMessage(message);
+    setModalOpen(true);
   };
   const handleTextAreaChange = (index, value) => {
     const newTextAreas = [...textAreaValues];
@@ -117,8 +116,7 @@ const Edit = ({ saveEvent, setCurrentStep }) => {
         ? `${endDate.format("YYYY-MM-DD")}T${endTime.format("HH:mm:ss")}`
         : "";
     if (!validateEventDetails()) {
-      // If validation fails, show a dialog
-      openDialog("Please fill in all required fields before continuing.");
+      openDialog("Message");
       return;
     }
 
@@ -355,11 +353,12 @@ const Edit = ({ saveEvent, setCurrentStep }) => {
         >
           <StyledEventButtonP>Save & Continue</StyledEventButtonP>
         </StyledEventButton>
-        <DialogPopup
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-          dialogMessage={dialogMessage}
-        />
+        <Modal open={modalOpen} onClose={handleCloseModal}>
+          <DialogPopup
+            handleCloseModal={handleCloseModal}
+            modalMessage={modalMessage}
+          />
+        </Modal>
       </StyledCreateEvent>
     </LocalizationProvider>
   );

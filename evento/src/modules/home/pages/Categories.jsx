@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import "../components/Categories.css";
+import {
+  StyledCategories,
+  StyledCatergoriesCard,
+  Styledimage,
+  StyledTypography,
+  StyledCategoryCard,
+} from "../components/atoms";
 import { connect } from "react-redux";
 import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
@@ -18,25 +25,25 @@ const Categories = ({ categories, loading, fetchCategories }) => {
   }
 
   return (
-    <div className="qt-categories">
+    <StyledCategories>
       <Typography variant="h1">Explore Categories</Typography>
-      <div className="qt-categories-cards">
+      <StyledCatergoriesCard>
         {categories.map((category) => (
-          <div
+          <StyledCategoryCard
             key={category.id}
-            className={`qt-card-${category.name.toLowerCase()}`}
+            category={category}
             onClick={() => handleCategoryClick(category.id)}
           >
-            <Typography variant="h6">{category.name}</Typography>
-            <img
+            <StyledTypography variant="h6">{category.name}</StyledTypography>
+            <Styledimage
               src={category.logo_img}
               alt={category.name}
-              className={`qt-${category.name.toLowerCase()}-png`}
+              className="qt-img"
             />
-          </div>
+          </StyledCategoryCard>
         ))}
-      </div>
-    </div>
+      </StyledCatergoriesCard>
+    </StyledCategories>
   );
 };
 

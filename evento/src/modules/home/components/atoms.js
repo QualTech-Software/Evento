@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-
+// import styled from "@emotion/styled";
+import styled from "styled-components";
 import { Button, InputLabel, MenuItem } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
@@ -36,15 +36,13 @@ export const MenuItemStyle = styled(MenuItem)`
 `;
 export const StyledFirstInput = styled.div`
   position: relative;
-  width: 820px;
+  // width: 820px;
 `;
 export const TrendingSearch = styled.div`
   background-color: white;
   width: 814px;
   height: 188px;
-
-  position: relative;
-
+  position: absolute;
   border-radius: 0px 0px 10px 10px;
   p {
     font-family: "Open Sans";
@@ -52,19 +50,20 @@ export const TrendingSearch = styled.div`
     font-weight: 600;
     line-height: 27.24px;
     text-align: left;
-    margin-left: 22px;
+    margin: 20px 0px 0px 22px;
   }
 `;
 export const StyledDropDownTrending = styled.div`
-  position: absolute;
-  top: 65px;
+  position: relative;
+  // top: 65px;
+  margin-left: 1px;
 `;
 export const DropdownIconWrapper = styled.div``;
 export const EventGroup = styled.div`
   position: relative;
   width: 738px;
   height: 104px;
-  margin-top: 25px;
+  margin-top: 20px;
   button {
     width: Hug (137px) px;
     margin: 10px;
@@ -82,8 +81,8 @@ export const EventGroup = styled.div`
 `;
 
 export const StyledSecondInput = styled.div`
-  margin-left: 816px;
-  margin-top: -85px;
+  // margin-left: 816px;
+  // margin-top: -84px;
 `;
 export const MenuItemStyle1 = styled(MenuItem)`
   height: 300px;
@@ -115,28 +114,22 @@ export const StyledQtHome = styled.div`
   margin: auto;
 `;
 export const StyledEventoLogo = styled.div`
+  margin: 12px 0px 12px 64px;
   img {
     height: 76px;
     width: 165px;
-    margin-top: 12px;
   }
 `;
 export const StyledNavbar = styled.div`
   width: 1440px;
   height: 100px;
   position: relative;
-  img {
-    width: 191px;
-    height: 98px;
-    top: 1px;
-    margin-left: 64px;
-  }
+  display: flex;
 `;
 export const StyledSidebar = styled.div`
   width: 821px;
   height: 64px;
-  margin-top: -76px;
-  left: 549px;
+  margin: 18px 64px 18px 422px;
   display: flex;
   position: relative;
 `;
@@ -160,7 +153,7 @@ export const StyledCategory = styled.div`
   img {
     width: 24px;
     height: 24px;
-    top: 20px;
+    margin-top: 20px;
     margin-left: 16px;
     position: relative;
   }
@@ -180,12 +173,12 @@ export const StyledEvent = styled.div`
     line-height: 25px;
     letter-spacing: 0em;
     text-align: center;
-    // margin-left: 8px;
+    margin-left: 8px;
   }
   img {
     width: 18px;
     height: 18px;
-    top: 20px;
+    margin-top: 20px;
     margin-left: 16px;
     position: relative;
   }
@@ -338,7 +331,7 @@ export const SearchBar = styled.div`
 export const StyledInputCont = styled.div`
   margin-top: 190px;
   margin-left: 152px;
-  display: block;
+  display: flex;
   .search-input {
     width: 733px;
     height: 80px;
@@ -380,13 +373,10 @@ export const DropDown = styled.div`
   background-color: white;
   width: 383px;
   height: 160px;
-  border-radius: 0px 0px 10px 10px;
-  margin-top: 23px;
-
-  height: 160px;
+  margin-top: 21px;
   border-radius: 0px 0px 10px 10px;
 `;
-//Css Of my home
+// Of my home
 export const Head = styled.div`
   width: 485px;
   height: 44px;
@@ -456,7 +446,7 @@ export const Text = styled.p`
   font-weight: 600;
   line-height: 24.51px;
   text-align: left;
-  margin-top: -35px;
+  margin-top: -34px;
   position: relative;
   color: #fff;
   background-color: #ff0000;
@@ -605,6 +595,9 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     margin-right: 20px;
     border-radius: 50px !important;
   }
+  .btn-default:hover {
+    background-color: red;
+  }
   .btn-tom {
     width: 133px;
     margin-right: 20px;
@@ -627,13 +620,6 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     background: #ffffff;
     border-radius: 50px !important;
     color: #ababab;
-  }
-  .btn-default:hover,
-  .btn-week:hover,
-  .btn-free:hover,
-  .btn-tom:hover {
-    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.25) !important;
-    background-color: transparent !important;
   }
 `;
 
@@ -795,4 +781,97 @@ export const StyledDest = styled.div`
       text-transform: capitalize;
     }
   }
+`;
+//CSS for category cards
+export const StyledCategories = styled.div`
+  width: 1190px;
+  height: 229px;
+  margin: auto;
+  margin-top: 40px;
+  h1 {
+    font-family: "Inter", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+`;
+export const StyledCatergoriesCard = styled.div`
+  width: 1190px;
+  height: 165px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+`;
+export const Styledimage = styled.img`
+  width: 165px;
+  height: 120px;
+  margin-top: 2px;
+  position: relative;
+  border-radius: 8px;
+`;
+export const StyledTypography = styled.div`
+  margin-top: 16px;
+  margin-left: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+`;
+export const StyledCategoryCard = styled.div`
+  width: 165px;
+  height: 165px;
+  margin: 0px 20px 0px 20px;
+  border-radius: 8px;
+  ${({ category }) => {
+    switch (category.name.toLowerCase()) {
+      case "fun":
+        return `
+          background-color: rgba(216, 0, 74, 1);
+          &:hover {
+            background-color: #ff0058;
+          }
+        `;
+      case "sports":
+        return `
+          background-color: rgba(132, 0, 231, 1);
+          &:hover {
+            background-color: #9200ff;
+          }
+        `;
+      case "traditional":
+        return `
+          background-color: rgba(13, 115, 236, 1);
+          &:hover {
+            background-color: #0075ff;
+          }
+        `;
+      case "travel":
+        return `
+          background-color: rgba(214, 110, 15, 1);
+          &:hover {
+            background-color: #ff7a00;
+          }
+        `;
+      case "education":
+        return `
+          background-color: rgba(255, 69, 181, 1);
+          &:hover {
+            background-color: #ff0099;
+          }
+        `;
+      case "business":
+        return `
+          background-color: rgba(23, 211, 64, 1);
+          &:hover {
+            background-color: #00ff38;
+          }
+        `;
+      default:
+        return "";
+    }
+  }}
 `;

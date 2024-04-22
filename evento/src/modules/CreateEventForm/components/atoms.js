@@ -1,6 +1,16 @@
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
-import { CardMedia, Fade, IconButton } from "@mui/material";
+import {
+  CardMedia,
+  Fade,
+  IconButton,
+  Box,
+  Typography,
+  Button,
+} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Dialog } from "@mui/material";
+
 import styled from "styled-components";
 
 //createeventform
@@ -41,7 +51,7 @@ export const StyledNewEventh1 = styled.h1`
   letter-spacing: 0em;
   text-align: left;
 `;
-export const EditLabel = styled.p`
+export const InfoLabel = styled.p`
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -157,7 +167,6 @@ export const StyledEventDates = styled.div`
 export const StyledEventStartTime = styled.div`
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
@@ -179,7 +188,7 @@ export const StyledLocationh5 = styled.b`
 export const StyledLocationB = styled.b`
   height: 25px;
   position: relative;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 600;
   line-height: 25px;
@@ -196,7 +205,7 @@ export const StyledEventLocationTitle = styled.div`
 `;
 export const StyledLocationLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -205,7 +214,6 @@ export const StyledLocationLabel = styled.label`
 `;
 export const StyledDiscriptionTitle = styled.div`
   width: 1003px;
-
   gap: 10px;
   position: relative;
   left: 64px;
@@ -223,6 +231,10 @@ export const StyledEventButton = styled.button`
   background-color: rgba(255, 0, 0, 1);
   position: relative;
   // opacity: ${(props) => (props.isFormComplete ? 1 : 0.5)};
+  &:hover {
+    background-color: black;
+    cursor: pointer;
+  }
 `;
 export const StyledEventButtonP = styled.p`
   width: 143px;
@@ -242,16 +254,22 @@ export const StyledTextArea = styled.textarea`
   padding: 14px 24px 14px 24px;
   margin-top: 16px;
   gap: 10px;
-
   border-radius: 6px;
   border: 1px solid rgba(130, 130, 130, 0.7);
-
   &::placeholder {
     color: #ccc;
+    font-size: 16px;
+    font-family: "open sans";
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+  }
+  &:focus {
+    border: 1px solid #0076b8;
   }
 `;
 export const StyledEventLabel = styled.label`
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -261,8 +279,8 @@ export const StyledEventLabel = styled.label`
 export const StyledEventinput = styled.input`
   width: 900px;
   height: 50px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-family: "Open Sans";
+  font-size: 22px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -279,6 +297,7 @@ export const StyledEventinput = styled.input`
 
   &::placeholder {
     color: #ccc;
+    font-size: 16px;
   }
   &:focus {
     border-color: #0076b8;
@@ -289,7 +308,7 @@ export const StyledEventinput = styled.input`
 `;
 export const StyledCategoryLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -334,7 +353,7 @@ export const StyledCategoryInput = styled.input`
 export const StyledLocationInput = styled.input`
   width: 900px;
   height: 50px;
-  font-family: "Inter", sans-serif;
+  font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -357,7 +376,7 @@ export const StyledLocationInput = styled.input`
     border-color: #ccc;
   }
   &.selected {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans";
     font-size: 22px;
     font-weight: 400;
     line-height: 30px;
@@ -399,6 +418,76 @@ export const StyledDropdownItems = styled.div`
     position: relative;
     top: -30px; /* Adjust the positioning as needed */
   }
+`;
+export const StyledDialogTypography = styled(Typography)`
+  display: flex;
+  p {
+    color: red;
+    margin-left: 12px !important;
+    margin-top: 21px !important;
+    margin-right: 252px;
+    font-family: "Open Sans";
+  }
+  img {
+    height: 24px;
+    width: 24px;
+    margin-left: 309px;
+    margin-top: 20px;
+  }
+`;
+export const StyledDialogbox = styled(Box)`
+  display: flex;
+  height: 64px;
+`;
+export const StyledpopupText = styled.div`
+  h4 {
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.68px;
+    text-align: center;
+    margin-top: 9px;
+  }
+  p {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.79px;
+    text-align: center;
+    margin-top: -17px;
+  }
+`;
+export const StyledMainErrorBox = styled(Box)`
+  position: relative;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 151px;
+  background-color: white;
+  box-shadow: 24;
+  border-radius: 0px 0px 8px 8px;
+  p: 4;
+  hr {
+    width: 718px;
+    border-top: 0.5px solid red;
+        margin-top: 0px;
+}
+  }
+`;
+export const StyledDialogButton = styled.button`
+  height: 40px;
+  width: 40px;
+  // margin-top: 16px;
+  // margin-right: 16px;
+  background-image: url("../../../../public/assets/RedClosebtn.png");
+  background-size: 40px 40px;
+  border: none;
+  margin-top: 16px;
+  // img {
+  //   height: 40px;
+  //   width: 40px;
+  // }
 `;
 // banner.js
 export const EventBanner = styled.div`

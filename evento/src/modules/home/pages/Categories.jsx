@@ -40,10 +40,13 @@ const Categories = ({ categories, loading, fetchCategories }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  categories: state.categories.categories,
-  loading: state.categories.loading,
-});
+const mapStateToProps = (state) => {
+  console.log("State:", state);
+  return {
+    categories: state.categories.categories,
+    loading: state.categories.loading,
+  };
+};
 
 const mapDispatchToProps = {
   fetchCategories: fetchCategoriesRequest,

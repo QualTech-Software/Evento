@@ -16,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 function* rootSaga() {
-  yield all([ 
+  yield all([
     categoriesSaga(),
     editSaga(),
     // Add more sagas as needed

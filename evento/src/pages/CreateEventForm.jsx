@@ -6,17 +6,17 @@ import {
   EventEdit,
   StyledNewEventh1,
   StyledArrow,
-  EditLabel,
+  InfoLabel,
   CommonLabel,
 } from "../modules/CreateEventForm/components/atoms.js";
-import Edit from "../modules/CreateEventForm/pages/Banner.jsx";
-import Banner from "../modules/CreateEventForm/pages/Edit.jsx";
+import Info from "../modules/CreateEventForm/pages/Banner.jsx";
+import Banner from "../modules/CreateEventForm/pages/Info.jsx";
 import Ticketing from "../modules/CreateEventForm/pages/Ticketing.jsx";
 import Review from "../modules/CreateEventForm/pages/Review.jsx";
 
 // Define an array of steps
 const steps = [
-  { icon: editfilled, label: "Edit" },
+  { icon: editfilled, label: "Info" },
   { icon: bannerfilled, label: "Banner" },
   { icon: bannerfilled, label: "Ticketing" },
   { icon: bannerfilled, label: "Review" },
@@ -26,8 +26,8 @@ const steps = [
 const Step = ({ stepNumber, step }) => (
   <div className={`qt-step qt-step-${stepNumber}`}>
     <img src={step.icon} className="qt-step-icon" />
-    {step.label === "Edit" ? (
-      <EditLabel>{step.label}</EditLabel>
+    {step.label === "Info" ? (
+      <InfoLabel>{step.label}</InfoLabel>
     ) : (
       <CommonLabel>{step.label}</CommonLabel>
     )}
@@ -68,7 +68,7 @@ const CreateEventForm = () => {
       <Routes>
         <Route
           path="/banner"
-          element={<Edit setCurrentStep={setCurrentStep} />}
+          element={<Info setCurrentStep={setCurrentStep} />}
         />
         <Route path="/" element={<Banner setCurrentStep={setCurrentStep} />} />
         <Route

@@ -11,7 +11,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
 import Box from "@mui/material/Box";
-import { arrowdropdown, venue, online } from "../../../icons";
+import { arrowdropdown, venue, online } from "../../../icons/index.js";
 import {
   StyledCreateEvent,
   Styledeventh5,
@@ -41,9 +41,9 @@ import {
   StyledDropdownItems,
 } from "../components/atoms.js";
 import { options, placeOptions, textAreas } from "../data/Edit.json";
-import DialogPopup from "../pages/DialogPopup.jsx";
+import DialogPopup from "./DialogPopup.jsx";
 
-const Edit = ({ saveEvent, setCurrentStep }) => {
+const Info = ({ saveEvent, setCurrentStep }) => {
   const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
@@ -367,4 +367,4 @@ const mapDispatchToProps = {
   saveEvent,
 };
 
-export default connect(null, mapDispatchToProps)(Edit);
+export default connect(null, mapDispatchToProps)(Info);

@@ -51,7 +51,7 @@ export const StyledNewEventh1 = styled.h1`
   letter-spacing: 0em;
   text-align: left;
 `;
-export const EditLabel = styled.p`
+export const InfoLabel = styled.p`
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 600;

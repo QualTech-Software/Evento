@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "@mui/material";
 import { group2, icon } from "../../../assets";
 import "../components/Login.css";
-
 import SuccessModal from "../components/LoginSuccessModal";
-import axios from "axios";
+import LoginErrorModal from "../components/LoginErrorModal";
 import {
   StyledRightcontainer,
   StyledLogo,
@@ -18,106 +17,59 @@ import {
   ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
-import LoginErrorModal from "../components/LoginErrorModal";
+import { connect } from "react-redux";
+import { loginRequest } from "../redux/action/LoginAction";
 
-const validateCredentials = (email, password) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const passwordRegex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
-
-  if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-    return "Invalid username or password please try again.";
-  } else {
-    return ""; // No error
-  }
-};
-
-const RightContainer = () => {
+const RightContainer = ({ loginRequest, state }) => {
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [buttonOpacity, setButtonOpacity] = useState(0.5);
-  const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
-  const [modalMessage, setModalMessage] = useState(""); // State to store modal message
-  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  useEffect(() => {
+    const { login } = state;
+    if (1 == login.requestCompleted) {
+      if (1 == login.isLoggedIn && login?.userData?.token != "") {
+        handleLoginSuccess(); // Show success modal
+      } else {
+        handleLoginFailure("Invalid username or password. Please try again."); // Show error modal
+      }
+    }
+  }, [state]);
+  useEffect(() => {
+    if (email && password) {
+      setButtonOpacity(1);
+    } else {
+      setButtonOpacity(0.5);
+    }
+  }, [email, password]);
+
   const navigate = useNavigate();
 
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-  const handleSuccessModalClose = () => {
+  const handleCloseSuccessModal = () => {
     setModalOpen(false);
-    setIsLoginSuccess(false); // Reset login success state
     navigate("/");
   };
-
   const handleLoginSuccess = () => {
-    setIsLoginSuccess(true);
+    setModalMessage("Login successful!");
     setModalOpen(true); // Open the modal
     setTimeout(() => {
-      setIsLoginSuccess(false);
       setModalOpen(false);
       navigate("/");
     }, 10000);
   };
+
   const handleLoginFailure = (errorMessage) => {
     setModalMessage(errorMessage);
-    setModalOpen(true); // Open the modal
+    setModalOpen(true);
   };
 
-  const validateForm = () => {
-    if (email.trim() !== "" && password.trim() !== "") {
-      setButtonOpacity(1); // Set opacity to full
-    } else {
-      setButtonOpacity(0.5); // Set opacity to half
-    }
-    const error = validateCredentials(email, password);
-
-    if (error) {
-      setModalMessage(error);
-      setModalOpen(true);
-      return;
-    }
-
-    axios
-      .post(
-        "http://localhost:3000/api/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          if (response.data && response.data.msg === "Logged in!") {
-          } else {
-            console.log("Email or password is incorrect");
-          }
-        } else {
-          console.log("Unexpected response:", response);
-        }
-        setEmailError(""); // Clear email error if login request succeeds
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error("Server error:", error.response.data);
-        } else if (error.request) {
-          console.error("Network error:", error.request);
-        } else {
-          console.error("Error:", error.message);
-        }
-      });
-    const loginSuccess = true; // Change to false to simulate login failure
-
-    if (loginSuccess) {
-      handleLoginSuccess();
-    } else {
-      handleLoginFailure("Invalid username or password please try again.");
-    }
+  const handleLogin = () => {
+    const response = loginRequest({ email, password });
   };
 
   return (
@@ -132,21 +84,17 @@ const RightContainer = () => {
         </p>
       </QTpara>
       <QThead className="qt-head">
-        <p>Log In</p>
+        <p>Log in</p>
       </QThead>
 
       <StyledForm>
         <input
-          placeholder="Email"
+          placeholder="John@gmail.com"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
-            setEmailError(validateCredentials(e.target.value, password));
           }}
         />
-        {emailError && (
-          <ErrorText className="error-message">{emailError}</ErrorText>
-        )}
       </StyledForm>
 
       <StyledForm>
@@ -156,16 +104,12 @@ const RightContainer = () => {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            setPasswordError(validateCredentials(email, e.target.value));
           }}
         />
-        {passwordError && (
-          <ErrorText className="error-message">{passwordError}</ErrorText>
-        )}
       </StyledForm>
 
       <CreateAccBtn className="create-acc">
-        <StyledButton onClick={validateForm} style={{ opacity: buttonOpacity }}>
+        <StyledButton onClick={handleLogin} style={{ opacity: buttonOpacity }}>
           <p>Continue</p>
         </StyledButton>
       </CreateAccBtn>
@@ -179,8 +123,8 @@ const RightContainer = () => {
       </StyledGoogleBtn>
 
       <Modal open={modalOpen} onClose={handleCloseModal}>
-        {isLoginSuccess ? (
-          <SuccessModal handleCloseModal={handleSuccessModalClose} />
+        {modalMessage === "Login successful!" ? (
+          <SuccessModal handleCloseModal={handleCloseSuccessModal} />
         ) : (
           <LoginErrorModal
             handleCloseModal={handleCloseModal}
@@ -192,4 +136,8 @@ const RightContainer = () => {
   );
 };
 
-export default RightContainer;
+const mapStateToProps = (state) => ({
+  state: state, // assuming state contains the necessary login information
+});
+
+export default connect(mapStateToProps, { loginRequest })(RightContainer);

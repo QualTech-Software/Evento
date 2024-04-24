@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
   Button,
+  TextField,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Dialog } from "@mui/material";
@@ -16,7 +17,7 @@ import styled from "styled-components";
 //createeventform
 export const NewEvent = styled.div`
   width: 1440px;
-  height: 94px;
+  // height: 94px;
   margin: auto;
 `;
 export const StyledArrow = styled.img`
@@ -32,7 +33,7 @@ export const EventEdit = styled.div`
   width: 1310px;
   height: 67px;
   position: relative;
-  top: -52px;
+  // top: -52px;
   left: 64px;
   display: flex;
   gap: 138px;
@@ -40,9 +41,9 @@ export const EventEdit = styled.div`
 
 export const StyledNewEventh1 = styled.h1`
   width: 391px;
-  height: 54px;
-  top: -61px;
-  left: 124px;
+  // height: 54px;
+  // top: -61px;
+  left: 64px;
   position: relative;
   font-family: "Inter", sans-serif;
   font-size: 40px;
@@ -68,6 +69,24 @@ export const CommonLabel = styled.p`
   text-align: center;
   color: rgba(171, 171, 171, 1);
 `;
+export const StyledVenueNames = styled.div`
+  display: grid;
+  gap: 20px;
+  width: 928px;
+  position: absolute;
+  z-index: 1;
+  background: white;
+  /* padding: 27px; */
+  /* border: 1px solid #ccc; */
+  left: 64px;
+  margin-top: 20px;
+  border-radius: 8px;
+`;
+export const StyledVenueTextfield = styled(TextField)`
+  z-index: 1000;
+  border-radius: 8px;
+`;
+
 //Edit.js
 export const StyledCreateEvent = styled.div`
   width: 1440px;
@@ -88,20 +107,34 @@ export const Styledeventh5 = styled.h5`
 `;
 export const StyledEventTitle = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
+  &.error {
+    .error-message {
+      position: relative;
+      display: block;
+      margin-top: 15px;
+      color: red;
+      font-size: 12px;
+      font-family: "Open Sans";
+    }
+
+    input {
+      border-color: red; /* Make the input border red */
+    }
+  }
 `;
 export const StyledEventCategory = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
   top: 16px;
 `;
 export const StyledDropdownMenu = styled.div`
   position: relative;
-  top: -11px;
+  top: -10px;
   width: 923px;
   height: 360px;
   background-color: white;
@@ -156,7 +189,7 @@ export const StyledEventDropdownPlace = styled.div`
 
 export const StyledEventDates = styled.div`
   width: 665px;
-  height: 198px;
+  // height: 198px;
   position: relative;
   margin-top: 31px;
   left: 64px;
@@ -199,7 +232,7 @@ export const StyledLocationB = styled.b`
 
 export const StyledEventLocationTitle = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
 `;
@@ -253,6 +286,7 @@ export const StyledEventButtonP = styled.p`
 export const StyledTextArea = styled.textarea`
   padding: 14px 24px 14px 24px;
   margin-top: 16px;
+  width: 877px;
   gap: 10px;
   border-radius: 6px;
   border: 1px solid rgba(130, 130, 130, 0.7);
@@ -278,7 +312,7 @@ export const StyledEventLabel = styled.label`
 `;
 export const StyledEventinput = styled.input`
   width: 900px;
-  height: 50px;
+  height: 56px;
   font-family: "Open Sans";
   font-size: 22px;
   font-weight: 400;
@@ -305,6 +339,7 @@ export const StyledEventinput = styled.input`
       color: transparent;
     }
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
 `;
 export const StyledCategoryLabel = styled.label`
   height: 19px;
@@ -318,7 +353,7 @@ export const StyledCategoryLabel = styled.label`
 `;
 export const StyledCategoryInput = styled.input`
   width: 900px;
-  height: 50px;
+  height: 56px;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -349,10 +384,23 @@ export const StyledCategoryInput = styled.input`
     letter-spacing: 0em;
     text-align: left;
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
+`;
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+  display: block;
+  font-family: "Open Sans";
+`;
+export const StyledLocationError = styled.span`
+  color: red;
+  font-size: 12px;
+  display: block;
+  font-family: "Open Sans";
 `;
 export const StyledLocationInput = styled.input`
   width: 900px;
-  height: 50px;
+  height: 56px;
   font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
@@ -383,6 +431,7 @@ export const StyledLocationInput = styled.input`
     letter-spacing: 0em;
     text-align: left;
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
 `;
 export const StyledArrowDropdown = styled.img`
   position: relative;

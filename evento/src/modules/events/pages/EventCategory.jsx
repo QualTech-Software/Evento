@@ -1,74 +1,97 @@
-import React, { useState, useEffect } from "react";
-import BackBtn from "../../../../public/assets/Backbtn.png";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchCategoriesRequest } from "../../Home/redux/actions/categoriesActions";
+import { useParams } from "react-router-dom";
 import Navbar from "./CategoryNavbar";
+import backbtn from "../../../../public/assets/Backbtn.png";
+import Onlineevents from "../../Home/pages/Events";
+import Organizer from "../../Home/pages/Organizer";
+import TopDestination from "../../Home/pages/TopDestination";
+import Footer from "../../../modules/footer/pages/Footer";
+import CreateEvent from "./CreateEvent";
+import { Link } from "react-router-dom";
 import {
   StyledFunEvent,
   StyledFunEventMain,
-  StyledEventText,
-  StyledEventLocation,
-  StyledEventSubText,
   StyledExploreCategory,
   ExploreText,
   StyledExploreCard,
   Explore,
+  StyledEventText,
+  StyledEventSubText,
+  StyledHover,
 } from "../components/atoms";
-import eventData from "../components/Event.json";
-import exploreData from "../components/ExploreData.json";
-import { useParams } from "react-router-dom";
-import Onlineevents from "../../Home/pages/Events";
-import Organizer from "../../Home/pages/Organizer";
-import TopDestination from "../../Home/pages/TopDestination";
-import CreateEvent from "./CreateEvent";
 
-const EventCategory = () => {
-  const { id } = useParams();
-  const eventId = parseInt(id);
-  const [eventDataItem, setEventDataItem] = useState(null);
+const EventCategory = ({ categories, loading, fetchCategories }) => {
+  const { category_id: eventCategoryId } = useParams();
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+
   useEffect(() => {
-    if (eventId > 0) {
-      setEventDataItem(eventData[eventId]);
-    }
-  }, [eventId]);
+    fetchCategories();
+  }, [fetchCategories]);
 
-  if (!eventDataItem) {
-    return <div>Event not found</div>;
+  useEffect(() => {
+    if (
+      eventCategoryId &&
+      parseInt(eventCategoryId) >= 1 &&
+      parseInt(eventCategoryId) <= 6
+    ) {
+      setCurrentCategoryIndex(parseInt(eventCategoryId) - 1);
+    }
+  }, [eventCategoryId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
-  const { text, location, subtext, backgroundImage } = eventDataItem;
-  // Extract exploreText from the first item in exploreData
-  const exploreText = exploreData.exploreData[0].exploreText;
-  // Calculate the start and end index for rendering
-  const startIdx = (eventId - 1) * 5;
-  const endIdx = startIdx + 5;
-  const visibleExploreData = exploreData.exploreData.slice(startIdx, endIdx);
+
+  const currentCategory = categories[currentCategoryIndex];
+
+  if (!currentCategory) {
+    return <div>No category found</div>;
+  }
+
+  const filteredCategories = categories.filter(
+    (category) => category.parent_category_id === parseInt(eventCategoryId)
+  );
+
   return (
     <>
       <StyledFunEventMain className="fun-event-main">
         <Navbar />
-        <StyledFunEvent style={{ backgroundImage: `url(${backgroundImage})` }}>
-          <img src={BackBtn} />
+        <StyledFunEvent
+          style={{
+            backgroundImage: `url(${currentCategory.hero_img})`,
+          }}
+        >
+          <Link to="/">
+            {" "}
+            <img src={backbtn} />
+          </Link>
           <StyledEventText>
-            <p>{text}</p>
+            <p>{currentCategory.name} events</p>
           </StyledEventText>
-          <StyledEventLocation>
-            <p>{location}</p>
-          </StyledEventLocation>
           <StyledEventSubText>
-            <p>{subtext}</p>
+            <p>
+              Discover the best {currentCategory.name} events in your area and
+              online
+            </p>
           </StyledEventSubText>
         </StyledFunEvent>
         <StyledExploreCategory>
           <ExploreText>
-            <p>{exploreText}</p>
+            <p>Explore what’s popular within {currentCategory.name}</p>
           </ExploreText>
-          {visibleExploreData.map((exploreItem, index) => (
+          {filteredCategories.slice(0, 5).map((category, index) => (
             <StyledExploreCard key={index}>
-              <Explore
-                style={{
-                  backgroundImage: `url(${exploreItem.backgroundImage})`,
-                }}
-              >
-                <p>{exploreItem.explorePText}</p>
-              </Explore>
+              <StyledHover>
+                <Explore
+                  style={{
+                    backgroundImage: `url(${category.logo_img})`,
+                  }}
+                >
+                  <p>{category.name}</p>
+                </Explore>
+              </StyledHover>
             </StyledExploreCard>
           ))}
         </StyledExploreCategory>
@@ -76,9 +99,19 @@ const EventCategory = () => {
         <CreateEvent />
         <Organizer />
         <TopDestination />
+        <Footer />
       </StyledFunEventMain>
     </>
   );
 };
 
-export default EventCategory;
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories,
+  loading: state.categories.loading,
+});
+
+const mapDispatchToProps = {
+  fetchCategories: fetchCategoriesRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventCategory);

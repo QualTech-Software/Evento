@@ -3,7 +3,6 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const loginRequest = (credentials) => {
-  console.log("Dispatching loginRequest action with credentials:", credentials);
   return {
     type: LOGIN_REQUEST,
     payload: credentials,

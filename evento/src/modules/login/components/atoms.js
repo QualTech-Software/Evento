@@ -65,7 +65,7 @@ export const StyledForm = styled.div`
   input {
     width: 425px;
     font-family: "Open Sans";
-    color: #ababab;
+    color: black;
     padding: 20px 0px 20px 20px;
     border: 1px solid #ccc;
     border-radius: 5px;

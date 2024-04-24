@@ -28,14 +28,11 @@ const RightContainer = ({ loginRequest, state }) => {
   const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
-    console.log("Login Request", state);
     const { login } = state;
     if (1 == login.requestCompleted) {
       if (1 == login.isLoggedIn && login?.userData?.token != "") {
-        console.log("Login successful!");
         handleLoginSuccess(); // Show success modal
       } else {
-        console.log("Login failed. Please check your credentials.");
         handleLoginFailure("Invalid username or password. Please try again."); // Show error modal
       }
     }
@@ -72,7 +69,6 @@ const RightContainer = ({ loginRequest, state }) => {
   };
 
   const handleLogin = () => {
-    console.log("Sending login request...");
     const response = loginRequest({ email, password });
   };
 

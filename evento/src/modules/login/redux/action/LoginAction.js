@@ -18,11 +18,6 @@ const loginFailure = (error) => ({
 
 export const login = (credentials) => {
   return async (dispatch) => {
-    console.log(
-      "Dispatching loginRequest action with credentials:",
-      credentials
-    );
-
     dispatch(loginRequest(credentials));
 
     try {
@@ -36,8 +31,6 @@ export const login = (credentials) => {
         }
       );
 
-      console.log("Login request successful:", response);
-
       if (response.status === 200) {
         if (response.data && response.data.success) {
           dispatch(loginSuccess(response.data.user));
@@ -48,7 +41,6 @@ export const login = (credentials) => {
         dispatch(loginFailure("Unexpected response"));
       }
     } catch (error) {
-      console.error("Login request error:", error);
       dispatch(loginFailure(error.message));
     }
   };

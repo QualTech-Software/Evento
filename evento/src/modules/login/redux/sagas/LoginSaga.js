@@ -8,20 +8,14 @@ export default function* loginSaga() {
 }
 
 function* login(action) {
-  console.log(
-    "Received login request in saga with credentials:",
-    action.payload
-  );
   try {
     const response = yield call(
       axios.post,
       "http://localhost:3000/api/login",
       action.payload
     );
-    console.log("Response from login request:", response);
     yield put(loginSuccess(response.data));
   } catch (error) {
-    console.error("Login request error:", error);
     yield put(loginFailure(error.message));
   }
 }

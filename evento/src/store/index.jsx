@@ -1,4 +1,3 @@
-
 // mainStore/index.js
 
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
@@ -10,21 +9,16 @@ import categoriesReducer from "../modules/Home/redux/reducers/categoriesReducer"
 import categoriesSaga from "../modules/Home/redux/sagas/categoriesSaga"; // Adjust the path if necessary
 import editReducer from "../modules/CreateEventForm/Redux/reducer/editReducer";
 import editSaga from "../modules/CreateEventForm/Redux/sagas/editsaga";
+
 const rootReducers = combineReducers({
   login: loginReducer,
   categories: categoriesReducer,
-    edit: editReducer,
-  // Add other reducers here if needed
-})
+  edit: editReducer,
+});
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSagas() {
-  yield all([
-    loginSaga(),
-    categoriesSaga(),
-      editSaga(),
-    // Add other sagas here if needed
-  ]);
+  yield all([loginSaga(), categoriesSaga(), editSaga()]);
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

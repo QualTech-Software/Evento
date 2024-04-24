@@ -17,11 +17,9 @@ function* fetchCategoriesSaga() {
     if (data?.success && data?.categories?.length > 0) {
       yield put(fetchCategoriesSuccess(data?.categories));
     } else {
-      console.log("No categories found");
     }
   } catch (error) {
     yield put(fetchCategoriesFailure(error));
-    console.error("Error fetching categories:", error);
   }
 }
 

@@ -65,7 +65,7 @@ export const StyledEventSubText = styled.div`
   p {
     //styleName: 20 MEDIUM SANS;
     font-family: Open Sans;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 500;
     line-height: 27.24px;
     text-align: left;
@@ -87,7 +87,7 @@ export const ExploreText = styled.div`
   p {
     //styleName: 32 SEMIBOLD SANS;
     font-family: Open Sans;
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 600;
     line-height: 43.58px;
     text-align: center;
@@ -102,7 +102,9 @@ export const StyledExploreCard = styled.div`
 
   margin-left: 23px;
 `;
+
 export const Explore = styled.div`
+  position: relative;
   width: 200px;
   height: 200px;
   gap: 0px;
@@ -114,6 +116,7 @@ export const Explore = styled.div`
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 
   p {
     //styleName: 20 SEMIBOLD SANS;
@@ -124,5 +127,26 @@ export const Explore = styled.div`
     text-align: center;
     color: rgba(255, 0, 0, 1);
     margin-top: 157px;
+  }
+`;
+const rotateAnimation = keyframes`
+  
+  100% {
+    transform: rotate(-4.36deg);
+  }
+`;
+
+export const StyledHover = styled.div`
+  &:hover::before {
+    margin-top: 25px;
+    margin-left: 10px;
+    content: "";
+    position: absolute;
+    border-radius: 8px;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    opacity: 1;
+    animation: ${rotateAnimation} 0.3s ease-in-out forwards;
   }
 `;

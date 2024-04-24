@@ -4,28 +4,36 @@ import "../components/Categories.css";
 import { connect } from "react-redux";
 import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
+
 const Categories = ({ categories, loading, fetchCategories }) => {
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
+
   const navigate = useNavigate();
-  const handleCategoryClick = (id) => {
-    navigate(`/category/event/${id}`);
+
+  const handleCategoryClick = (category) => {
+    const { category_id } = category;
+    navigate(`/category/event/${category_id}`);
   };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const filteredCategories = categories.filter(
+    (category) => category.parent_category_id === 0
+  );
+
   return (
     <div className="qt-categories">
       <Typography variant="h1">Explore Categories</Typography>
       <div className="qt-categories-cards">
-        {categories.map((category) => (
+        {filteredCategories.map((category) => (
           <div
             key={category.id}
             className={`qt-card-${category.name.toLowerCase()}`}
-            onClick={() => handleCategoryClick(category.id)}
+            onClick={() => handleCategoryClick(category)}
           >
             <Typography variant="h6">{category.name}</Typography>
             <img
@@ -40,13 +48,10 @@ const Categories = ({ categories, loading, fetchCategories }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  console.log("State:", state);
-  return {
-    categories: state.categories.categories,
-    loading: state.categories.loading,
-  };
-};
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories,
+  loading: state.categories.loading,
+});
 
 const mapDispatchToProps = {
   fetchCategories: fetchCategoriesRequest,

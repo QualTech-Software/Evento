@@ -804,7 +804,7 @@ export const StyledCatergoriesCard = styled.div`
   position: relative;
   display: flex;
 `;
-export const Styledimage = styled.img`
+export const Styledimg = styled.img`
   width: 165px;
   height: 120px;
   margin-top: 2px;
@@ -874,4 +874,7 @@ export const StyledCategoryCard = styled.div`
         return "";
     }
   }}
+`;
+export const StyledSignUpLink = styled(Link)`
+  text-decoration: none;
 `;

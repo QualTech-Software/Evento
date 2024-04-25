@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import "../components/Categories.css";
 import {
   StyledCategories,
-  Styledimage,
+  Styledimg,
   StyledTypography,
 } from "../components/atoms";
 import { connect } from "react-redux";
@@ -41,7 +41,7 @@ const Categories = ({ categories, loading, fetchCategories }) => {
             onClick={() => handleCategoryClick(category)}
           >
             <StyledTypography variant="h6">{category.name}</StyledTypography>
-            <Styledimage
+            <Styledimg
               src={category.logo_img}
               alt={category.name}
               className="qt-img"

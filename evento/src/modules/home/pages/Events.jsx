@@ -46,7 +46,7 @@ const EventCard = ({
   },
 }) => (
   <CardOutline>
-    <a href="/eventinformation">
+    <a href="/eventcarousel">
       <StyledCard variant="outlined">
         <StyledCardOverflow>
           <StyledAspectRatio ratio="2">

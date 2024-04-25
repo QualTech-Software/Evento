@@ -1,58 +1,50 @@
-import React from "react";
-import { StyledMainContainer } from "../components/atoms.js";
+import React, { useEffect, useRef } from "react";
+import {
+  StyledMainContainer,
+  StyledSlickCarousel,
+} from "../components/atoms.js";
 import "../components/carousel.css";
+import $ from "jquery";
+import "slick-carousel";
+import "slick-carousel/slick/slick.css";
+import { Event, Event1, Event2 } from "../../../assets/index.js";
+import EventInformation from "./EventInformation.jsx";
+import { StyledNavbar } from "../../Home/components/atoms.js";
 const EventCarousel = () => {
+  const slickRef = useRef(null);
+
+  useEffect(() => {
+    $(slickRef.current).slick({
+      infinite: true,
+      slidesToShow: 1, // Shows a three slides at a time
+      slidesToScroll: 1, // When you click an arrow, it scrolls 1 slide at a time
+      arrows: true, // Adds arrows to sides of slider
+      dots: true, // Adds the dots on the bottom
+      autoplay: true, // Enable autoplay
+      autoplaySpeed: 3000, // Set autoplay speed in milliseconds (e.g., 3 seconds)
+    });
+  }, []);
   return (
-    <StyledMainContainer className="mainContainer">
-      <ul className="slides">
-        <input type="radio" name="radio-buttons" id="img-1" />
-        <li className="slide-container">
-          <div className="slide-image">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Timisoara_-_Regional_Business_Centre.jpg" />
+    <>
+      <StyledNavbar />
+      <StyledMainContainer>
+        <StyledSlickCarousel ref={slickRef}>
+          <div>
+            <img src={Event1} />
           </div>
-        </li>
-        <input type="radio" name="radio-buttons" id="img-2" checked />
-        <li className="slide-container">
-          <div className="slide-image">
-            <img src="https://content.r9cdn.net/rimg/dimg/db/02/06b291e8-city-14912-171317ad83a.jpg?width=1750&height=1000&xhint=3040&yhint=2553&crop=true" />
+          <div>
+            <img src={Event} />
           </div>
-        </li>
-        <input type="radio" name="radio-buttons" id="img-3" />
-        <li className="slide-container">
-          <div className="slide-image">
-            <img src="https://speakzeasy.files.wordpress.com/2015/05/twa_blogpic_timisoara-4415.jpg?width=1750&height=1000&xhint=3040&yhint=2553&crop=true" />
+          <div>
+            <img src={Event2} />
           </div>
-        </li>
-        <input type="radio" name="radio-buttons" id="img-4" />
-        <li className="slide-container">
-          <div className="slide-image">
-            <img src="https://speakzeasy.files.wordpress.com/2015/05/twa_blogpic_timisoara-4415.jpg?width=1750&height=1000&xhint=3040&yhint=2553&crop=true" />
+          <div>
+            <img src={Event} />
           </div>
-        </li>
-        <div className="carousel-dots">
-          <label
-            htmlFor="img-1"
-            className="carousel-dot"
-            id="img-dot-1"
-          ></label>
-          <label
-            htmlFor="img-2"
-            className="carousel-dot"
-            id="img-dot-2"
-          ></label>
-          <label
-            htmlFor="img-3"
-            className="carousel-dot"
-            id="img-dot-3"
-          ></label>
-          <label
-            htmlFor="img-4"
-            className="carousel-dot"
-            id="img-dot-4"
-          ></label>
-        </div>
-      </ul>
-    </StyledMainContainer>
+        </StyledSlickCarousel>
+      </StyledMainContainer>
+      <EventInformation />
+    </>
   );
 };
 

@@ -51,6 +51,7 @@ import {
   DropdownIconWrapper,
   IconButtonStyle,
   StyledEventoLogo,
+  StyledSignUpLink,
 } from "../modules/Home/components/atoms";
 const home = () => {
   const navigate = useNavigate();
@@ -74,9 +75,11 @@ const home = () => {
     <>
       <StyledQtHome className="qt-home">
         <StyledNavbar className="qt-navbar">
-          <StyledEventoLogo>
-            <img src={logo} alt="Logo" />
-          </StyledEventoLogo>
+          <StyledLink to="/">
+            <StyledEventoLogo>
+              <img src={logo} alt="Logo" />
+            </StyledEventoLogo>
+          </StyledLink>
           <StyledSidebar className="sidebar">
             <StyledCategory className="category">
               <img src={dashboard} alt="Dashboard" />
@@ -97,11 +100,13 @@ const home = () => {
                 <p>Log in</p>
               </StyledQtLogin>
             </StyledLink>
-            <StyledSignup className="signup">
-              <button onClick={handleClick}>
-                <p>Sign up</p>
-              </button>
-            </StyledSignup>
+            <StyledSignUpLink to="/create">
+              <StyledSignup className="signup">
+                <button>
+                  <p>Sign up</p>
+                </button>
+              </StyledSignup>
+            </StyledSignUpLink>
           </StyledSidebar>
         </StyledNavbar>
         <StyledHomebar className="qt-homebar">

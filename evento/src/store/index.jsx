@@ -1,27 +1,35 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+// mainStore/index.js
+
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
-import categoriesReducer from "../modules/Home/redux/reducers/categoriesReducer";
-import categoriesSaga from "../modules/Home/redux/sagas/categoriesSaga";
+import { all } from "redux-saga/effects";
+import loginReducer from "../modules/login/redux/reducer/LoginReducer"; // Adjust the path if necessary
+import loginSaga from "../modules/login/redux/sagas/LoginSaga";
+import categoriesReducer from "../modules/Home/redux/reducers/categoriesReducer"; // Adjust the path if necessary
+import categoriesSaga from "../modules/Home/redux/sagas/categoriesSaga"; // Adjust the path if necessary
 import editReducer from "../modules/CreateEventForm/Redux/reducer/editReducer";
 import editSaga from "../modules/CreateEventForm/Redux/sagas/editsaga";
-import { all } from "redux-saga/effects";
 
-const rootReducer = combineReducers({
+const rootReducers = combineReducers({
+  login: loginReducer,
   categories: categoriesReducer,
   edit: editReducer,
 });
-
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-
-function* rootSaga() {
-  yield all([ 
-    categoriesSaga(),
-    editSaga(),
-    // Add more sagas as needed
-  ]);
+function* rootSagas() {
+  yield all([loginSaga(), categoriesSaga(), editSaga()]);
 }
-sagaMiddleware.run(rootSaga);
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const initialState = {};
+
+const store = createStore(
+  rootReducers,
+  initialState,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSagas);
 
 export default store;

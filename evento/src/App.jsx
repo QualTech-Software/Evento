@@ -20,7 +20,7 @@ function App() {
       <Route path="/create" element={<Create />} />
       <Route path="/account" element={<Register />} />
       <Route path="/welcome" element={<WelcomeEvent />} />
-      <Route path="/category/event/:id" element={<EventCategory />} />
+      <Route path="/category/event/:category_id" element={<EventCategory />} />
     </Routes>
   );
 }

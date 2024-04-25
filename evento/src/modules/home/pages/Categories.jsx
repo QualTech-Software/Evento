@@ -3,36 +3,42 @@ import { Typography } from "@mui/material";
 import "../components/Categories.css";
 import {
   StyledCategories,
-  StyledCatergoriesCard,
   Styledimage,
   StyledTypography,
-  StyledCategoryCard,
 } from "../components/atoms";
 import { connect } from "react-redux";
 import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
+
 const Categories = ({ categories, loading, fetchCategories }) => {
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
+
   const navigate = useNavigate();
-  const handleCategoryClick = (id) => {
-    navigate(`/category/event/${id}`);
+
+  const handleCategoryClick = (category) => {
+    const { category_id } = category;
+    navigate(`/category/event/${category_id}`);
   };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const filteredCategories = categories.filter(
+    (category) => category.parent_category_id === 0
+  );
+
   return (
     <StyledCategories>
       <Typography variant="h1">Explore Categories</Typography>
-      <StyledCatergoriesCard>
-        {categories.map((category) => (
-          <StyledCategoryCard
+      <div className="qt-categories-cards">
+        {filteredCategories.map((category) => (
+          <div
             key={category.id}
-            category={category}
-            onClick={() => handleCategoryClick(category.id)}
+            className={`qt-card-${category.name.toLowerCase()}`}
+            onClick={() => handleCategoryClick(category)}
           >
             <StyledTypography variant="h6">{category.name}</StyledTypography>
             <Styledimage
@@ -40,9 +46,9 @@ const Categories = ({ categories, loading, fetchCategories }) => {
               alt={category.name}
               className="qt-img"
             />
-          </StyledCategoryCard>
+          </div>
         ))}
-      </StyledCatergoriesCard>
+      </div>
     </StyledCategories>
   );
 };

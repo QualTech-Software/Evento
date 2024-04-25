@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
   Button,
+  TextField,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Dialog } from "@mui/material";
@@ -16,7 +17,7 @@ import styled from "styled-components";
 //createeventform
 export const NewEvent = styled.div`
   width: 1440px;
-  height: 94px;
+  // height: 94px;
   margin: auto;
 `;
 export const StyledArrow = styled.img`
@@ -32,7 +33,7 @@ export const EventEdit = styled.div`
   width: 1310px;
   height: 67px;
   position: relative;
-  top: -52px;
+  // top: -52px;
   left: 64px;
   display: flex;
   gap: 138px;
@@ -40,9 +41,9 @@ export const EventEdit = styled.div`
 
 export const StyledNewEventh1 = styled.h1`
   width: 391px;
-  height: 54px;
-  top: -61px;
-  left: 124px;
+  // height: 54px;
+  // top: -61px;
+  left: 64px;
   position: relative;
   font-family: "Inter", sans-serif;
   font-size: 40px;
@@ -51,7 +52,7 @@ export const StyledNewEventh1 = styled.h1`
   letter-spacing: 0em;
   text-align: left;
 `;
-export const EditLabel = styled.p`
+export const InfoLabel = styled.p`
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -68,18 +69,37 @@ export const CommonLabel = styled.p`
   text-align: center;
   color: rgba(171, 171, 171, 1);
 `;
+export const StyledVenueNames = styled.div`
+  display: grid;
+  gap: 20px;
+  width: 928px;
+  position: absolute;
+  z-index: 1;
+  background: white;
+  /* padding: 27px; */
+  /* border: 1px solid #ccc; */
+  left: 64px;
+  margin-top: 20px;
+  border-radius: 8px;
+`;
+export const StyledVenueTextfield = styled(TextField)`
+  z-index: 1000;
+  border-radius: 8px;
+`;
+
 //Edit.js
 export const StyledCreateEvent = styled.div`
   width: 1440px;
   height: 1160px;
   margin: auto;
   position: relative;
+  font-family: "open sans";
 `;
 export const Styledeventh5 = styled.h5`
   height: 25px;
   position: relative;
   left: 64px;
-  font-family: "Inter", sans-serif;
+  // font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 25px;
@@ -88,20 +108,34 @@ export const Styledeventh5 = styled.h5`
 `;
 export const StyledEventTitle = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
+  &.error {
+    .error-message {
+      position: relative;
+      display: block;
+      margin-top: 15px;
+      color: red;
+      font-size: 12px;
+      // font-family: "Open Sans";
+    }
+
+    input {
+      border-color: red; /* Make the input border red */
+    }
+  }
 `;
 export const StyledEventCategory = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
   top: 16px;
 `;
 export const StyledDropdownMenu = styled.div`
   position: relative;
-  top: -11px;
+  top: -10px;
   width: 923px;
   height: 360px;
   background-color: white;
@@ -124,7 +158,7 @@ export const StyledDropdownItem = styled.div`
   cursor: pointer;
 
   > span {
-    font-family: "Open Sans", sans-serif;
+    // font-family: "Open Sans", sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 27px;
@@ -156,7 +190,7 @@ export const StyledEventDropdownPlace = styled.div`
 
 export const StyledEventDates = styled.div`
   width: 665px;
-  height: 198px;
+  // height: 198px;
   position: relative;
   margin-top: 31px;
   left: 64px;
@@ -165,7 +199,7 @@ export const StyledEventDates = styled.div`
   grid-template-columns: auto auto;
 `;
 export const StyledEventStartTime = styled.div`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0em;
@@ -176,7 +210,7 @@ export const StyledLocationh5 = styled.b`
   position: relative;
   margin-left: 64px;
   margin-top: 16px;
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 25px;
@@ -188,7 +222,7 @@ export const StyledLocationh5 = styled.b`
 export const StyledLocationB = styled.b`
   height: 25px;
   position: relative;
-  font-family: "Open Sans";
+  // font-family: "Open Sans";
   font-size: 18px;
   font-weight: 600;
   line-height: 25px;
@@ -199,13 +233,13 @@ export const StyledLocationB = styled.b`
 
 export const StyledEventLocationTitle = styled.div`
   width: 900px;
-  height: 77px;
+  // height: 77px;
   position: relative;
   left: 64px;
 `;
 export const StyledLocationLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans";
+  // font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -239,7 +273,7 @@ export const StyledEventButton = styled.button`
 export const StyledEventButtonP = styled.p`
   width: 143px;
   height: 25px;
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   //   font-size: 18px;
   font-weight: 600;
   //   line-height: 25px;
@@ -253,13 +287,14 @@ export const StyledEventButtonP = styled.p`
 export const StyledTextArea = styled.textarea`
   padding: 14px 24px 14px 24px;
   margin-top: 16px;
+  width: 877px;
   gap: 10px;
   border-radius: 6px;
   border: 1px solid rgba(130, 130, 130, 0.7);
   &::placeholder {
     color: #ccc;
     font-size: 16px;
-    font-family: "open sans";
+    // font-family: "open sans";
     font-weight: 400;
     line-height: 22px;
     letter-spacing: 0em;
@@ -269,7 +304,7 @@ export const StyledTextArea = styled.textarea`
   }
 `;
 export const StyledEventLabel = styled.label`
-  font-family: "Open Sans";
+  // font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -278,8 +313,8 @@ export const StyledEventLabel = styled.label`
 `;
 export const StyledEventinput = styled.input`
   width: 900px;
-  height: 50px;
-  font-family: "Open Sans";
+  height: 56px;
+  // font-family: "Open Sans";
   font-size: 22px;
   font-weight: 400;
   line-height: 22px;
@@ -305,10 +340,11 @@ export const StyledEventinput = styled.input`
       color: transparent;
     }
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
 `;
 export const StyledCategoryLabel = styled.label`
   height: 19px;
-  font-family: "Open Sans";
+  // font-family: "Open Sans";
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
@@ -318,8 +354,8 @@ export const StyledCategoryLabel = styled.label`
 `;
 export const StyledCategoryInput = styled.input`
   width: 900px;
-  height: 50px;
-  font-family: "Open Sans", sans-serif;
+  height: 56px;
+  // font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -342,18 +378,31 @@ export const StyledCategoryInput = styled.input`
     border-color: #ccc;
   }
   &.selected {
-    font-family: "Open Sans", sans-serif;
+    // font-family: "Open Sans", sans-serif;
     font-size: 22px;
     font-weight: 400;
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
+`;
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+  display: block;
+  // font-family: "Open Sans";
+`;
+export const StyledLocationError = styled.span`
+  color: red;
+  font-size: 12px;
+  display: block;
+  // font-family: "Open Sans";
 `;
 export const StyledLocationInput = styled.input`
   width: 900px;
-  height: 50px;
-  font-family: "Open Sans";
+  height: 56px;
+  // font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -376,13 +425,14 @@ export const StyledLocationInput = styled.input`
     border-color: #ccc;
   }
   &.selected {
-    font-family: "Open Sans";
+    // font-family: "Open Sans";
     font-size: 22px;
     font-weight: 400;
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
   }
+  border: 1px solid ${({ showError }) => (showError ? "red" : "#ccc")};
 `;
 export const StyledArrowDropdown = styled.img`
   position: relative;
@@ -409,7 +459,7 @@ export const StyledEventOnline = styled.img`
 `;
 export const StyledDropdownItems = styled.div`
   > span {
-    font-family: "Open Sans", sans-serif;
+    // font-family: "Open Sans", sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 27px;
@@ -426,7 +476,7 @@ export const StyledDialogTypography = styled(Typography)`
     margin-left: 12px !important;
     margin-top: 21px !important;
     margin-right: 252px;
-    font-family: "Open Sans";
+    // font-family: "Open Sans";
   }
   img {
     height: 24px;
@@ -441,7 +491,7 @@ export const StyledDialogbox = styled(Box)`
 `;
 export const StyledpopupText = styled.div`
   h4 {
-    font-family: Open Sans;
+    // font-family: Open Sans;
     font-size: 24px;
     font-weight: 600;
     line-height: 32.68px;
@@ -449,7 +499,7 @@ export const StyledpopupText = styled.div`
     margin-top: 9px;
   }
   p {
-    font-family: Open Sans;
+    // font-family: Open Sans;
     font-size: 16px;
     font-weight: 400;
     line-height: 21.79px;
@@ -489,6 +539,95 @@ export const StyledDialogButton = styled.button`
   //   width: 40px;
   // }
 `;
+//Tickets
+
+export const StyledTicketIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  position: relative;
+  // margin-top: 8px;
+  margin-left: 106px;
+  filter: brightness(${({ isSelected }) => (isSelected ? "0" : "1")});
+  font-weight: ${({ isSelected }) => (isSelected ? "bold" : "normal")};
+`;
+
+export const StyledTicketLabel = styled.label`
+  // font-family: Open Sans;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32.68px;
+  text-align: left;
+  color: ${({ isSelected }) =>
+    isSelected ? "black" : "rgba(171, 171, 171, 1)"};
+  position: relative;
+  cursor: pointer;
+  top: 11px;
+  left: 45px;
+  font-weight: ${({ isSelected }) => (isSelected ? "bold" : "normal")};
+`;
+export const StyledTicketContainer = styled.div`
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 237px;
+  cursor: pointer;
+  display: grid;
+  position: relative;
+
+  &:hover {
+    border: 2px solid red; /* Change border on hover */
+  }
+
+  &:hover > ${StyledTicketIcon} {
+    filter: brightness(0);
+  }
+
+  &:hover > ${StyledTicketLabel} {
+    color: black;
+  }
+  &.selected {
+    border-color: green; /* Change border color to green when selected */
+    ${StyledTicketIcon} {
+      font-weight: bold;
+      filter: brightness(0);
+    }
+    ${StyledTicketLabel} {
+      color: black; /* Make label black when selected */
+    }
+  }
+`;
+export const StyledEventTicketContainer = styled.div`
+  position: relative;
+  margin-left: 64px;
+`;
+export const StyledTicketHeading = styled.h2`
+  // font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32.68px;
+`;
+export const StyledTickets = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+export const StyledGreenTick = styled.div`
+  width: 20px;
+  height: 20px;
+  border: 2px solid green;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: "\\2713";
+    color: green;
+    font-size: 14px;
+  }
+`;
 // banner.js
 export const EventBanner = styled.div`
   width: 720px;
@@ -510,7 +649,7 @@ export const BannerHeading = styled.div`
 `;
 
 export const BannerTitle = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 24.51px;
@@ -519,7 +658,7 @@ export const BannerTitle = styled.h1`
 `;
 
 export const BannerDescription = styled.p`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 19.07px;
@@ -560,7 +699,7 @@ export const Styleduploadimage = styled.img`
   position: relative;
 `;
 export const StyledBrowseP = styled.p`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 19.07px;
@@ -572,7 +711,7 @@ export const StyledUploadedImagesContainer = styled.p`
   position: relative;
   display: flex;
 
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 19.07px;
@@ -592,7 +731,7 @@ export const StyledBrowseButton = styled.button`
   cursor: pointer;
 `;
 export const StyledBrowseButtonText = styled.span`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 19.07px;
@@ -614,7 +753,7 @@ export const StyledLine = styled.div`
   margin-left: 143px;
 
   p {
-    font-family: "Open Sans", sans-serif;
+    // font-family: "Open Sans", sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 16.34px;
@@ -625,7 +764,7 @@ export const StyledLine = styled.div`
   }
 `;
 export const StyledBannerP = styled.p`
-  font-family: "Open Sans", sans-serif;
+  // font-family: "Open Sans", sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 16.34px;

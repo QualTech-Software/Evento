@@ -44,6 +44,7 @@ import {
   StyledLocationError,
 } from "../components/atoms.js";
 import { options, placeOptions, textAreas } from "../data/Edit.json";
+import EventTickets from "../components/EventTickets.jsx";
 
 const Info = ({ saveEvent, setCurrentStep }) => {
   const [eventTitle, setEventTitle] = useState("");
@@ -397,7 +398,7 @@ const Info = ({ saveEvent, setCurrentStep }) => {
             formSubmitted={formSubmitted} // Pass formSubmitted to the VenueDetails component
           />
         )}
-
+        <EventTickets />
         {textAreas.map((textArea, index) => (
           <StyledDiscriptionTitle
             key={index}

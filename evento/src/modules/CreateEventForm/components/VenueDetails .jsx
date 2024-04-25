@@ -9,78 +9,32 @@ const VenueDetails = ({
 }) => {
   const isEmpty = (value) => value.trim() === "";
 
+  const fields = [
+    { label: "Venue Name", name: "venueName" },
+    { label: "Address", name: "address" },
+    { label: "City", name: "city" },
+    { label: "State", name: "state" },
+    { label: "Country", name: "country" },
+    { label: "Zip Code", name: "zipCode" },
+  ];
+
   return (
     <StyledVenueNames>
-      <StyledVenueTextfield
-        label="Venue Name"
-        name="venueName"
-        value={venueDetails.venueName}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.venueName)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.venueName)
-            ? "Venue Name is required"
-            : ""
-        }
-      />
-      <StyledVenueTextfield
-        label="Address"
-        name="address"
-        value={venueDetails.address}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.address)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.address)
-            ? "Address is required"
-            : ""
-        }
-      />
-      <StyledVenueTextfield
-        label="City"
-        name="city"
-        value={venueDetails.city}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.city)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.city) ? "City is required" : ""
-        }
-      />
-      <StyledVenueTextfield
-        label="State"
-        name="state"
-        value={venueDetails.state}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.state)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.state)
-            ? "State is required"
-            : ""
-        }
-      />
-      <StyledVenueTextfield
-        label="Country"
-        name="country"
-        value={venueDetails.country}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.country)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.country)
-            ? "Country is required"
-            : ""
-        }
-      />
-      <StyledVenueTextfield
-        label="Zip Code"
-        name="zipCode"
-        value={venueDetails.zipCode}
-        onChange={handleVenueDetailChange}
-        error={formSubmitted && isEmpty(venueDetails.zipCode)}
-        helperText={
-          formSubmitted && isEmpty(venueDetails.zipCode)
-            ? "Zip Code is required"
-            : ""
-        }
-      />
+      {fields.map((field, index) => (
+        <StyledVenueTextfield
+          key={index}
+          label={field.label}
+          name={field.name}
+          value={venueDetails[field.name]}
+          onChange={handleVenueDetailChange}
+          error={formSubmitted && isEmpty(venueDetails[field.name])}
+          helperText={
+            formSubmitted && isEmpty(venueDetails[field.name])
+              ? `${field.label} is required`
+              : ""
+          }
+        />
+      ))}
     </StyledVenueNames>
   );
 };

@@ -7,7 +7,7 @@ import Create from "./pages/Create.jsx";
 import CreateEventForm from "./pages/CreateEventForm.jsx";
 import Login from "./modules/login/pages/Login.jsx";
 import WelcomeEvent from "./pages/WelcomeEvent.jsx";
-import EventCarousel from "./modules/events/pages/EventCarousel.jsx";
+import EventCarousel from "./modules/Home/pages/EventCarousel.jsx";
 
 function App() {
   return (

@@ -31,7 +31,7 @@ import { BiCalendar } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
 import { SlLocationPin } from "react-icons/sl";
 import { IoTicketSharp } from "react-icons/io5";
-
+import CategoryNavbar from "../../events/pages/CategoryNavbar.jsx"
 const EventCarousel = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
     fetchEvents();
@@ -61,7 +61,7 @@ const EventCarousel = ({ events, loading, fetchEvents }) => {
   const event = events[0]; // Assuming you want to display the first event
   return (
     <>
-      <StyledNavbar />
+      <CategoryNavbar />
       <StyledMainContainer>
         <StyledSlickCarousel ref={slickRef} ratio={2}>
           {event?.files &&

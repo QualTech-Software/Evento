@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { TextField, Button, Modal, Box, Typography } from "@mui/material";
-import group2 from "../../../assets/Group2.png";
+import React, { useState, useEffect } from "react";
+import { Modal } from "@mui/material";
+import { group2, icon } from "../../../assets";
 import "../components/Login.css";
-import icon from "../../../assets/Googleicon.png";
-import danger from "../../../assets/danger.png";
-import Closebtn from "../../../../public/assets/CloseBtn.png";
-
-import axios from "axios";
+import SuccessModal from "../components/LoginSuccessModal";
+import LoginErrorModal from "../components/LoginErrorModal";
 import {
   StyledRightcontainer,
   StyledLogo,
@@ -17,88 +14,62 @@ import {
   QThead,
   CreateAccBtn,
   StyledGoogleBtn,
-  StyledModalButton,
-  StyledInvalidText,
   ErrorText,
 } from "../components/atoms";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  validatePass,
-  clearPlaceholderOnFocus,
-  handleBackspaceKeyDown,
-} from "../utils/FormValid";
+import { connect } from "react-redux";
+import { loginRequest } from "../redux/action/LoginAction";
 
-const validateCredentials = (email, password) => {
-  // Regular expression for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Regular expression for password validation
-  const passwordRegex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/;
-
-  if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-    return "Invalid username or password. Please try again.";
-  } else {
-    return ""; // No error
-  }
-};
-
-const RightContainer = () => {
+const RightContainer = ({ loginRequest, state }) => {
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [buttonOpacity, setButtonOpacity] = useState(0.5);
-  const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
-  const [modalMessage, setModalMessage] = useState(""); // State to store modal message
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  useEffect(() => {
+    const { login } = state;
+    if (1 == login.requestCompleted) {
+      if (1 == login.isLoggedIn && login?.userData?.token != "") {
+        handleLoginSuccess(); // Show success modal
+      } else {
+        handleLoginFailure("Invalid username or password. Please try again."); // Show error modal
+      }
+    }
+  }, [state]);
+  useEffect(() => {
+    if (email && password) {
+      setButtonOpacity(1);
+    } else {
+      setButtonOpacity(0.5);
+    }
+  }, [email, password]);
+
   const navigate = useNavigate();
 
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+  const handleCloseSuccessModal = () => {
+    setModalOpen(false);
+    navigate("/");
+  };
+  const handleLoginSuccess = () => {
+    setModalMessage("Login successful!");
+    setModalOpen(true); // Open the modal
+    setTimeout(() => {
+      setModalOpen(false);
+      navigate("/");
+    }, 10000);
+  };
 
-  const validateForm = () => {
-    setButtonOpacity(1);
+  const handleLoginFailure = (errorMessage) => {
+    setModalMessage(errorMessage);
+    setModalOpen(true);
+  };
 
-    const error = validateCredentials(email, password);
-
-    if (error) {
-      setModalMessage(error);
-      setModalOpen(true);
-      return;
-    }
-
-    axios
-      .post(
-        "http://localhost:3000/api/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          if (response.data && response.data.msg === "Logged in!") {
-            navigate("/");
-          } else {
-            console.log("Email or password is incorrect");
-          }
-        } else {
-          console.log("Unexpected response:", response);
-        }
-        setEmailError(""); // Clear email error if login request succeeds
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error("Server error:", error.response.data);
-        } else if (error.request) {
-          console.error("Network error:", error.request);
-        } else {
-          console.error("Error:", error.message);
-        }
-      });
+  const handleLogin = () => {
+    const response = loginRequest({ email, password });
   };
 
   return (
@@ -113,21 +84,17 @@ const RightContainer = () => {
         </p>
       </QTpara>
       <QThead className="qt-head">
-        <p>Log In</p>
+        <p>Log in</p>
       </QThead>
 
       <StyledForm>
         <input
-          placeholder="Email"
+          placeholder="John@gmail.com"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
-            setEmailError(validateCredentials(e.target.value, password));
           }}
         />
-        {emailError && (
-          <ErrorText className="error-message">{emailError}</ErrorText>
-        )}
       </StyledForm>
 
       <StyledForm>
@@ -137,16 +104,12 @@ const RightContainer = () => {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            setPasswordError(validateCredentials(email, e.target.value));
           }}
         />
-        {passwordError && (
-          <ErrorText className="error-message">{passwordError}</ErrorText>
-        )}
       </StyledForm>
 
       <CreateAccBtn className="create-acc">
-        <StyledButton onClick={validateForm} style={{ opacity: buttonOpacity }}>
+        <StyledButton onClick={handleLogin} style={{ opacity: buttonOpacity }}>
           <p>Continue</p>
         </StyledButton>
       </CreateAccBtn>
@@ -159,64 +122,22 @@ const RightContainer = () => {
         <p>Log in with Google Account</p>
       </StyledGoogleBtn>
 
-      {/* Modal for displaying error messages */}
       <Modal open={modalOpen} onClose={handleCloseModal}>
-        <Box
-          sx={{
-            position: "relative",
-            top: "12%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 720,
-            height: "131px",
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            borderRadius: "0px 0px 8px 8px",
-            p: 4,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "left", mb: 2 }}>
-            <img
-              src={danger}
-              alt="Danger Icon"
-              style={{
-                marginRight: "2px",
-                height: "24px",
-                width: "24px",
-                marginLeft: "126px",
-              }}
-            />
-
-            <Typography variant="h6" component="h2" gutterBottom></Typography>
-          </Box>
-          <Typography
-            variant="body1"
-            style={{ color: "red", marginTop: "-38px", marginLeft: "160px" }}
-          >
-            {modalMessage}
-          </Typography>
-          <StyledModalButton onClick={handleCloseModal} sx={{ mt: 2 }}>
-            <img src={Closebtn} />
-          </StyledModalButton>
-
-          <StyledInvalidText>
-            <hr
-              style={{
-                marginTop: "8px",
-                width: "776px",
-                marginLeft: "-29px",
-
-                borderTop: "0.5px solid red",
-              }}
-            />
-
-            <h4>Oops!</h4>
-            <p>Enter the correct email address and password to log in</p>
-          </StyledInvalidText>
-        </Box>
+        {modalMessage === "Login successful!" ? (
+          <SuccessModal handleCloseModal={handleCloseSuccessModal} />
+        ) : (
+          <LoginErrorModal
+            handleCloseModal={handleCloseModal}
+            modalMessage={modalMessage}
+          />
+        )}
       </Modal>
     </StyledRightcontainer>
   );
 };
 
-export default RightContainer;
+const mapStateToProps = (state) => ({
+  state: state, // assuming state contains the necessary login information
+});
+
+export default connect(mapStateToProps, { loginRequest })(RightContainer);

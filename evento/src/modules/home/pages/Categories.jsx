@@ -1,54 +1,60 @@
-import React from "react";
-import { Typography, formControlClasses } from "@mui/material";
+import React, { useEffect } from "react";
+import { Typography } from "@mui/material";
 import "../components/Categories.css";
-import {
-  fun,
-  sports,
-  traditional,
-  travel,
-  education,
-  business,
-} from "../../../assets";
+import { connect } from "react-redux";
+import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
+import { useNavigate } from "react-router-dom";
 
-export default function Categories() {
+const Categories = ({ categories, loading, fetchCategories }) => {
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
+
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    const { category_id } = category;
+    navigate(`/category/event/${category_id}`);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const filteredCategories = categories.filter(
+    (category) => category.parent_category_id === 0
+  );
+
   return (
     <div className="qt-categories">
       <Typography variant="h1">Explore Categories</Typography>
       <div className="qt-categories-cards">
-        <div className="qt-card-fun">
-          <Typography variant="h6">Fun</Typography>
-          <img src={fun} className="qt-fun-png" alt="Fun" />
-        </div>
-
-        <div className="qt-card-sports">
-          <Typography variant="h6">Sports</Typography>
-          <img src={sports} className="qt-sports-png" alt="Sports" />
-        </div>
-
-        <div className="qt-card-traditional">
-          <Typography variant="h6">Traditional</Typography>
-          <img
-            src={traditional}
-            className="qt-traditional-png"
-            alt="Traditional"
-          />
-        </div>
-
-        <div className="qt-card-travel">
-          <Typography variant="h6">Travel</Typography>
-          <img src={travel} className="qt-travel-png" alt="Travel" />
-        </div>
-
-        <div className="qt-card-education">
-          <Typography variant="h6">Education</Typography>
-          <img src={education} className="qt-education-png" alt="Education" />
-        </div>
-
-        <div className="qt-card-bussiness">
-          <Typography variant="h6">Business</Typography>
-          <img src={business} className="qt-bussiness-png" alt="Business" />
-        </div>
+        {filteredCategories.map((category) => (
+          <div
+            key={category.id}
+            className={`qt-card-${category.name.toLowerCase()}`}
+            onClick={() => handleCategoryClick(category)}
+          >
+            <Typography variant="h6">{category.name}</Typography>
+            <img
+              src={category.logo_img}
+              alt={category.name}
+              className={`qt-${category.name.toLowerCase()}-png`}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories,
+  loading: state.categories.loading,
+});
+
+const mapDispatchToProps = {
+  fetchCategories: fetchCategoriesRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

@@ -3,11 +3,7 @@ name: Auto Generate PR
 on:
   push:
     branches:
-      - 'dev'
-      - 'main'
-      - 'dev'
-      - 'stage'
-      - 'uat'
+      - 'master'
 jobs:
   autoCreatePR:
     runs-on: ubuntu-latest

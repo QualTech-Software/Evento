@@ -1,0 +1,23 @@
+{
+  "options": [
+    { "id": "1", "title": "Culture and Arts" },
+    { "id": "2", "title": "Education and Business" },
+    { "id": "3", "title": "Entertainment" },
+    { "id": "4", "title": "Food and Drink" },
+    { "id": "5", "title": "Technology and Innovation" },
+    { "id": "6", "title": "Travel and Adventure" }
+  ],
+  "placeOptions": ["Venue", "Online"],
+  "textAreas": [
+    {
+      "title": "Additional Information",
+      "name": "postContent",
+      "placeholder": "Describe what's special about your event & other important details."
+    },
+    {
+      "title": "Rules and Regulations",
+      "name": "rulesContent",
+      "placeholder": "Rules and regulations."
+    }
+  ]
+}

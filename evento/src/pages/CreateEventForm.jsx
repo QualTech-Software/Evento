@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import { arrow, editfilled, bannerfilled } from "../icons/index.js";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   NewEvent,
   EventEdit,
   StyledNewEventh1,
-  StyledArrow,
-  EditLabel,
+  InfoLabel,
   CommonLabel,
 } from "../modules/CreateEventForm/components/atoms.js";
-import Edit from "../modules/CreateEventForm/pages/Banner.jsx";
-import Banner from "../modules/CreateEventForm/pages/Edit.jsx";
+import Info from "../modules/CreateEventForm/pages/Banner.jsx";
+import Banner from "../modules/CreateEventForm/pages/Info.jsx";
 import Ticketing from "../modules/CreateEventForm/pages/Ticketing.jsx";
 import Review from "../modules/CreateEventForm/pages/Review.jsx";
 
 // Define an array of steps
 const steps = [
-  { icon: editfilled, label: "Edit" },
+  { icon: editfilled, label: "Info" },
   { icon: bannerfilled, label: "Banner" },
   { icon: bannerfilled, label: "Ticketing" },
   { icon: bannerfilled, label: "Review" },
 ];
 
 // Step component to render each step
-const Step = ({ stepNumber, step }) => (
+const Step = ({ stepNumber, step, currentStep }) => (
   <div className={`qt-step qt-step-${stepNumber}`}>
     <img src={step.icon} className="qt-step-icon" />
-    {step.label === "Edit" ? (
-      <EditLabel>{step.label}</EditLabel>
+    {currentStep + 1 >= stepNumber ? (
+      <InfoLabel>{step.label}</InfoLabel>
     ) : (
       <CommonLabel>{step.label}</CommonLabel>
     )}
@@ -36,20 +35,9 @@ const Step = ({ stepNumber, step }) => (
 
 const CreateEventForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const navigate = useNavigate();
-
-  const goToPreviousPage = () => {
-    // Navigate to the previous page
-    navigate(-1);
-  };
 
   return (
     <NewEvent className="qt-newevent">
-      <StyledArrow
-        src={arrow}
-        className="qt-event-arrow"
-        onClick={goToPreviousPage}
-      />
       <StyledNewEventh1>Create a New Event</StyledNewEventh1>
 
       {/* Map over steps array and render each step dynamically */}
@@ -58,6 +46,7 @@ const CreateEventForm = () => {
           <Step
             key={index}
             stepNumber={index + 1}
+            currentStep={currentStep}
             step={{
               ...step,
               icon: index <= currentStep ? editfilled : step.icon,
@@ -68,7 +57,7 @@ const CreateEventForm = () => {
       <Routes>
         <Route
           path="/banner"
-          element={<Edit setCurrentStep={setCurrentStep} />}
+          element={<Info setCurrentStep={setCurrentStep} />}
         />
         <Route path="/" element={<Banner setCurrentStep={setCurrentStep} />} />
         <Route

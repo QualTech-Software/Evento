@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { InputLabel, MenuItem } from "@mui/material";
+import { Button, InputLabel, MenuItem } from "@mui/material";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Card from "@mui/joy/Card";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -113,6 +113,13 @@ export const StyledQtHome = styled.div`
   width: 1440px;
   height: 730px;
   margin: auto;
+`;
+export const StyledEventoLogo = styled.div`
+  img {
+    height: 76px;
+    width: 165px;
+    margin-top: 12px;
+  }
 `;
 export const StyledNavbar = styled.div`
   width: 1440px;
@@ -383,7 +390,7 @@ export const DropDown = styled.div`
 export const Head = styled.div`
   width: 485px;
   height: 44px;
-  margin: 40px 0px 16px 64px;
+  margin: 40px 0px 21px;
 
   font-family: Open Sans;
   font-size: 32px;
@@ -399,6 +406,9 @@ export const Eventname = styled.div`
   text-align: left;
   color: #1e0a3c;
   height: 27px;
+  p {
+    margin-top: -28px;
+  }
 `;
 export const Eventadd = styled.div`
   font-family: Open Sans;
@@ -421,6 +431,7 @@ export const Eventtime = styled.div`
 `;
 export const Tickets = styled.div`
   height: 25px;
+
   display: inline-flex;
   .price {
     font-family: Open Sans;
@@ -473,6 +484,56 @@ export const StyledCard = styled(Card)`
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.2) !important;
   }
 `;
+export const StyledOrgButton = styled(Button)`
+  margin-top: 70px;
+  width: 252px;
+  height: 48px;
+  background-color: rgba(255, 0, 0, 1);
+  margin-left: 24px;
+  border-radius: 8px;
+  p {
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.51px;
+    text-align: left;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+  }
+  &:hover {
+    background-color: rgba(255, 0, 0, 1);
+  }
+`;
+export const StyledPrice = styled.div`
+  h4 {
+    margin-top: 14px;
+    margin-left: 14px;
+  }
+  p {
+    margin-top: -17px;
+  }
+`;
+export const StyledOrgInterest = styled.div`
+  margin-left: 24px;
+  h4 {
+    margin-top: 14px;
+    margin-left: 12px;
+  }
+  p {
+    margin-top: -14px;
+  }
+`;
+export const StyledCardOrganizer = styled(Card)`
+  width: 300px;
+  margin: 10px;
+  border: 1px solid rgba(171, 171, 171, 1);
+  &:hover {
+    background: rgba(255, 239, 239, 1);
+    border: 1px solid black;
+  }
+`;
+
 export const StyledCardOverflow = styled(CardOverflow)`
   width: 410px;
   height: 205px;
@@ -482,6 +543,7 @@ export const StyledAspectRatio = styled(AspectRatio)`
   img {
     position: "absolute";
     left: 0;
+
     z-index: 1;
   }
 `;
@@ -530,7 +592,7 @@ export const StyledButtonGroup = styled(ButtonGroup)`
   line-height: 27px;
   letter-spacing: 0em;
   text-align: left;
-  margin-left: 64px;
+  // margin-left: 64px;
   margin-top: 16px;
   border-radius: 8;
 
@@ -583,13 +645,13 @@ export const StyledLink = styled(Link)`
 export const StyledCreateEvent = styled.div`
   width: 1440px;
   height: 315px;
-  background-image: url("../../../public/assets/CreateEvent2.png");
+  background-image: url("../../../public/assets/NewCreateEvent.svg");
   background-repeat: no-repeat;
   background-position: relative;
   background-size: 1440px 315px;
 `;
 export const StyledCreateText = styled.div`
-  width: 491px;
+  width: 564px;
   height: 49px;
   top: 62px;
   margin-left: 475px;
@@ -600,7 +662,8 @@ export const StyledCreateText = styled.div`
     font-weight: 600;
     line-height: 49.03px;
     text-align: left;
-    color: rgba(255, 224, 71, 1);
+    color: white;
+    text-transform: uppercase;
   }
 `;
 export const StyledSubtext = styled.div`
@@ -616,7 +679,7 @@ export const StyledSubtext = styled.div`
     font-weight: 500;
     line-height: 27.24px;
     text-align: left;
-    color: rgba(255, 224, 71, 1);
+    color: white;
   }
   button {
     width: 169px;
@@ -627,11 +690,12 @@ export const StyledSubtext = styled.div`
     padding: 16px 0px 0px 0px;
     position: relative;
     border-radius: 8px;
+    border: none;
     opacity: 0px;
-    background: rgba(255, 212, 0, 1);
+    background: white;
     background-image: url("../../../public/assets/CreateEvent.png");
     background-repeat: no-repeat;
-    background-position: 23px;
+    background-position: 20px;
     background-size: 18px 18px;
     p {
       //styleName: 18 SEMIBOLD SANS;

@@ -8,11 +8,13 @@ import Categories from "../modules/Home/pages/Categories";
 import Events from "../modules/Home/pages/Events";
 import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
 import Organizer from "../modules/Home/pages/Organizer";
+import Footer from "../modules/footer/pages/Footer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { dashboard, event, interest, logo, login } from "../assets";
 import chevron from "../../public/assets/Chevron.png";
-import CreateEvent from "../modules/Home/pages/CreateEvent";
+import CreateEvent from "../modules/events/pages/CreateEvent";
 import TopDestination from "../modules/Home/pages/TopDestination";
+
 import {
   FormControl,
   InputLabel,
@@ -48,35 +50,33 @@ import {
   StyledDropDownTrending,
   DropdownIconWrapper,
   IconButtonStyle,
+  StyledEventoLogo,
 } from "../modules/Home/components/atoms";
-
-const Home = () => {
+const home = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(""); // State to manage selected location
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
   const [showTrendingSearch, setShowTrendingSearch] = useState(false); // State to manage trending search visibility
   const [searchInputValue, setSearchInputValue] = useState();
-
   const handleClick = () => {
     navigate("/create");
   };
   const handleoClick = () => {
     navigate("/login");
   };
-
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
   const toggleTrendingSearch = () => {
     setShowTrendingSearch(!showTrendingSearch);
   };
-
   return (
     <>
       <StyledQtHome className="qt-home">
         <StyledNavbar className="qt-navbar">
-          <img src={logo} alt="Logo" />
+          <StyledEventoLogo>
+            <img src={logo} alt="Logo" />
+          </StyledEventoLogo>
           <StyledSidebar className="sidebar">
             <StyledCategory className="category">
               <img src={dashboard} alt="Dashboard" />
@@ -109,7 +109,6 @@ const Home = () => {
             Don’t miss out! Explore the <span>vibrant events</span> happening
             locally and globally.
           </h3>
-
           <StyledInputCont className="input-container">
             <StyledFirstInput>
               <input
@@ -203,8 +202,9 @@ const Home = () => {
         <Organizer />
         <CreateEvent />
         <TopDestination />
+        <Footer />
       </StyledQtHome>
     </>
   );
 };
-export default Home;
+export default home;

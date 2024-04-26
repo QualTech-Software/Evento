@@ -4,7 +4,7 @@ import {
   StyledCreateText,
   StyledLink,
   StyledSubtext,
-} from "../components/atoms";
+} from "../../Home/components/atoms";
 
 const CreateEvent = () => (
   <StyledCreateEvent className="qt-create-event-main">

@@ -46,7 +46,13 @@ import {
 import { options, placeOptions, textAreas } from "../data/Edit.json";
 import EventTickets from "../components/EventTickets.jsx";
 
-const Info = ({ saveEvent, setCurrentStep }) => {
+const Info = ({ saveEvent, setCurrentStep, isPaidEvent, setIsPaidEvent }) => {
+  console.log(
+    "setIsPaidEvent, isPaidEvent, setCurrentStep",
+    setIsPaidEvent,
+    isPaidEvent,
+    setCurrentStep
+  );
   const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
@@ -69,8 +75,7 @@ const Info = ({ saveEvent, setCurrentStep }) => {
   const [textAreaValues, setTextAreaValues] = useState(
     Array(textAreas.length).fill("")
   );
-  const [formSubmitted, setFormSubmitted] = useState(false); // Track if the form has been submitted
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
   const toggleCategoryDropdown = () => {
@@ -145,9 +150,7 @@ const Info = ({ saveEvent, setCurrentStep }) => {
     selectedPlace &&
     (selectedPlace !== "Venue" || venueDetailsFilled()) &&
     startDate &&
-    endDate &&
-    startTime &&
-    endTime;
+    endDate;
 
   const handleSaveAndContinue = async () => {
     setFormSubmitted(true); // Set formSubmitted to true on Save & Continue click
@@ -193,7 +196,9 @@ const Info = ({ saveEvent, setCurrentStep }) => {
     try {
       await saveEvent(eventData);
       setCurrentStep(1);
-      navigate("/createeventform/banner");
+
+      // Pass isPaidEvent to the Banner component
+      navigate("/createeventform/banner", { state: { isPaidEvent } });
     } catch (error) {
       console.error("Failed to save event:", error);
     }
@@ -398,7 +403,10 @@ const Info = ({ saveEvent, setCurrentStep }) => {
             formSubmitted={formSubmitted} // Pass formSubmitted to the VenueDetails component
           />
         )}
-        <EventTickets />
+        <EventTickets
+          isPaidEvent={isPaidEvent}
+          setIsPaidEvent={setIsPaidEvent}
+        />
         {textAreas.map((textArea, index) => (
           <StyledDiscriptionTitle
             key={index}

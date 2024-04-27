@@ -33,12 +33,17 @@ const StyledSlider = styled(Slider)`
   position: relative;
   border: 2px solid black;
   margin-top: 30%;
-  // .slick-next {
-  //   top: 300px;
-  // }
+  .slick-next {
+    right: 10px;
+    z-index: 1;
+  }
+  .slick-prev {
+    left: 10px;
+    z-index: 1;
+  }
 `;
 
-export default function Banner({ setCurrentStep }) {
+export default function Banner({ setCurrentStep, isPaidEvent, selectedType }) {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
@@ -82,8 +87,18 @@ export default function Banner({ setCurrentStep }) {
       alert("Please upload images.");
       return;
     }
-    setCurrentStep(2);
-    navigate("/createeventform/ticketing");
+
+    if (isPaidEvent) {
+      // If it's a paid event, navigate to the ticketing page
+      setCurrentStep(2);
+      navigate("/createeventform/ticketing", {
+        state: { eventType: selectedType },
+      });
+    } else {
+      // If it's a free event, directly navigate to the review page
+      setCurrentStep(3); // Skip ticketing page for free event
+      navigate("/createeventform/review");
+    }
   };
 
   const handleImageClick = (index) => {
@@ -184,7 +199,7 @@ export default function Banner({ setCurrentStep }) {
       >
         <StyledImgFade in={openPopup}>
           <div>
-            <StyledSlider>
+            <StyledSlider initialSlide={selectedImageIndex}>
               {selectedFiles.map((file, index) => (
                 <div key={index}>
                   <img src={URL.createObjectURL(file)} alt={file.name} />

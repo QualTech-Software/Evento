@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { arrow, editfilled, bannerfilled } from "../icons/index.js";
 import { Route, Routes } from "react-router-dom";
 import {
@@ -36,37 +36,71 @@ const Step = ({ stepNumber, step, currentStep }) => (
 const CreateEventForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const [isPaidEvent, setIsPaidEvent] = useState(false);
+  console.log("setIsPaidEvent, isPaidEvent", setIsPaidEvent, isPaidEvent);
+  useEffect(() => {
+    console.log("hello");
+  }, [isPaidEvent]);
+
+  console.log("reRenderd");
+
   return (
     <NewEvent className="qt-newevent">
       <StyledNewEventh1>Create a New Event</StyledNewEventh1>
 
       {/* Map over steps array and render each step dynamically */}
       <EventEdit className="qt-event-edit">
-        {steps.map((step, index) => (
-          <Step
-            key={index}
-            stepNumber={index + 1}
-            currentStep={currentStep}
-            step={{
-              ...step,
-              icon: index <= currentStep ? editfilled : step.icon,
-            }}
-          />
-        ))}
+        {steps.map((step, index) => {
+          return !isPaidEvent && index == 2 ? (
+            <></>
+          ) : (
+            <Step
+              key={index}
+              stepNumber={index + 1}
+              currentStep={currentStep}
+              step={{
+                ...step,
+                icon: index <= currentStep ? editfilled : step.icon,
+              }}
+            />
+          );
+        })}
       </EventEdit>
       <Routes>
         <Route
           path="/banner"
-          element={<Info setCurrentStep={setCurrentStep} />}
+          element={
+            <Info
+              setIsPaidEvent={setIsPaidEvent}
+              setCurrentStep={setCurrentStep}
+              isPaidEvent={isPaidEvent}
+            />
+          }
         />
-        <Route path="/" element={<Banner setCurrentStep={setCurrentStep} />} />
+        <Route
+          path="/"
+          element={
+            <Banner
+              setIsPaidEvent={setIsPaidEvent}
+              setCurrentStep={setCurrentStep}
+              isPaidEvent={isPaidEvent}
+            />
+          }
+        />
         <Route
           path="/ticketing"
-          element={<Ticketing setCurrentStep={setCurrentStep} />}
+          element={
+            <Ticketing
+              setCurrentStep={setCurrentStep}
+              isPaidEvent={isPaidEvent}
+            />
+          }
         />
         <Route
           path="/review"
-          element={<Review setCurrentStep={setCurrentStep} />}
+          element={
+            <Review setCurrentStep={setCurrentStep} isPaidEvent={isPaidEvent} />
+          }
         />
       </Routes>
     </NewEvent>

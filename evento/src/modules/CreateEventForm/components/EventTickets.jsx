@@ -25,10 +25,11 @@ const EventCard = ({ icon, label, type, selectedType, onClick }) => {
   );
 };
 
-const EventTickets = () => {
+const EventTickets = ({ setIsPaidEvent, isPaidEvent }) => {
   const [selectedType, setSelectedType] = useState("free"); // Initialize to "free"
 
   const handleCardClick = (type) => {
+    setIsPaidEvent(type == "free" ? false : true);
     setSelectedType(type);
   };
 
@@ -47,7 +48,7 @@ const EventTickets = () => {
         />
         <EventCard
           icon={TicketedEventIcon}
-          label="Ticketed Event"
+          label="Paid Event"
           type="ticketed"
           selectedType={selectedType}
           onClick={() => handleCardClick("ticketed")}

@@ -22,3 +22,5 @@ export { default as banner3 } from "./Event3.png";
 export { default as banner4 } from "./Event4.png";
 export { default as banner5 } from "./Event5.png";
 export { default as vector } from "./Vector.png";
+export { default as TicketedEventIcon } from "./Ticketedevent.svg";
+export { default as FreeEventIcon } from "./Freeevent.svg";

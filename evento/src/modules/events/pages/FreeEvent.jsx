@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
@@ -17,51 +17,25 @@ import {
   StyledCardContent,
   StyledCardTypography,
   CardOutline,
-  StyledButtonGroup,
 } from "../../Home/components/atoms.js";
-import {
-  fetchEventsRequest,
-  fetchFilteredEventsRequest,
-} from "../redux/action/action.js";
+import { fetchEventsRequest } from "../redux/action/action.js";
 import { vector } from "../../../assets/index.js";
 import { ticket, ellipse, star, icon1 } from "../../../assets/index.js";
-import { useParams } from "react-router-dom";
-import { format, addDays, isSameDay } from "date-fns"; // Import isSameDay
+import { format } from "date-fns";
 
-const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
-  const [startIdx, setStartIdx] = useState(0);
-  const { category_id } = useParams();
+const FreeEvent = ({ events, loading, fetchEvents }) => {
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   useEffect(() => {
-    fetchFilteredEvents({ category_id, dates: [getCurrentDate()] }); // Pass current date only
-  }, [category_id]);
-
-  useEffect(() => {
-    setStartIdx(0);
-  }, [category_id]);
-
-  useEffect(() => {
-    console.log("Events:", events);
+    if (events?.length > 0) {
+      console.log("Events:", events);
+    }
   }, [events]);
 
-  const getCurrentDate = () => {
-    return new Date().toISOString().slice(0, 10); // Return current date in YYYY-MM-DD format
-  };
-
-  const handleTodayClick = () => {
-    const today = getCurrentDate();
-    fetchFilteredEvents({ category_id, dates: [today] });
-  };
-
-  const handleTomorrowClick = () => {
-    const tomorrow = addDays(new Date(), 1).toISOString().slice(0, 10); // Get tomorrow's date in YYYY-MM-DD format
-    console.log(tomorrow);
-    fetchFilteredEvents({ category_id, dates: [tomorrow] });
-  };
-
-  const fetchFilteredEvents = (data) => {
-    fetchFilteredEventsRequest(data);
-  };
+  // Filter events where is_paid is 0
+  const freeEvents = events?.filter((event) => event.is_paid === 0) || [];
 
   const formatDateRange = (start, end) => {
     const startDate = format(new Date(start), "d MMM");
@@ -77,24 +51,10 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
 
   return (
     <>
-      <Head>Most Popular Events</Head>
-      <StyledButtonGroup
-        sx={{
-          borderRadius: 8,
-        }}
-      >
-        <Button className="btn-default" onClick={handleTodayClick}>
-          Today
-        </Button>
-        <Button className="btn-tom" onClick={handleTomorrowClick}>
-          Tomorrow
-        </Button>
-        <Button className="btn-week">This Weekend</Button>
-        <Button className="btn-free">Free</Button>
-      </StyledButtonGroup>
+      <Head>Free Events</Head>
 
       <CardOutline style={{ display: "flex" }}>
-        {events.map((event) => (
+        {freeEvents.slice(0, 3).map((event) => (
           <StyledCard
             key={event.id}
             variant="outlined"
@@ -130,7 +90,7 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
               <Tickets className="tickets" orientation="horizontal">
                 <div className="price">
                   <img src={ticket} alt="Ticket Icon" />
-                  INR 1,400
+                  Free
                 </div>
                 <div className="ellipse">
                   <img src={ellipse} alt="Ellipse Icon" />
@@ -153,8 +113,8 @@ const mapStateToProps = (state) => ({
   loading: state.event.loading,
 });
 
-const mapDispatchToProps = {
-  fetchFilteredEventsRequest,
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchEvents: () => dispatch(fetchEventsRequest()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Onlineevents);
+export default connect(mapStateToProps, mapDispatchToProps)(FreeEvent);

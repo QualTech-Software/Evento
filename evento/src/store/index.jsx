@@ -9,16 +9,18 @@ import categoriesReducer from "../modules/Home/redux/reducers/categoriesReducer"
 import categoriesSaga from "../modules/Home/redux/sagas/categoriesSaga"; // Adjust the path if necessary
 import editReducer from "../modules/CreateEventForm/Redux/reducer/editReducer";
 import editSaga from "../modules/CreateEventForm/Redux/sagas/editsaga";
-
+import EventReducer from "../modules/events/redux/reducer/EventReducer";
+import EventSaga from "../modules/events/redux/sagas/EventSaga";
 const rootReducers = combineReducers({
   login: loginReducer,
   categories: categoriesReducer,
   edit: editReducer,
+  event: EventReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSagas() {
-  yield all([loginSaga(), categoriesSaga(), editSaga()]);
+  yield all([loginSaga(), categoriesSaga(), editSaga(), EventSaga()]);
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

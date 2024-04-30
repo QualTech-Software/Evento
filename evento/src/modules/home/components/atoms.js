@@ -605,6 +605,9 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     margin-right: 20px;
     border-radius: 50px !important;
   }
+  .btn-default:hover {
+    background-color: red;
+  }
   .btn-tom {
     width: 133px;
     margin-right: 20px;
@@ -628,7 +631,6 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     border-radius: 50px !important;
     color: #ababab;
   }
-  .btn-default:hover,
   .btn-week:hover,
   .btn-free:hover,
   .btn-tom:hover {

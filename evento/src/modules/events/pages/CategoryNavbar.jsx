@@ -16,7 +16,6 @@ const Navbar = () => (
   <StyledNavbar className="qt-navbar">
     <StyledEventoLogo>
       <Link to="/">
-        {" "}
         <img src={logo} alt="Logo" />
       </Link>
     </StyledEventoLogo>

@@ -8,13 +8,10 @@ export const fetchEventsRequest = () => ({
   type: FETCH_EVENTS_REQUEST,
 });
 
-export const fetchFilteredEventsRequest = (filters) => {
-  console.log("fetchFilteredEventsRequest -->", filters);
-  return {
-    type: FETCH_FILTERED_EVENTS_REQUEST,
-    payload: filters,
-  };
-};
+export const fetchFilteredEventsRequest = (filters) => ({
+  type: FETCH_FILTERED_EVENTS_REQUEST,
+  payload: filters,
+});
 
 export const fetchEventsSuccess = (events) => ({
   type: FETCH_EVENTS_SUCCESS,

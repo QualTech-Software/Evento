@@ -11,9 +11,6 @@ import axios from "axios";
 function* fetchEvents() {
   try {
     const response = yield axios.get("http://localhost:3000/api/events");
-    console.log("Response:", response); // Log the response object
-
-    // Extract data directly from the response
     const data = response.data;
 
     yield put(fetchEventsSuccess(data));
@@ -28,9 +25,7 @@ function* fetchFilteredEvents({ payload }) {
       "http://localhost:3000/api/filtered-events",
       payload
     );
-    console.log("Response:", payload); // Log the response object
 
-    // Extract data directly from the response
     const data = response.data;
 
     yield put(fetchEventsSuccess(data));
@@ -39,7 +34,6 @@ function* fetchFilteredEvents({ payload }) {
   }
 }
 
-// Watch for FETCH_EVENTS_REQUEST action and call fetchEvents saga
 function* watchFetchEvents() {
   yield takeLatest(FETCH_EVENTS_REQUEST, fetchEvents);
 }
@@ -47,7 +41,6 @@ function* watchFetchFilterEvents() {
   yield takeLatest(FETCH_FILTERED_EVENTS_REQUEST, fetchFilteredEvents);
 }
 
-// Export the Saga function
 export default function* EventSaga() {
   yield watchFetchFilterEvents();
 }

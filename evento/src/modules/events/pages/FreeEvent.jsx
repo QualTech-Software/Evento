@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Head,
@@ -11,44 +11,23 @@ import {
   StyledCardTypography,
   CardOutline,
 } from "../../Home/components/atoms.js";
-import {
-  TypographyEvent,
-  TicketSection,
-  ButtonEvent,
-} from "../components/index.js";
-import {
-  fetchEventsRequest,
-  fetchFilteredEventsRequest,
-} from "../redux/action/action.js";
+import { fetchEventsRequest } from "../redux/action/action.js";
 import { vector, icon1 } from "../../../assets/index.js";
-import { useParams } from "react-router-dom";
 import { format } from "date-fns";
-
-const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
-  const { category_id } = useParams();
-
-  const [filters, setFilters] = useState({
-    dates: [],
-    is_paid: null,
-    category_id,
-  });
+import TicketSection from "../components/TicketSection.jsx";
+import TypographyEvent from "../components/TypographyEvent.jsx";
+const FreeEvent = ({ events, loading, fetchEvents }) => {
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   useEffect(() => {
-    let filterArr = {};
+    if (events?.length > 0) {
+      console.log("Events:", events);
+    }
+  }, [events]);
 
-    if (filters?.is_paid != null) filterArr["is_paid"] = filters?.is_paid;
-
-    if (filters?.category_id > 0)
-      filterArr["category_id"] = filters?.category_id;
-
-    if (Array.isArray(filters?.dates)) filterArr["dates"] = filters?.dates;
-
-    fetchFilteredEvents(filterArr);
-  }, [filters]);
-
-  const fetchFilteredEvents = (data) => {
-    fetchFilteredEventsRequest(data);
-  };
+  const freeEvents = events?.filter((event) => event.is_paid === 0) || [];
 
   const formatDateRange = (start, end) => {
     const startDate = format(new Date(start), "d MMM");
@@ -64,10 +43,10 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
 
   return (
     <>
-      <Head>Most Popular Events</Head>
-      <ButtonEvent categoryId={category_id} setFilters={setFilters} />
+      <Head>Free Events</Head>
+
       <CardOutline style={{ display: "flex" }}>
-        {events.map((event) => (
+        {freeEvents.slice(0, 3).map((event) => (
           <StyledCard
             key={event.id}
             variant="outlined"
@@ -97,7 +76,7 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
                 event={event}
                 formatEventTime={formatEventTime}
               />
-              <TicketSection event={event} />
+              <TicketSection />
             </StyledCardContent>
           </StyledCard>
         ))}
@@ -106,12 +85,13 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
   );
 };
 
-export default connect(
-  ({ event: { events, loading } }) => ({
-    events,
-    loading,
-  }),
-  {
-    fetchFilteredEventsRequest,
-  }
-)(Onlineevents);
+const mapStateToProps = (state) => ({
+  events: state.event.events,
+  loading: state.event.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchEvents: () => dispatch(fetchEventsRequest()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FreeEvent);

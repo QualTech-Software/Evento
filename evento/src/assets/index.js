@@ -11,7 +11,7 @@ export { default as business } from "./business.png";
 export { default as travel } from "./travel.png";
 export { default as traditional } from "./traditional.png";
 export { default as sports } from "./sports.png";
-export { default as icon1 } from "./calendar.png";
+export { default as icon1 } from "./calender.svg";
 export { default as ticket } from "./ticket.png";
 export { default as banner } from "./Event.png";
 export { default as star } from "./star.png";

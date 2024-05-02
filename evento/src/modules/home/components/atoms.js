@@ -598,13 +598,14 @@ export const StyledButtonGroup = styled(ButtonGroup)`
 
   .btn-default {
     width: 133px;
-    color: #fff;
-    background: #ff0000;
+    background: #ffffff;
+    color: #ababab;
     text-align: center;
     border: 1px solid #ababab !important;
     margin-right: 20px;
     border-radius: 50px !important;
   }
+
   .btn-tom {
     width: 133px;
     margin-right: 20px;
@@ -627,13 +628,6 @@ export const StyledButtonGroup = styled(ButtonGroup)`
     background: #ffffff;
     border-radius: 50px !important;
     color: #ababab;
-  }
-  .btn-default:hover,
-  .btn-week:hover,
-  .btn-free:hover,
-  .btn-tom:hover {
-    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.25) !important;
-    background-color: transparent !important;
   }
 `;
 

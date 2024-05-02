@@ -15,7 +15,9 @@ import { StyledLink } from "../../Home/components/atoms";
 const Navbar = () => (
   <StyledNavbar className="qt-navbar">
     <StyledEventoLogo>
-      <img src={logo} alt="Logo" />
+      <Link to="/">
+        <img src={logo} alt="Logo" />
+      </Link>
     </StyledEventoLogo>
     <StyledSidebar className="sidebar">
       <StyledCategory className="category">

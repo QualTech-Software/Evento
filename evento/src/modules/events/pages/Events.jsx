@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Button from "@mui/joy/Button";
 import {
   Head,
   Text,
@@ -11,7 +10,6 @@ import {
   StyledCardContent,
   StyledCardTypography,
   CardOutline,
-  StyledButtonGroup,
 } from "../../Home/components/atoms.js";
 import {
   TypographyEvent,
@@ -24,30 +22,29 @@ import {
 } from "../redux/action/action.js";
 import { vector, icon1 } from "../../../assets/index.js";
 import { useParams } from "react-router-dom";
-import { format, addDays } from "date-fns";
+import { format } from "date-fns";
 
 const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
   const { category_id } = useParams();
 
+  const [filters, setFilters] = useState({
+    dates: [],
+    is_paid: null,
+    category_id,
+  });
+
   useEffect(() => {
-    fetchFilteredEvents({ category_id, dates: [getCurrentDate()] });
-  }, [category_id]);
+    let filterArr = {};
 
-  useEffect(() => {}, [events]);
+    if (filters?.is_paid != null) filterArr["is_paid"] = filters?.is_paid;
 
-  const getCurrentDate = () => {
-    return new Date().toISOString().slice(0, 10);
-  };
+    if (filters?.category_id > 0)
+      filterArr["category_id"] = filters?.category_id;
 
-  const handleTodayClick = () => {
-    const today = getCurrentDate();
-    fetchFilteredEvents({ category_id, dates: [today] });
-  };
+    if (Array.isArray(filters?.dates)) filterArr["dates"] = filters?.dates;
 
-  const handleTomorrowClick = () => {
-    const tomorrow = addDays(new Date(), 1).toISOString().slice(0, 10);
-    fetchFilteredEvents({ category_id, dates: [tomorrow] });
-  };
+    fetchFilteredEvents(filterArr);
+  }, [filters]);
 
   const fetchFilteredEvents = (data) => {
     fetchFilteredEventsRequest(data);
@@ -68,10 +65,7 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
   return (
     <>
       <Head>Most Popular Events</Head>
-      <ButtonEvent
-        handleTodayClick={handleTodayClick}
-        handleTomorrowClick={handleTomorrowClick}
-      />
+      <ButtonEvent categoryId={category_id} setFilters={setFilters} />
       <CardOutline style={{ display: "flex" }}>
         {events.map((event) => (
           <StyledCard

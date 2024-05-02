@@ -4,7 +4,7 @@ import "../Components/Home/Home.css";
 // import { event, interest, logo } from "../assets";
 //import { useNavigate } from "react-router-dom";
 //import { dashboard, event, interest, login, logo } from "../assets";
-import Categories from "../modules/Home/pages/Categories";
+import Categories from "../modules/categories/pages/Categories";
 import Events from "../modules/Home/pages/Events";
 import DiscoverEvent from "../modules/Home/pages/DiscoverEvent";
 import Organizer from "../modules/Home/pages/Organizer";

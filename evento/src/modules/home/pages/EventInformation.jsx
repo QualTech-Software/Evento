@@ -23,7 +23,7 @@ import $ from "jquery";
 import "slick-carousel";
 import "slick-carousel/slick/slick.css";
 import { Event, Event1, Event2 } from "../../../assets/index.js";
-import EventInformation from "../../events/pages/EventInformation.jsx";
+// import EventInformation from "../../events/pages/EventInformation.jsx";
 import { StyledNavbar } from "../components/atoms.js";
 import { fetchEventsRequest } from "../redux/action/action.js";
 import { imghost, vector, iconshare } from "../../../assets/index.js";
@@ -32,7 +32,9 @@ import { FiClock } from "react-icons/fi";
 import { SlLocationPin } from "react-icons/sl";
 import { IoTicketSharp } from "react-icons/io5";
 import CategoryNavbar from "../../events/pages/CategoryNavbar.jsx";
-const EventCarousel = ({ events, loading, fetchEvents }) => {
+import { format } from "date-fns";
+
+const EventInformation = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
     fetchEvents();
   }, [fetchEvents]);
@@ -50,20 +52,30 @@ const EventCarousel = ({ events, loading, fetchEvents }) => {
         autoplay: true, // Enable autoplay
         autoplaySpeed: 3000, // Set autoplay speed in milliseconds (e.g., 3 seconds)
       });
-      console.log("Events:", events);
     }
   }, [events]);
 
-  console.log("Events:", events);
   if (loading || !events.length) {
     return <div>Loading...</div>; // Placeholder for when events are loading or not available
   }
   const event = events[0]; // Assuming you want to display the first event
+
+  const formatDateRange = (start, end) => {
+    const startDate = format(new Date(start), "d MMM");
+    const endDate = format(new Date(end), "d MMM");
+    return `${startDate} - ${endDate}`;
+  };
+
+  const formatEventTime = (start, end) => {
+    const startTime = format(new Date(start), "h:mm a");
+    const endTime = format(new Date(end), "h:mm a");
+    return `${startTime} - ${endTime}`;
+  };
   return (
     <>
       <CategoryNavbar />
       <StyledMainContainer>
-        <StyledSlickCarousel ref={slickRef} ratio={2}>
+        <StyledSlickCarousel ref={slickRef}>
           {event?.files &&
             JSON.parse(event.files).map((file, index) => (
               <img key={index} src={file.path} alt={`Image ${file.path}`} />
@@ -85,11 +97,13 @@ const EventCarousel = ({ events, loading, fetchEvents }) => {
             <StyledHeading3> Date and Time</StyledHeading3>
             <StyledParagraph>
               <BiCalendar />
-              &nbsp; {event.date}
+              &nbsp;
+              {formatDateRange(event.start_date_time, event.end_date_time)}
             </StyledParagraph>
+
             <StyledParagraph>
-              <FiClock />
-              &nbsp; {event.start_date_time} - {event.end_date_time}
+              <FiClock /> &nbsp;
+              {formatEventTime(event.start_date_time, event.end_date_time)}
             </StyledParagraph>
           </StyledFirstContainer1>
           <StyledFirstContainer2>
@@ -165,4 +179,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchEvents: () => dispatch(fetchEventsRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventCarousel);
+export default connect(mapStateToProps, mapDispatchToProps)(EventInformation);

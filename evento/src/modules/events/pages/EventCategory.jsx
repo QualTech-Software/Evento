@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchCategoriesRequest } from "../../Home/redux/actions/categoriesActions";
+import { fetchCategoriesRequest } from "../../categories/redux/actions/categoriesActions";
 import { useParams } from "react-router-dom";
 import Navbar from "./CategoryNavbar";
 import backbtn from "../../../../public/assets/Backbtn.png";

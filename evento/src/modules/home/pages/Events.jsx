@@ -23,6 +23,9 @@ import {
 import { fetchEventsRequest } from "../redux/action/action.js";
 import { vector } from "../../../assets/index.js";
 import { ticket, ellipse, star, icon1 } from "../../../assets/index.js";
+import { format } from "date-fns";
+import TicketSection from "../../events/components/TicketSection.jsx";
+import TypographyEvent from "../../events/components/TypographyEvent.jsx";
 
 const Onlineevents = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
@@ -34,6 +37,49 @@ const Onlineevents = ({ events, loading, fetchEvents }) => {
       console.log("Events:", events);
     }
   }, [events]);
+
+  const formatDateRange = (start, end) => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const startDay = startDate.getDate();
+    const endDay = endDate.getDate();
+
+    const startMonth = startDate.getMonth();
+    const endMonth = endDate.getMonth();
+
+    if (startMonth === endMonth) {
+      return `${getMonthAbbreviation(startMonth)} ${startDay} - ${endDay}`;
+    } else {
+      return `${startDay} ${getMonthAbbreviation(
+        startMonth
+      )} - ${endDay} ${getMonthAbbreviation(endMonth)}`;
+    }
+  };
+
+  const getMonthAbbreviation = (monthIndex) => {
+    const months = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+    return months[monthIndex];
+  };
+
+  const formatEventTime = (start, end) => {
+    const startTime = format(new Date(start), "h:mm a");
+    const endTime = format(new Date(end), "h:mm a");
+    return `${startTime} - ${endTime}`;
+  };
 
   return (
     <>
@@ -48,7 +94,7 @@ const Onlineevents = ({ events, loading, fetchEvents }) => {
         <Button className="btn-week">This Weekend</Button>{" "}
         <Button className="btn-free">Free</Button>
       </StyledButtonGroup>
-      <StyledLink to="/eventcarousel" className="home-createevent">
+      <StyledLink to="/eventinformation" className="home-createevent">
         <CardOutline style={{ display: "flex" }}>
           {events.slice(0, 3).map((event) => (
             <StyledCard
@@ -81,29 +127,15 @@ const Onlineevents = ({ events, loading, fetchEvents }) => {
               <StyledCardContent>
                 <StyledCardTypography level="title-md">
                   <img src={icon1} alt="Icon" />
-                  {event.start_date_time}{" "}
+                  {formatDateRange(event.start_date_time, event.end_date_time)}
                 </StyledCardTypography>
 
-                <Typography level="body-sm">
-                  <Eventname>{event.Additional_information}</Eventname>
-                  <Eventadd>{event.location}</Eventadd>
-                  <Eventtime>{event.end_date_time}</Eventtime>{" "}
-                </Typography>
+                <TypographyEvent
+                  event={event}
+                  formatEventTime={formatEventTime}
+                />
 
-                <Tickets className="tickets" orientation="horizontal">
-                  <div className="price">
-                    <img src={ticket} alt="Ticket Icon" /> INR 1,400
-                  </div>
-
-                  <div className="ellipse">
-                    <img src={ellipse} alt="Ellipse Icon" />
-                  </div>
-
-                  <div className="interested">
-                    <img src={star} alt="Star Icon" />
-                    14 interested
-                  </div>
-                </Tickets>
+                <TicketSection event={event} />
               </StyledCardContent>
             </StyledCard>
           ))}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
-import "../components/Categories.css";
+import "../../Home/components/Categories.css";
 import { connect } from "react-redux";
 import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";

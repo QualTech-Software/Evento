@@ -16,7 +16,7 @@ import {
   StyledFirstContainer2,
 } from "../components/atoms.js";
 import "../components/carousel.css";
-import { imghost, vector, iconShare } from "../../../assets/index.js";
+import { imghost, vector, iconshare } from "../../../assets/index.js";
 import { BiCalendar } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
 import { SlLocationPin } from "react-icons/sl";
@@ -33,7 +33,7 @@ const EventInformation = () => {
             <img src={vector} loading="lazy" alt="" />
           </StyledIconButton>
           <StyledIconButton1>
-            <img src={iconShare} loading="lazy" alt="" />
+            <img src={iconshare} loading="lazy" alt="" />
           </StyledIconButton1>
         </StyledFirstContainer>
         <StyledFirstContainer>

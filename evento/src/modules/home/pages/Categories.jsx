@@ -4,6 +4,7 @@ import "../components/Categories.css";
 import { connect } from "react-redux";
 import { fetchCategoriesRequest } from "../redux/actions/categoriesActions";
 import { useNavigate } from "react-router-dom";
+import { event } from "../../../assets";
 
 const Categories = ({ categories, loading, fetchCategories }) => {
   useEffect(() => {

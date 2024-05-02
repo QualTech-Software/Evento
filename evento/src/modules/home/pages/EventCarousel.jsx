@@ -26,12 +26,12 @@ import { Event, Event1, Event2 } from "../../../assets/index.js";
 import EventInformation from "../../events/pages/EventInformation.jsx";
 import { StyledNavbar } from "../components/atoms.js";
 import { fetchEventsRequest } from "../redux/action/action.js";
-import { imghost, vector, iconShare } from "../../../assets/index.js";
+import { imghost, vector, iconshare } from "../../../assets/index.js";
 import { BiCalendar } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
 import { SlLocationPin } from "react-icons/sl";
 import { IoTicketSharp } from "react-icons/io5";
-import CategoryNavbar from "../../events/pages/CategoryNavbar.jsx"
+import CategoryNavbar from "../../events/pages/CategoryNavbar.jsx";
 const EventCarousel = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
     fetchEvents();
@@ -77,7 +77,7 @@ const EventCarousel = ({ events, loading, fetchEvents }) => {
             <img src={vector} loading="lazy" alt="" />
           </StyledIconButton>
           <StyledIconButton1>
-            <img src={iconShare} loading="lazy" alt="" />
+            <img src={iconshare} loading="lazy" alt="" />
           </StyledIconButton1>
         </StyledFirstContainer>
         <StyledFirstContainer>

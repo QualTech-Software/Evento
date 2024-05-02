@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { keyframes } from "styled-components";
 import { Button, IconButton } from "@mui/material";
 
 export const StyledMainContainer = styled.div`
@@ -185,7 +186,6 @@ export const StyledHeading = styled.h4`
 export const StyledFirstContainer2 = styled.div`
   margin-left: 761px;
 `;
-import styled, { keyframes } from "styled-components";
 
 export const StyledFunEvent = styled.div`
   width: 1440px;

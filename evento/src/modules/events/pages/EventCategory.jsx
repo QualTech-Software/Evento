@@ -4,7 +4,7 @@ import { fetchCategoriesRequest } from "../../Home/redux/actions/categoriesActio
 import { useParams } from "react-router-dom";
 import Navbar from "./CategoryNavbar";
 import backbtn from "../../../../public/assets/Backbtn.png";
-import Onlineevents from "../../Home/pages/Events";
+import Onlineevents from "./Events";
 import Organizer from "../../Home/pages/Organizer";
 import TopDestination from "../../Home/pages/TopDestination";
 import Footer from "../../../modules/footer/pages/Footer";
@@ -21,6 +21,7 @@ import {
   StyledEventSubText,
   StyledHover,
 } from "../components/atoms";
+import FreeEvent from "./FreeEvent";
 
 const EventCategory = ({ categories, loading, fetchCategories }) => {
   const { category_id: eventCategoryId } = useParams();
@@ -95,8 +96,9 @@ const EventCategory = ({ categories, loading, fetchCategories }) => {
             </StyledExploreCard>
           ))}
         </StyledExploreCategory>
-        <Onlineevents />
+        <Onlineevents category_id={eventCategoryId} />
         <CreateEvent />
+        <FreeEvent />
         <Organizer />
         <TopDestination />
         <Footer />

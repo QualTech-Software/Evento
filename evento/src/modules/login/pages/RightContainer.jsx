@@ -54,13 +54,19 @@ const RightContainer = ({ loginRequest, state }) => {
     setModalOpen(false);
     navigate("/");
   };
-  const handleLoginSuccess = () => {
+  useEffect(() => {
+    // Check if token exists in sessionStorage
+    const token = sessionStorage.getItem("token");
+  }, []);
+  const handleLoginSuccess = (token) => {
     setModalMessage("Login successful!");
+    sessionStorage.setItem("token", token);
     setModalOpen(true); // Open the modal
     setTimeout(() => {
       setModalOpen(false);
       navigate("/");
     }, 10000);
+    console.log("Token:", token);
   };
 
   const handleLoginFailure = (errorMessage) => {
@@ -76,6 +82,7 @@ const RightContainer = ({ loginRequest, state }) => {
     <StyledRightcontainer>
       <StyledLogo>
         <img src="../../../assets/LOGO.png" alt="" />
+        44
       </StyledLogo>
       <QTpara>
         <p>

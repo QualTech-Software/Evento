@@ -30,9 +30,40 @@ const FreeEvent = ({ events, loading, fetchEvents }) => {
   const freeEvents = events?.filter((event) => event.is_paid === 0) || [];
 
   const formatDateRange = (start, end) => {
-    const startDate = format(new Date(start), "d MMM");
-    const endDate = format(new Date(end), "d MMM");
-    return `${startDate} - ${endDate}`;
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const startDay = startDate.getDate();
+    const endDay = endDate.getDate();
+
+    const startMonth = startDate.getMonth();
+    const endMonth = endDate.getMonth();
+
+    if (startMonth === endMonth) {
+      return `${getMonthAbbreviation(startMonth)} ${startDay} - ${endDay}`;
+    } else {
+      return `${startDay} ${getMonthAbbreviation(
+        startMonth
+      )}-${endDay} ${getMonthAbbreviation(endMonth)}`;
+    }
+  };
+
+  const getMonthAbbreviation = (monthIndex) => {
+    const months = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+    return months[monthIndex];
   };
 
   const formatEventTime = (start, end) => {

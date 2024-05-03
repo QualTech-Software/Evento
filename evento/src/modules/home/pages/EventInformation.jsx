@@ -17,6 +17,8 @@ import {
   StyledIconButton1,
   StyledHeading,
   StyledFirstContainer2,
+  StyledLeftContainer,
+  StyledRightContainer,
 } from "../../events/components/atoms.js";
 // import "../components/carousel.css";
 import $ from "jquery";
@@ -33,7 +35,8 @@ import { SlLocationPin } from "react-icons/sl";
 import { IoTicketSharp } from "react-icons/io5";
 import CategoryNavbar from "../../events/pages/CategoryNavbar.jsx";
 import { format } from "date-fns";
-
+import Footer from "../../footer/pages/Footer.jsx";
+import DiscoverEvent from "../../Home/pages/DiscoverEvent.jsx";
 const EventInformation = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
     fetchEvents();
@@ -83,29 +86,74 @@ const EventInformation = ({ events, loading, fetchEvents }) => {
         </StyledSlickCarousel>
       </StyledMainContainer>
       <StyledMainBlock>
-        <StyledFirstContainer style={{ marginBottom: 0 }}>
-          <StyledHeading1>{event.title}</StyledHeading1>
+        <StyledLeftContainer>
+          <StyledFirstContainer style={{ marginBottom: 0 }}>
+            <StyledHeading1>{event.title}</StyledHeading1>
+          </StyledFirstContainer>
+          <StyledFirstContainer>
+            <StyledFirstContainer1>
+              <StyledHeading3> Date and Time</StyledHeading3>
+              <StyledParagraph>
+                <BiCalendar />
+                &nbsp;
+                {formatDateRange(event.start_date_time, event.end_date_time)}
+              </StyledParagraph>
+
+              <StyledParagraph>
+                <FiClock /> &nbsp;
+                {formatEventTime(event.start_date_time, event.end_date_time)}
+              </StyledParagraph>
+            </StyledFirstContainer1>
+          </StyledFirstContainer>
+          <StyledHeading3>Location</StyledHeading3>
+          <StyledParagraph>
+            <SlLocationPin /> &nbsp; {event.location}
+          </StyledParagraph>
+
+          <StyledHeading3>Hosted by</StyledHeading3>
+          <StyledFirstContainer>
+            <img src={imghost} alt="" />
+            <StyledFirstContainer1>
+              <StyledParagraph>City Youth Movement</StyledParagraph>
+              <StyledRedButton>Contact</StyledRedButton>
+              <StyledFollowButton>Follow</StyledFollowButton>
+            </StyledFirstContainer1>
+          </StyledFirstContainer>
+          <StyledHeading3>Event Description</StyledHeading3>
+          <StyledParagraph>{event.Additional_information}</StyledParagraph>
+          <StyledHeading3>3 Reasons to attend the event:</StyledHeading3>
+          <StyledParagraph>
+            1. The FIRST Christmas concert of Mumbai! <br />
+            2. A special Christmas Choir!
+            <br /> 3. Special Dance performances and many more surprises!
+          </StyledParagraph>
+          <StyledHeading3>About this event</StyledHeading3>
+          <StyledFirstContainer>
+            <StyledAboutEvent>
+              <img src="../../../assets/Timericon.png" />
+              <StyledParagraph>4 hours 30 minutes</StyledParagraph>
+              <img
+                src="../../../assets/Ageicon.png"
+                style={{ marginLeft: 24 }}
+              />
+              <StyledParagraph>Ages 21+</StyledParagraph>
+              <img
+                src="../../../assets/Mobileicon.png"
+                style={{ marginLeft: 24 }}
+              />
+              <StyledParagraph>Mobile Ticket</StyledParagraph>
+            </StyledAboutEvent>
+          </StyledFirstContainer>
+          <StyledHeading3>Refund Policy</StyledHeading3>
+          <StyledParagraph>No refunds</StyledParagraph>
+        </StyledLeftContainer>
+        <StyledRightContainer>
           <StyledIconButton>
             <img src={vector} loading="lazy" alt="" />
           </StyledIconButton>
           <StyledIconButton1>
             <img src={iconshare} loading="lazy" alt="" />
           </StyledIconButton1>
-        </StyledFirstContainer>
-        <StyledFirstContainer>
-          <StyledFirstContainer1>
-            <StyledHeading3> Date and Time</StyledHeading3>
-            <StyledParagraph>
-              <BiCalendar />
-              &nbsp;
-              {formatDateRange(event.start_date_time, event.end_date_time)}
-            </StyledParagraph>
-
-            <StyledParagraph>
-              <FiClock /> &nbsp;
-              {formatEventTime(event.start_date_time, event.end_date_time)}
-            </StyledParagraph>
-          </StyledFirstContainer1>
           <StyledFirstContainer2>
             <StyledHeading>Ticket Information</StyledHeading>
             <StyledHeading>
@@ -115,47 +163,11 @@ const EventInformation = ({ events, loading, fetchEvents }) => {
               <IoTicketSharp /> &nbsp;Buy Tickets
             </StyledRedButton>
           </StyledFirstContainer2>
-        </StyledFirstContainer>
-        <StyledHeading3>Location</StyledHeading3>
-        <StyledParagraph>
-          <SlLocationPin /> &nbsp; {event.location}
-        </StyledParagraph>
-
-        <StyledHeading3>Hosted by</StyledHeading3>
-        <StyledFirstContainer>
-          <img src={imghost} alt="" />
-          <StyledFirstContainer1>
-            <StyledParagraph>City Youth Movement</StyledParagraph>
-            <StyledRedButton>Contact</StyledRedButton>
-            <StyledFollowButton>Follow</StyledFollowButton>
-          </StyledFirstContainer1>
-        </StyledFirstContainer>
-        <StyledHeading3>Event Description</StyledHeading3>
-        <StyledParagraph>{event.Additional_information}</StyledParagraph>
-        <StyledHeading3>3 Reasons to attend the event:</StyledHeading3>
-        <StyledParagraph>
-          1. The FIRST Christmas concert of Mumbai! <br />
-          2. A special Christmas Choir!
-          <br /> 3. Special Dance performances and many more surprises!
-        </StyledParagraph>
-        <StyledHeading3>About this event</StyledHeading3>
-        <StyledFirstContainer>
-          <StyledAboutEvent>
-            <img src="../../../assets/Timericon.png" />
-            <StyledParagraph>4 hours 30 minutes</StyledParagraph>
-            <img src="../../../assets/Ageicon.png" style={{ marginLeft: 24 }} />
-            <StyledParagraph>Ages 21+</StyledParagraph>
-            <img
-              src="../../../assets/Mobileicon.png"
-              style={{ marginLeft: 24 }}
-            />
-            <StyledParagraph>Mobile Ticket</StyledParagraph>
-          </StyledAboutEvent>
-        </StyledFirstContainer>
-        <StyledHeading3>Refund Policy</StyledHeading3>
-        <StyledParagraph>No refunds</StyledParagraph>
+        </StyledRightContainer>
+      </StyledMainBlock>
+      <StyledMainContainer>
         <StyledHeading3>Tags</StyledHeading3>
-        <StyledFirstContainer>
+        <StyledFirstContainer style={{ display: "flex" }}>
           <StyledParagraphTags>Holiday Concert</StyledParagraphTags>
           <StyledParagraphTags>Live Performance</StyledParagraphTags>
           <StyledParagraphTags>Seasonal Event</StyledParagraphTags>
@@ -164,8 +176,9 @@ const EventInformation = ({ events, loading, fetchEvents }) => {
           <StyledParagraphTags>#Christmas_Carols</StyledParagraphTags>
           <StyledParagraphTags>#Christmas_Spirit</StyledParagraphTags>
         </StyledFirstContainer>
-        {/* <Onlineevents /> */}
-      </StyledMainBlock>
+        <DiscoverEvent style={{ marginTop: 0 }} />
+        <Footer />
+      </StyledMainContainer>
     </>
   );
 };

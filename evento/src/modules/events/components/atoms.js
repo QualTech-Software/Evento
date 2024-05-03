@@ -5,7 +5,7 @@ import { Button, IconButton } from "@mui/material";
 export const StyledMainContainer = styled.div`
   width: 1312px;
   margin: auto;
-  margin-top: 100px;
+  // margin-top: 100px;
 `;
 export const StyledSlickCarousel = styled.div`
   margin: 0 auto;
@@ -50,6 +50,12 @@ export const StyledSlickCarousel = styled.div`
     opacity: 25%;
     border-radius: 8px;
   }
+  .slick-next {
+    margin-right: 35px;
+  }
+  .slick-prev {
+    margin-left: 48px;
+  }
 `;
 
 export const StyledIconButton = styled(IconButton)`
@@ -69,11 +75,13 @@ export const StyledIconButton = styled(IconButton)`
 export const StyledMainBlock = styled.div`
   width: 1312px;
   margin: auto;
-  margin-top: 16px;
+  display: flex;
+  // margin-top: 16px;
+  // margin-left: 64px;
 `;
 
 export const StyledFirstContainer = styled.div`
-  display: flex;
+  //display: flex;
   margin-bottom: 16px;
 `;
 export const StyledFirstContainer1 = styled.div`
@@ -184,7 +192,7 @@ export const StyledHeading = styled.h4`
   color: #1e0a3c;
 `;
 export const StyledFirstContainer2 = styled.div`
-  margin-left: 761px;
+  //margin-left: 761px;
 `;
 
 export const StyledFunEvent = styled.div`
@@ -337,3 +345,7 @@ export const StyledHover = styled.div`
     animation: ${rotateAnimation} 0.3s ease-in-out forwards;
   }
 `;
+export const StyledLeftContainer = styled.div`
+  width: 730px;
+`;
+export const StyledRightContainer = styled.div``;

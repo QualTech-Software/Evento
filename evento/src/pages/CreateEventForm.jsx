@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { arrow, editfilled, bannerfilled } from "../icons/index.js";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   NewEvent,
   EventEdit,
@@ -8,8 +8,8 @@ import {
   InfoLabel,
   CommonLabel,
 } from "../modules/CreateEventForm/components/atoms.js";
-import Info from "../modules/CreateEventForm/pages/Banner.jsx";
-import Banner from "../modules/CreateEventForm/pages/Info.jsx";
+import Banner from "../modules/CreateEventForm/pages/Banner.jsx";
+import Info from "../modules/CreateEventForm/pages/Info.jsx";
 import Ticketing from "../modules/CreateEventForm/pages/Ticketing.jsx";
 import Review from "../modules/CreateEventForm/pages/Review.jsx";
 
@@ -22,28 +22,39 @@ const steps = [
 ];
 
 // Step component to render each step
-const Step = ({ stepNumber, step, currentStep }) => (
-  <div className={`qt-step qt-step-${stepNumber}`}>
-    <img src={step.icon} className="qt-step-icon" />
-    {currentStep + 1 >= stepNumber ? (
-      <InfoLabel>{step.label}</InfoLabel>
-    ) : (
-      <CommonLabel>{step.label}</CommonLabel>
-    )}
-  </div>
-);
+const Step = ({ stepNumber, step, currentStep }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Navigate to the corresponding page when the step is clickable
+    if (currentStep + 1 >= stepNumber) {
+      // Generate the route path based on the step label
+      const routePath = step.label.toLowerCase();
+      navigate(`/createeventform/${routePath}`);
+    }
+  };
+
+  return (
+    <div
+      className={`qt-step qt-step-${stepNumber} ${
+        currentStep + 1 >= stepNumber ? "clickable" : ""
+      }`}
+      onClick={handleClick}
+    >
+      <img src={step.icon} className="qt-step-icon" alt="Step Icon" />
+      {currentStep + 1 >= stepNumber ? (
+        <InfoLabel>{step.label}</InfoLabel>
+      ) : (
+        <CommonLabel>{step.label}</CommonLabel>
+      )}
+    </div>
+  );
+};
 
 const CreateEventForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [isPaidEvent, setIsPaidEvent] = useState(false);
-  console.log("setIsPaidEvent, isPaidEvent", setIsPaidEvent, isPaidEvent);
-  useEffect(() => {
-    console.log("hello");
-  }, [isPaidEvent]);
-
-  console.log("reRenderd");
-
   return (
     <NewEvent className="qt-newevent">
       <StyledNewEventh1>Create a New Event</StyledNewEventh1>
@@ -68,7 +79,7 @@ const CreateEventForm = () => {
       </EventEdit>
       <Routes>
         <Route
-          path="/banner"
+          path="/info"
           element={
             <Info
               setIsPaidEvent={setIsPaidEvent}
@@ -78,7 +89,7 @@ const CreateEventForm = () => {
           }
         />
         <Route
-          path="/"
+          path="/banner"
           element={
             <Banner
               setIsPaidEvent={setIsPaidEvent}

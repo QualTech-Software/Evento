@@ -59,6 +59,15 @@ const EventInfo = () => {
           24th & 32nd Road &<br />
           Patwardhan Park,Off Linking Road, Bandra West., Mumbai, India
         </StyledParagraph>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.996191755594!2d72.8308250751092!3d19.063905052352354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9735b6a3c17%3A0x911ad335fd32a5b7!2sBal%20Gandharva%20Rang%20Mandir!5e0!3m2!1sen!2sin!4v1714633387718!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style={{ border: "0" }}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
 
         <StyledHeading3>Hosted by</StyledHeading3>
         <StyledFirstContainer>

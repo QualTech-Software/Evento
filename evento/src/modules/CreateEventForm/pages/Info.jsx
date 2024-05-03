@@ -47,12 +47,6 @@ import { options, placeOptions, textAreas } from "../data/Edit.json";
 import EventTickets from "../components/EventTickets.jsx";
 
 const Info = ({ saveEvent, setCurrentStep, isPaidEvent, setIsPaidEvent }) => {
-  console.log(
-    "setIsPaidEvent, isPaidEvent, setCurrentStep",
-    setIsPaidEvent,
-    isPaidEvent,
-    setCurrentStep
-  );
   const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);

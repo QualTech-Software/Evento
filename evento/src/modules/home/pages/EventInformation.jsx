@@ -19,6 +19,7 @@ import {
   StyledFirstContainer2,
   StyledLeftContainer,
   StyledRightContainer,
+  StyledRedButton1,
 } from "../../events/components/atoms.js";
 // import "../components/carousel.css";
 import $ from "jquery";
@@ -115,7 +116,7 @@ const EventInformation = ({ events, loading, fetchEvents }) => {
             <img src={imghost} alt="" />
             <StyledFirstContainer1>
               <StyledParagraph>City Youth Movement</StyledParagraph>
-              <StyledRedButton>Contact</StyledRedButton>
+              <StyledRedButton1>Contact</StyledRedButton1>
               <StyledFollowButton>Follow</StyledFollowButton>
             </StyledFirstContainer1>
           </StyledFirstContainer>

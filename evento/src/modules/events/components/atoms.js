@@ -61,7 +61,7 @@ export const StyledSlickCarousel = styled.div`
 export const StyledIconButton = styled(IconButton)`
   position: relative !important;
   border-radius: 50%;
-  margin: 10px 0px 0px 698px;
+  margin: 10px 0px 0px 495px;
   z-index: 1;
   background-color: #ababab;
   width: 40px;
@@ -81,7 +81,7 @@ export const StyledMainBlock = styled.div`
 `;
 
 export const StyledFirstContainer = styled.div`
-  //display: flex;
+  display: flex;
   margin-bottom: 16px;
 `;
 export const StyledFirstContainer1 = styled.div`
@@ -115,6 +115,23 @@ export const StyledParagraph = styled.p`
   margin: 16px 0px;
 `;
 export const StyledRedButton = styled(Button)`
+  width: 100%;
+  height: 56px;
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27.24px;
+  text-align: center;
+
+  :hover {
+    background-color: #1e0a3c;
+  }
+`;
+export const StyledRedButton1 = styled(Button)`
   width: auto;
   height: 56px;
   background-color: #ff0000;
@@ -131,6 +148,7 @@ export const StyledRedButton = styled(Button)`
     background-color: #1e0a3c;
   }
 `;
+
 export const StyledFollowButton = styled(Button)`
   width: 124px;
   height: 56px;
@@ -192,7 +210,7 @@ export const StyledHeading = styled.h4`
   color: #1e0a3c;
 `;
 export const StyledFirstContainer2 = styled.div`
-  //margin-left: 761px;
+  margin-left: 302px;
 `;
 
 export const StyledFunEvent = styled.div`

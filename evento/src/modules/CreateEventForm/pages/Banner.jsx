@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { uploadImagesRequest } from "../Redux/actions/imageActions.js";
+import { imageApi } from "../api/imageAPI.js"; // Import imageApi
 import { Grid, IconButton, Card, Modal, Backdrop } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import Slider from "react-slick";
@@ -33,38 +36,35 @@ const StyledSlider = styled(Slider)`
   position: relative;
   border: 2px solid black;
   margin-top: 30%;
-  // .slick-next {
-  //   top: 300px;
-  // }
+  .slick-next {
+    right: 10px;
+    z-index: 1;
+  }
+  .slick-prev {
+    left: 10px;
+    z-index: 1;
+  }
 `;
 
-export default function Banner({ setCurrentStep }) {
+const Banner = ({ setCurrentStep, isPaidEvent, selectedType }) => {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Add useDispatch hook to dispatch actions
 
   const handleFileInputChange = (event) => {
     const files = Array.from(event.target.files);
 
-    // Check if total number of files exceeds 5
+    // Check if total number of files exceeds 4
     if (selectedFiles.length + files.length > 4) {
       alert("You can only upload a maximum of 4 images.");
       return;
     }
 
-    // Check file size and type for each file
-    const validFiles = files.filter((file) => {
-      const allowedTypes = ["image/png", "image/jpeg"];
-      return file.size <= 5 * 1024 * 1024 && allowedTypes.includes(file.type); // 5MB and allowed types
-    });
-
     // Update selected files state
-    setSelectedFiles((prevSelectedFiles) => [
-      ...prevSelectedFiles,
-      ...validFiles,
-    ]);
+    setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, ...files]);
   };
 
   const handleBrowseButtonClick = () => {
@@ -77,13 +77,50 @@ export default function Banner({ setCurrentStep }) {
     );
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (selectedFiles.length === 0) {
       alert("Please upload images.");
       return;
     }
-    setCurrentStep(2);
-    navigate("/createeventform/ticketing");
+
+    const uploadedFilePaths = [];
+    for (const file of selectedFiles) {
+      try {
+        const imagePath = await imageApi({
+          file,
+          eventData: {
+            event_id: 7,
+            filename: file.name,
+            type: file.type,
+            path: "/uploads", // Assuming the path where images are saved on the backend
+            // Add any other data you want to send
+          },
+        });
+        uploadedFilePaths.push(imagePath);
+      } catch (error) {
+        console.error("Failed to upload image:", error);
+        alert("Failed to upload image. Please try again.");
+        return;
+      }
+    }
+
+    // Dispatch action to upload images
+    dispatch(uploadImagesRequest(uploadedFilePaths))
+      .then(() => {
+        if (isPaidEvent) {
+          setCurrentStep(2);
+          navigate("/createeventform/ticketing", {
+            state: { eventType: selectedType },
+          });
+        } else {
+          setCurrentStep(3);
+          navigate("/createeventform/review");
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to save event:", error);
+        alert("Failed to save event. Please try again.");
+      });
   };
 
   const handleImageClick = (index) => {
@@ -184,7 +221,7 @@ export default function Banner({ setCurrentStep }) {
       >
         <StyledImgFade in={openPopup}>
           <div>
-            <StyledSlider>
+            <StyledSlider initialSlide={selectedImageIndex}>
               {selectedFiles.map((file, index) => (
                 <div key={index}>
                   <img src={URL.createObjectURL(file)} alt={file.name} />
@@ -196,4 +233,6 @@ export default function Banner({ setCurrentStep }) {
       </Modal>
     </>
   );
-}
+};
+
+export default Banner;

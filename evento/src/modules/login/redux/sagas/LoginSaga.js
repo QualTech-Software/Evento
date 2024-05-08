@@ -4,9 +4,7 @@ import { loginSuccess, loginFailure } from "../action/actionTypes";
 import { LOGIN_REQUEST } from "../action/actionTypes"; 
 function* handleLoginSuccess(token) {
  
-  console.log("Token:", token);
   const expirationTime = new Date().getTime() +  (2 * 60 * 1000); 
-  console.log(new Date().getTime() + (2 * 60 * 1000));
   localStorage.setItem("token", token);
   localStorage.setItem("expirationTime", expirationTime);
   
@@ -31,7 +29,6 @@ function* login(action) {
       "http://localhost:3000/api/login",
       action.payload
     );
-    console.log("Response data:", response.data); // Log response data
     const token = response.data.token; // Extract token from response
     if (token) {
       

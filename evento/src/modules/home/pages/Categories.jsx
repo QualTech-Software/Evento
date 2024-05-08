@@ -14,7 +14,11 @@ const Categories = ({ categories, loading, fetchCategories }) => {
 
   const handleCategoryClick = (category) => {
     const { category_id } = category;
-    navigate(`/category/event/${category_id}`);
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigate(`/category/event/${category_id}`);
+    } 
   };
 
   if (loading) {

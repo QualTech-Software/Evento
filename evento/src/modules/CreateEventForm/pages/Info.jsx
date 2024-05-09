@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { saveEvent } from "../Redux/actions/editactions.js";
 import { Modal, Typography, TextField } from "@mui/material";
-import CssBaseline from "@mui/material/CssBaseline";
 import { useNavigate } from "react-router-dom";
 import { DemoItem, DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -11,6 +10,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
 import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 import { arrowdropdown, venue, online } from "../../../icons/index.js";
 import VenueDetails from "../components/VenueDetails .jsx";
 import {
@@ -46,7 +46,7 @@ import {
 import { options, placeOptions, textAreas } from "../data/Edit.json";
 import EventTickets from "../components/EventTickets.jsx";
 
-const Info = ({ saveEvent, setCurrentStep }) => {
+const Info = ({ saveEvent, setCurrentStep, isPaidEvent, setIsPaidEvent }) => {
   const [eventTitle, setEventTitle] = useState("");
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isPlaceDropdownOpen, setIsPlaceDropdownOpen] = useState(false);
@@ -69,8 +69,7 @@ const Info = ({ saveEvent, setCurrentStep }) => {
   const [textAreaValues, setTextAreaValues] = useState(
     Array(textAreas.length).fill("")
   );
-  const [formSubmitted, setFormSubmitted] = useState(false); // Track if the form has been submitted
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
   const toggleCategoryDropdown = () => {
@@ -145,9 +144,7 @@ const Info = ({ saveEvent, setCurrentStep }) => {
     selectedPlace &&
     (selectedPlace !== "Venue" || venueDetailsFilled()) &&
     startDate &&
-    endDate &&
-    startTime &&
-    endTime;
+    endDate;
 
   const handleSaveAndContinue = async () => {
     setFormSubmitted(true); // Set formSubmitted to true on Save & Continue click
@@ -193,7 +190,9 @@ const Info = ({ saveEvent, setCurrentStep }) => {
     try {
       await saveEvent(eventData);
       setCurrentStep(1);
-      navigate("/createeventform/banner");
+
+      // Pass isPaidEvent to the Banner component
+      navigate("/createeventform/banner", { state: { isPaidEvent } });
     } catch (error) {
       console.error("Failed to save event:", error);
     }
@@ -398,7 +397,10 @@ const Info = ({ saveEvent, setCurrentStep }) => {
             formSubmitted={formSubmitted} // Pass formSubmitted to the VenueDetails component
           />
         )}
-        <EventTickets />
+        <EventTickets
+          isPaidEvent={isPaidEvent}
+          setIsPaidEvent={setIsPaidEvent}
+        />
         {textAreas.map((textArea, index) => (
           <StyledDiscriptionTitle
             key={index}

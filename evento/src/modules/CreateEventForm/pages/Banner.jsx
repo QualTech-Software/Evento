@@ -45,7 +45,6 @@ const StyledSlider = styled(Slider)`
     z-index: 1;
   }
 `;
-
 const Banner = ({ setCurrentStep, isPaidEvent, selectedType }) => {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -82,7 +81,6 @@ const Banner = ({ setCurrentStep, isPaidEvent, selectedType }) => {
       alert("Please upload images.");
       return;
     }
-
     const uploadedFilePaths = [];
     for (const file of selectedFiles) {
       try {

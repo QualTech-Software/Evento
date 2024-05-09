@@ -8,6 +8,7 @@ import {
   StyledDialogButton,
   StyledMainErrorBox,
 } from "../components/atoms";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const DialogPopup = ({ modalOpen, handleCloseModal, modalMessage }) => {
   return (

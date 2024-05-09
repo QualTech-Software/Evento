@@ -82,7 +82,7 @@ const home = () => {
               <img src={dashboard} alt="Dashboard" />
               <p>Categories</p>
             </StyledCategory>
-            <StyledLink to="/createeventform" className="home-createevent">
+            <StyledLink to="/createeventform/info" className="home-createevent">
               <StyledEvent className="event">
                 <img src={event} alt="Event" />
                 <p>Create Event</p>

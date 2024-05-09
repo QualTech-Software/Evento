@@ -13,9 +13,10 @@ import {
 } from "../../Home/components/atoms.js";
 import { fetchEventsRequest } from "../redux/action/action.js";
 import { vector, icon1 } from "../../../assets/index.js";
-import { format } from "date-fns";
 import TicketSection from "../components/TicketSection.jsx";
 import TypographyEvent from "../components/TypographyEvent.jsx";
+import { formatDateRange, formatEventTime } from "../utils/EventUtils.jsx";
+
 const FreeEvent = ({ events, loading, fetchEvents }) => {
   useEffect(() => {
     fetchEvents();
@@ -28,18 +29,6 @@ const FreeEvent = ({ events, loading, fetchEvents }) => {
   }, [events]);
 
   const freeEvents = events?.filter((event) => event.is_paid === 0) || [];
-
-  const formatDateRange = (start, end) => {
-    const startDate = format(new Date(start), "d MMM");
-    const endDate = format(new Date(end), "d MMM");
-    return `${startDate} - ${endDate}`;
-  };
-
-  const formatEventTime = (start, end) => {
-    const startTime = format(new Date(start), "h:mm a");
-    const endTime = format(new Date(end), "h:mm a");
-    return `${startTime} - ${endTime}`;
-  };
 
   return (
     <>

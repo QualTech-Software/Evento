@@ -64,6 +64,7 @@ const home = () => {
   const handleoClick = () => {
     navigate("/login");
   };
+
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
@@ -82,12 +83,21 @@ const home = () => {
               <img src={dashboard} alt="Dashboard" />
               <p>Categories</p>
             </StyledCategory>
-            <StyledLink to="/createeventform" className="home-createevent">
-              <StyledEvent className="event">
-                <img src={event} alt="Event" />
-                <p>Create Event</p>
-              </StyledEvent>
-            </StyledLink>
+            {localStorage.getItem("token") ? (
+              <StyledLink to="/createeventform" className="home-createevent">
+                <StyledEvent className="event">
+                  <img src={event} alt="Event" />
+                  <p>Create Event</p>
+                </StyledEvent>
+              </StyledLink>
+            ) : (
+              <div className="home-createevent" >
+                <StyledEvent className="event">
+                  <img src={event} alt="Event" />
+                  <p>Create Event</p>
+                </StyledEvent>
+              </div>
+            )}
             <StyledInterest className="interest">
               <img src={interest} alt="Interest" />
               <p>Interested</p>
@@ -122,6 +132,7 @@ const home = () => {
                   borderBottomLeftRadius: showTrendingSearch ? "0" : "10px",
                 }}
               />
+   
               <StyledDropDownTrending className="Dropdown-trending">
                 {showTrendingSearch && (
                   <TrendingSearch className="trending-search">

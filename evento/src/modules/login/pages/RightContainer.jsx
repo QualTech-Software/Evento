@@ -54,9 +54,12 @@ const RightContainer = ({ loginRequest, state }) => {
     setModalOpen(false);
     navigate("/");
   };
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (token) => {
     setModalMessage("Login successful!");
     setModalOpen(true); // Open the modal
+    
+    sessionStorage.setItem("token", token);
+   
     setTimeout(() => {
       setModalOpen(false);
       navigate("/");
@@ -76,6 +79,7 @@ const RightContainer = ({ loginRequest, state }) => {
     <StyledRightcontainer>
       <StyledLogo>
         <img src="../../../assets/LOGO.png" alt="" />
+  
       </StyledLogo>
       <QTpara>
         <p>

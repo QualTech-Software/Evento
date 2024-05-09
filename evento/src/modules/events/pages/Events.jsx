@@ -22,7 +22,7 @@ import {
 } from "../redux/action/action.js";
 import { vector, icon1 } from "../../../assets/index.js";
 import { useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { formatDateRange,  formatEventTime } from '../utils/EventUtils.jsx' ;
 
 const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
   const { category_id } = useParams();
@@ -48,18 +48,6 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
 
   const fetchFilteredEvents = (data) => {
     fetchFilteredEventsRequest(data);
-  };
-
-  const formatDateRange = (start, end) => {
-    const startDate = format(new Date(start), "d MMM");
-    const endDate = format(new Date(end), "d MMM");
-    return `${startDate} - ${endDate}`;
-  };
-
-  const formatEventTime = (start, end) => {
-    const startTime = format(new Date(start), "h:mm a");
-    const endTime = format(new Date(end), "h:mm a");
-    return `${startTime} - ${endTime}`;
   };
 
   return (

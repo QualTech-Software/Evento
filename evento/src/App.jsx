@@ -10,7 +10,7 @@ import Login from "./modules/login/pages/Login.jsx";
 import WelcomeEvent from "./pages/WelcomeEvent.jsx";
 import EventCategory from "./modules/events/pages/EventCategory.jsx";
 // import SuccessModal from "./modules/login/pages/SuccessModal.jsx";
-
+import ShareEventPage from "./modules/events/pages/ShareEventPage.jsx";
 function App() {
   return (
     <Routes>
@@ -21,6 +21,7 @@ function App() {
       <Route path="/account" element={<Register />} />
       <Route path="/welcome" element={<WelcomeEvent />} />
       <Route path="/category/event/:category_id" element={<EventCategory />} />
+      <Route path="/shareevent" element={<ShareEventPage />} />
     </Routes>
   );
 }

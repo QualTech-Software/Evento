@@ -150,3 +150,125 @@ export const StyledHover = styled.div`
     animation: ${rotateAnimation} 0.3s ease-in-out forwards;
   }
 `;
+export const StyledSharedMainContainer = styled.div`
+  width: 616px;
+  radius: 8px;
+  margin: auto;
+
+  .show {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0s 0s ease-in-out, opacity 0.2s 0s ease-in-out,
+      transform 0.2s 0s ease-in-out;
+    background-color: grey;
+  }
+`;
+export const StyledPopupContainer = styled.div`
+  background: rgb(255, 254, 254);
+  padding: 25px;
+  border-radius: 8px;
+  top: 10%;
+  width: 616px;
+  height: 342px;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: top 0s 0.2s ease-in-out, opacity 0.2s 0s ease-in-out,
+    transform 0.2s 0s ease-in-out;
+`;
+export const Styledheader = styled.div`
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ebedf9;
+  span {
+    font-size: 21px;
+    font-weight: 600;
+  }
+  .close {
+    color: #878787;
+    font-size: 17px;
+    background: #f3f3f3;
+    height: 33px;
+    width: 33px;
+    cursor: pointer;
+  }
+  .close:hover {
+    background: #ebedf9;
+  }
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+`;
+export const StyledContent = styled.div`
+  margin: 20px 0;
+`;
+export const StyledUnorderedList = styled.ul`
+  margin: 15px 0 20px 0;
+  a i {
+    transition: transform 0.3s ease-in-out;
+  }
+  a:nth-child(1) {
+    color: #1877f2;
+
+    width: 30px;
+    height: 30px;
+  }
+
+  a:nth-child(2) {
+    color: #000;
+  }
+
+  a:nth-child(3) {
+    color: #5fd568;
+  }
+
+  a:nth-child(4) {
+    color: #25d366;
+  }
+
+  a {
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+`;
+export const StyledTextContainer = styled.div`
+  margin: 12px 0 -5px 0;
+  /* //height: 45px; */
+  border-radius: 4px;
+  padding: 0 5px;
+  border: 1px solid #757171;
+  i {
+    width: 50px;
+    font-size: 18px;
+    text-align: center;
+  }
+  .active i {
+    color: #7d2ae8;
+  }
+  .active {
+    border-color: #7d2ae8;
+  }
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+  }
+  button {
+    color: #fff;
+    padding: 5px 18px;
+    background: #7d2ae8;
+  }
+  button:hover {
+    background: #8d39fa;
+  }
+`;

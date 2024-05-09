@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-
+import Typography from "@mui/material/Typography";
 export const StyledFunEvent = styled.div`
   width: 1440px;
   height: 358px;
@@ -209,14 +209,14 @@ export const StyledContent = styled.div`
 `;
 export const StyledUnorderedList = styled.ul`
   margin: 15px 0 20px 0;
-  a i {
+  display: flex;
+  a {
+    width: 30px;
+    height: 30px;
     transition: transform 0.3s ease-in-out;
   }
   a:nth-child(1) {
     color: #1877f2;
-
-    width: 30px;
-    height: 30px;
   }
 
   a:nth-child(2) {
@@ -229,14 +229,6 @@ export const StyledUnorderedList = styled.ul`
 
   a:nth-child(4) {
     color: #25d366;
-  }
-
-  a {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-    text-decoration: none;
-    border: 1px solid transparent;
   }
 `;
 export const StyledTextContainer = styled.div`
@@ -271,4 +263,8 @@ export const StyledTextContainer = styled.div`
   button:hover {
     background: #8d39fa;
   }
+`;
+export const StyledTypography = styled(Typography)`
+  font-size: 24px !important;
+  text-align: center;
 `;

@@ -22,7 +22,7 @@ import {
 } from "../redux/action/action.js";
 import { vector, icon1 } from "../../../assets/index.js";
 import { useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { formatDateRange,  formatEventTime } from '../utils/EventUtils.jsx' ;
 
 const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
   const { category_id } = useParams();
@@ -48,49 +48,6 @@ const Onlineevents = ({ events, loading, fetchFilteredEventsRequest }) => {
 
   const fetchFilteredEvents = (data) => {
     fetchFilteredEventsRequest(data);
-  };
-
-  const formatDateRange = (start, end) => {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
-    const startDay = startDate.getDate();
-    const endDay = endDate.getDate();
-
-    const startMonth = startDate.getMonth();
-    const endMonth = endDate.getMonth();
-
-    if (startMonth === endMonth) {
-      return `${getMonthAbbreviation(startMonth)} ${startDay} - ${endDay}`;
-    } else {
-      return `${startDay} ${getMonthAbbreviation(
-        startMonth
-      )}-${endDay} ${getMonthAbbreviation(endMonth)}`;
-    }
-  };
-
-  const getMonthAbbreviation = (monthIndex) => {
-    const months = [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ];
-    return months[monthIndex];
-  };
-
-  const formatEventTime = (start, end) => {
-    const startTime = format(new Date(start), "h:mm a");
-    const endTime = format(new Date(end), "h:mm a");
-    return `${startTime} - ${endTime}`;
   };
 
   return (

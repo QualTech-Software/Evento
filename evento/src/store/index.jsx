@@ -11,16 +11,26 @@ import editReducer from "../modules/CreateEventForm/Redux/reducer/editReducer";
 import editSaga from "../modules/CreateEventForm/Redux/sagas/editsaga";
 import EventReducer from "../modules/events/redux/reducer/EventReducer";
 import EventSaga from "../modules/events/redux/sagas/EventSaga";
+import imageReducer from "../modules/CreateEventForm/Redux/reducer/imageReducer";
+import imageSaga from "../modules/CreateEventForm/Redux/sagas/imageSaga";
 const rootReducers = combineReducers({
   login: loginReducer,
   categories: categoriesReducer,
   edit: editReducer,
   event: EventReducer,
+  image: imageReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSagas() {
-  yield all([loginSaga(), categoriesSaga(), editSaga(), EventSaga()]);
+  yield all([
+    loginSaga(),
+    categoriesSaga(),
+    editSaga(),
+    EventSaga(),
+
+    imageSaga(),
+  ]);
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
